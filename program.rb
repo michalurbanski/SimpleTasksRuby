@@ -1,11 +1,15 @@
 require 'rubygems'
 require 'bundler/setup'
 
+# Additional gems
 require 'colorize'
+require_relative 'main'
 
-system "clear" or system "cls"
+main = Main.new
 
-puts("Welcome to Simple Tasks Project")
+main.clear_screen
+main.start
 
+# TODO: program execution should be placed here
 
-puts("Program execution finished".colorize(:green))
+main.end
