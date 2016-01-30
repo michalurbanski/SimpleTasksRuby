@@ -1,4 +1,6 @@
 class FileReader
+  attr_reader :lines
+
   def initialize(filePath)
     @filePath = filePath
   end
@@ -24,7 +26,6 @@ class FileReader
     @lines = read_lines
 
     print_message("Reading file finished")
-    @lines
   end
 
   def read_lines

@@ -14,10 +14,14 @@ main.start
 # TODO: program execution should be placed here
 filePath = "Samples/first.txt"
 fileReader = FileReader.new(filePath)
-lines = fileReader.read_file
+fileReader.read_file
 
 # TODO: print lines
 puts("Printing file content".colorize(:green))
-puts(lines)
+#p(fileReader.lines) # lines are in the array
+
+fileReader.lines.each do |line|
+  p(line)
+end
 
 main.end
