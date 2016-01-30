@@ -11,17 +11,8 @@ main = Main.new
 main.clear_screen
 main.start
 
-# TODO: program execution should be placed here
-filePath = "Samples/first.txt"
-fileReader = FileReader.new(filePath)
-fileReader.read_file
-
-# TODO: print lines
-puts("Printing file content".colorize(:green))
-#p(fileReader.lines) # lines are in the array
-
-fileReader.lines.each do |line|
-  p(line)
-end
+main.read_from_file
+# TODO: process lines - change array of lines to class
+main.convert_fileLines_to_objects
 
 main.end
