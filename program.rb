@@ -17,6 +17,7 @@ fileReader = FileReader.new(filePath)
 lines = fileReader.read_file
 
 # TODO: print lines
+puts("Printing file content".colorize(:green))
 puts(lines)
 
 main.end
