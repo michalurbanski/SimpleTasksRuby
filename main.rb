@@ -23,6 +23,12 @@ class Main
   end
 
   def convert_fileLines_to_objects
+    # TODO: assumption that input file has only one week - this will be changed later
+    weekConverter = WeekConverter.new(@fileLines)
+    weekConverter.convert_lines_to_week
+
+    puts("Printing week...")
+    puts(weekConverter.to_s)
 
   end
 
