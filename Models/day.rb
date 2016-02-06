@@ -1,7 +1,19 @@
 class Day
-  def intialize(name, actions)
+  attr_reader :name, :actions
+
+  # TODO: you can't have two constructors in ruby?
+  #def initialize(name, actions)
+  #  @name = name
+  #  @actions = actions
+  #end
+
+  def initialize(name)
     @name = name
-    @actions = actions
+    @actions = Array.new
+  end
+
+  def add_action(text)
+    @actions.push(text)
   end
 
   # overriden
