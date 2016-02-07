@@ -1,9 +1,13 @@
 require_relative '../Models/possible_days_tester'
 require_relative '../Models/day'
+require_relative 'linesConverter'
 
 class WeekConverter
   def initialize(lines)
     @lines = lines # all lines as input
+
+    linesConverter = LinesConverter.new(@lines)
+    @lines = linesConverter.remove_blank_lines
   end
 
   def convert_lines_to_week
