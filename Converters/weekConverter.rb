@@ -31,15 +31,6 @@ class WeekConverter
         next
       end
 
-=begin
-      if is_end_of_day(line)
-        puts("End of day #{daysCounter}")
-        daysCounter += 1
-        next
-      end
-
-=end
-
       # Not a week line and not a day line - this means that we're parsing actions now
       day = @days[daysCounter]
       day.add_action(line)
@@ -61,13 +52,5 @@ class WeekConverter
       if line =~ week_name_pattern
         @weekName = line
       end
-    end
-
-    def is_end_of_day(line)
-      if line =~ /^\n/
-        return true
-      end
-
-      return false
     end
 end
