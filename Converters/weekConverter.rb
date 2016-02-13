@@ -17,6 +17,7 @@ class WeekConverter
 
     possibleDaysTester = PossibleDaysTester.new
 
+    # Input collection has no empty lines at this moment
     @lines.each do |line|
       if @weekName.empty? then
         extract_week_name(line)
@@ -27,6 +28,7 @@ class WeekConverter
         puts("New day: #{line}")
         day = Day.new(line)
         @days.push(day)
+        next
       end
 
 =begin
@@ -38,17 +40,9 @@ class WeekConverter
 
 =end
 
-=begin
-      puts("Action for a given day #{line}")
-      # actions for a given day
-      day = @days[daysCounter] #TODO: this is nil because there's a blank line after week name - should be fixed at first
+      # Not a week line and not a day line - this means that we're parsing actions now
+      day = @days[daysCounter]
       day.add_action(line)
-=end
-
-      # TODO: continue parsing other lines
-      # Find day name
-      # Take actions as long as new line is encountered
-
     end
   end
 
