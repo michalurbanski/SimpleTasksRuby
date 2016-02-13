@@ -22,4 +22,11 @@ class PossibleDaysTesterTests < Test::Unit::TestCase
 
     assert_equal(false, test.is_day(text))
   end
+
+  def test_is_friday_a_day
+    test = PossibleDaysTester.new
+    text = "Friday"
+
+    assert_equal(true, test.is_day(text))
+  end
 end

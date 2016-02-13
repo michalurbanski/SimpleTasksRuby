@@ -27,8 +27,8 @@ class Main
     weekConverter = WeekConverter.new(@fileLines)
     weekConverter.convert_lines_to_week
 
-    puts("Printing week...")
-    puts(weekConverter.to_s)
+    #puts("Printing week...")
+    #puts(weekConverter.to_s)
 
   end
 

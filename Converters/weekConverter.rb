@@ -24,22 +24,26 @@ class WeekConverter
       end
 
       if(possibleDaysTester.is_day(line))
-        puts("New day #{line}")
+        puts("New day: #{line}")
         day = Day.new(line)
         @days.push(day)
-        next
       end
 
+=begin
       if is_end_of_day(line)
         puts("End of day #{daysCounter}")
         daysCounter += 1
         next
       end
 
+=end
+
+=begin
       puts("Action for a given day #{line}")
       # actions for a given day
       day = @days[daysCounter] #TODO: this is nil because there's a blank line after week name - should be fixed at first
       day.add_action(line)
+=end
 
       # TODO: continue parsing other lines
       # Find day name

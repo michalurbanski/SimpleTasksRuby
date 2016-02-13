@@ -13,8 +13,10 @@ class PossibleDaysTester
       if lower_text.start_with?(day)
         return true
       else
-        return false
+        next # check if next element is a day
       end
     end
+
+    return false # if no day found than return false
   end
 end
