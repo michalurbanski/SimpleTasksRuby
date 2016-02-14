@@ -13,7 +13,7 @@ class WeekConverter
   def convert_lines_to_week
     @weekName = ""
     @days = Array.new
-    daysCounter = 0
+    day = nil
 
     possibleDaysTester = PossibleDaysTester.new
 
@@ -36,8 +36,7 @@ class WeekConverter
       end
 
       # Not a week line and not a day line - this means that we're parsing actions now
-      day = @days[daysCounter]
-      day.add_action(line)
+      if !day.nil? then day.add_action(line) end
     end
   end
 
