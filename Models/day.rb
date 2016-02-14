@@ -14,7 +14,6 @@ class Day
 
   def add_action(text)
     @actions.push(text)
-    puts("Adding acton #{text}")
   end
 
   def print_day

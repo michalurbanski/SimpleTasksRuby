@@ -11,4 +11,18 @@ class WeekConverterTests < Test::Unit::TestCase
     result = WeekConverter.is_end_of_week("--")
     assert_equal(false, result)
   end
+
+  def test_convert_week_to_days
+    lines = Array.new
+    lines.push("Week 1")
+    lines.push("Monday 2015-01-01")
+    lines.push("- first task")
+    lines.push("Tuesday 2015-01-02")
+
+    weekConverter = WeekConverter.new(lines)
+    weekConverter.convert_lines_to_week
+    days = weekConverter.days
+
+    assert_equal(2, days.length)
+  end
 end
