@@ -17,8 +17,7 @@ class Day
     puts("Adding acton #{text}")
   end
 
-  # overriden
-  def to_s
+  def print_day
     puts(@name)
     @actions.each do |action|
       puts(action)

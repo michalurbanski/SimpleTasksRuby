@@ -40,11 +40,10 @@ class WeekConverter
     end
   end
 
-  # overriden
-  def to_s
+  def print_week
     puts(@weekName)
     @days.each do |day|
-      puts(day)
+      day.print_day
     end
   end
 

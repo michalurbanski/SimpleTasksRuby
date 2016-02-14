@@ -28,8 +28,7 @@ class Main
     weekConverter.convert_lines_to_week
 
     puts("Printing week...")
-    puts(weekConverter.to_s)
-
+    weekConverter.print_week
   end
 
   def end
