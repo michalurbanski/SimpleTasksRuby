@@ -1,15 +1,17 @@
 Week 1
 
 Monday 2016-01-25
-- First task
-- Second task
+- DONE - First task
+- delayed, - Second task
 
 Tuesday 2016-01-26
-- Third task for tuesday
+- delayed, DONE 2016-01-28 - Third task for tuesday
 
 Wednesday 2016-01-27
+- ABORTED - task which should not be continued
 
 Thursday 2016-01-28
+- delyead - spelling mistake should be also processed
 
 Friday 2016-01-29
 
