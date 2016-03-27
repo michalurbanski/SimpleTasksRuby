@@ -1,5 +1,6 @@
 require_relative '../Models/day'
 require_relative '../Creators/taskCreator'
+require 'date'
 
 # Day extractor proceeds tasks' statuses for a given day
 class DailyStatusExtractor
@@ -10,8 +11,9 @@ class DailyStatusExtractor
 
   def proceed_day
     @day.actions.each do |action|
-      # TODO: proceed each task
-      taskCreator = TaskCreator.new(action)
+      # TODO: hardcoded date for now - this property should be taken from date
+      date = Date.new(2016, 1, 1)
+      taskCreator = TaskCreator.new(action, date)
       task = taskCreator.create_task
     end
   end

@@ -5,12 +5,14 @@ require_relative '../Models/doneTask'
 require_relative '../Extractors/statusExtractor'
 
 class TaskCreator
-  def initialize(action)
+  def initialize(action, date)
     @action = action
+    @date = date
     @statusExtractor = StatusExtractor.new(@action)
   end
 
   def create_task
+    # TODO: create proper type of task based on status
     #status = @statusExtractor.
   end
 end
