@@ -19,5 +19,23 @@ class StatusExtractorTests < Test::Unit::TestCase
 
     assert_equal("delayed, -", status)
   end
+
+  def test_extract_delayed_and_done_status
+    action = "- delayed, DONE - this is delayed, but done task"
+
+    extractor = StatusExtractor.new(action)
+    status = extractor.extractStatus
+
+    assert_equal("delayed, DONE", status)
+  end
+
+  def test_extract_aborted_status
+    action = "- ABORTED - this is aborted task"
+
+    extractor = StatusExtractor.new(action)
+    status = extractor.extractStatus
+
+    assert_equal("ABORTED", status)
+  end
 end
 
