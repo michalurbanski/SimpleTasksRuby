@@ -37,5 +37,14 @@ class StatusExtractorTests < Test::Unit::TestCase
 
     assert_equal("ABORTED", status)
   end
+
+  def test_no_status
+    action = "- task without any status yet"
+
+    extractor = StatusExtractor.new(action)
+    status = extractor.extractStatus
+
+    assert_not_nil(status) # returns not empty string but we don't care what is it exactly
+  end
 end
 
