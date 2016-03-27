@@ -6,7 +6,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     action = "- DONE - first task"
 
     extractor = StatusExtractor.new(action)
-    status = extractor.extractStatus
+    status = extractor.extract_status
 
     assert_equal("DONE", status)
   end
@@ -15,7 +15,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     action = "- delayed, - this is delayed task"
 
     extractor = StatusExtractor.new(action)
-    status = extractor.extractStatus
+    status = extractor.extract_status
 
     assert_equal("delayed, -", status)
   end
@@ -24,7 +24,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     action = "- delayed, DONE - this is delayed, but done task"
 
     extractor = StatusExtractor.new(action)
-    status = extractor.extractStatus
+    status = extractor.extract_status
 
     assert_equal("delayed, DONE", status)
   end
@@ -33,7 +33,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     action = "- ABORTED - this is aborted task"
 
     extractor = StatusExtractor.new(action)
-    status = extractor.extractStatus
+    status = extractor.extract_status
 
     assert_equal("ABORTED", status)
   end
@@ -42,7 +42,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     action = "- task without any status yet"
 
     extractor = StatusExtractor.new(action)
-    status = extractor.extractStatus
+    status = extractor.extract_status
 
     assert_not_nil(status) # returns not empty string but we don't care what is it exactly
   end

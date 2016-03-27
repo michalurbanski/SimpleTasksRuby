@@ -4,7 +4,7 @@ class StatusExtractor
     @action = action # single line in day in input file
   end
 
-  def extractStatus
+  def extract_status
     trim_start
     words = @action.split(' ')
 

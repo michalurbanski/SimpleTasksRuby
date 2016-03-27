@@ -1,4 +1,5 @@
 require_relative '../Models/day'
+require_relative '../Creators/taskCreator'
 
 # Day extractor proceeds tasks' statuses for a given day
 class DailyStatusExtractor
@@ -10,7 +11,8 @@ class DailyStatusExtractor
   def proceed_day
     @day.actions.each do |action|
       # TODO: proceed each task
-      #task = Task.new(action)
+      taskCreator = TaskCreator.new(action)
+      task = taskCreator.create_task
     end
   end
 end
