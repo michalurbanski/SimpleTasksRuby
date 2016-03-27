@@ -1,9 +1,9 @@
 class Task
-  attr_reader :status
   attr_reader :title
-  attr_reader :isDoneOnTime
+  attr_reader :originalDate
 
-  def initialize(action)
-    @action = action
+  def initialize(title, originalDate)
+    @title = title
+    @originalDate = originalDate
   end
 end

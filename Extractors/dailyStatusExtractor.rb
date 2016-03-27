@@ -10,7 +10,7 @@ class DailyStatusExtractor
   def proceed_day
     @day.actions.each do |action|
       # TODO: proceed each task
-      task = Task.new(action)
+      #task = Task.new(action)
     end
   end
 end
