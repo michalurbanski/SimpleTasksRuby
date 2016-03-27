@@ -6,18 +6,13 @@ class StatusExtractor
 
   def extractStatus
     trim_start
-
     words = @action.split(' ')
 
     firstWord = words.first
     secondWord = words[1]
 
-    if firstWord == "DONE" or firstWord == "ABORTED"
-      return firstWord
-    else
-      return firstWord + ' ' + secondWord
-    end
-
+    return firstWord if (firstWord == "DONE" or firstWord == "ABORTED")
+    return firstWord + ' ' + secondWord
   end
 
   private
