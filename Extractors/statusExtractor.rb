@@ -11,8 +11,8 @@ class StatusExtractor
     firstWord = words.first
     secondWord = words[1]
 
-    return firstWord if (firstWord == "DONE" or firstWord == "ABORTED")
-    return firstWord + ' ' + secondWord
+    return firstWord + ' ' + secondWord if firstWord.end_with? ","
+    return firstWord
   end
 
   private
