@@ -1,7 +1,7 @@
 require_relative '../Models/task'
-require_relative '../Models/delayedTask'
-require_relative '../Models/abortedTask'
-require_relative '../Models/doneTask'
+require_relative '../Models/delayed_task'
+require_relative '../Models/aborted_task'
+require_relative '../Models/done_task'
 require_relative '../Extractors/status_extractor'
 
 class TaskCreator
