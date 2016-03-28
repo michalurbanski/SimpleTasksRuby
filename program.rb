@@ -5,7 +5,7 @@ require 'bundler/setup'
 require 'colorize'
 require_relative 'main'
 require_relative 'FileHandling/fileReader'
-require_relative 'Converters/weekConverter'
+require_relative 'Converters/week_converter'
 require_relative 'Models/day'
 require_relative 'Models/week'
 

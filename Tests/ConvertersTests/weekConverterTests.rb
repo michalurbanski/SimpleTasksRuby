@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../../Converters/weekConverter'
+require_relative '../../Converters/week_converter'
 
 class WeekConverterTests < Test::Unit::TestCase
   def test_is_valid_end_of_week
