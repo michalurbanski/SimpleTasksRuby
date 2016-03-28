@@ -4,7 +4,7 @@ require 'bundler/setup'
 # Additional gems
 require 'colorize'
 require_relative 'main'
-require_relative 'FileHandling/fileReader'
+require_relative 'FileHandling/file_reader'
 require_relative 'Converters/week_converter'
 require_relative 'Models/day'
 require_relative 'Models/week'
