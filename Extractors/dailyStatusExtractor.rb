@@ -1,5 +1,5 @@
 require_relative '../Models/day'
-require_relative '../Creators/taskCreator'
+require_relative '../Creators/task_creator'
 require 'date'
 
 # Day extractor proceeds tasks' statuses for a given day
