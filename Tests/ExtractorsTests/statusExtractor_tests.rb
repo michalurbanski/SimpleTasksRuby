@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../../Extractors/statusExtractor'
+require_relative '../../Extractors/status_extractor'
 
 class StatusExtractorTests < Test::Unit::TestCase
   def test_extract_done_status
