@@ -1,5 +1,6 @@
 require 'test/unit'
 require_relative '../../Extractors/status_extractor'
+require_relative '../../Modules/task_status'
 
 class StatusExtractorTests < Test::Unit::TestCase
   def test_extract_done_status
@@ -8,7 +9,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal("DONE", status)
+    assert_equal(TaskStatus::DONE, status)
   end
 
   def test_extract_delayed_and_not_done_status
@@ -17,7 +18,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal("delayed, -", status)
+    assert_equal(TaskStatus::DELAYED, status)
   end
 
   def test_extract_delayed_and_done_status
@@ -26,7 +27,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal("delayed, DONE", status)
+    assert_equal(TaskStatus::DELAYED_DONE, status)
   end
 
   def test_extract_aborted_status
@@ -35,7 +36,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal("ABORTED", status)
+    assert_equal(TaskStatus::ABORTED, status)
   end
 
   def test_no_status
