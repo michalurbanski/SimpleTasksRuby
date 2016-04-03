@@ -1,3 +1,4 @@
+require 'date'
 require_relative '../Models/task'
 require_relative '../Models/delayed_task'
 require_relative '../Models/aborted_task'
@@ -13,15 +14,19 @@ class TaskCreator
   end
 
   def create_task
-    # TODO: create proper type of task based on status
-    status = @statusExtractor.extract_status
+    statusModel = @statusExtractor.extract_status
+    status = statusModel.status
+    dateText = statusModel.date
+
+    if !dateText.nil?
+      delayedDoneDate = Date.strptime(dateText, '%Y-%m-%d')
+    end
 
     case(status)
       when TaskStatus::DONE then return DoneTask.new(@action, @date, @date)
       when TaskStatus::ABORTED then return AbortedTask.new(@action, @date)
       when TaskStatus::DELAYED then return DelayedTask.new(@action, @date)
-        #TODO: fix finish date of the task
-      when TaskStatus::DELAYED_DONE then return DoneTask.new(@action, @date, @date)
+      when TaskStatus::DELAYED_DONE then return DoneTask.new(@action, @date, delayedDoneDate)
     end
   end
 end

@@ -11,6 +11,7 @@ class TaskCreatorTests < Test::Unit::TestCase
     doneTask = taskCreator.create_task
 
     assert_equal(true, doneTask.is_a?(DoneTask))
+    assert_equal(false, doneTask.was_delayed)
   end
 
   def test_aborted_task_created
@@ -43,5 +44,17 @@ class TaskCreatorTests < Test::Unit::TestCase
     doneTask = taskCreator.create_task
 
     assert_equal(true, doneTask.is_a?(DoneTask))
+  end
+
+  def test_delayed_and_done_task_has_greater_done_date_than_original_date
+    date = DateTime.new(2015, 3, 1)
+
+    # Task done 2 days later
+    action = "delayed, DONE 2016-03-03 - first task"
+
+    taskCreator = TaskCreator.new(action, date)
+    doneTask = taskCreator.create_task
+
+    assert_equal(true, doneTask.was_delayed)
   end
 end

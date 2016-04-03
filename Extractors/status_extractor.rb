@@ -1,3 +1,5 @@
+require_relative "../Models/status_model"
+
 # Extracts status from single action
 class StatusExtractor
   def initialize(action)
@@ -10,9 +12,11 @@ class StatusExtractor
 
     firstWord = words.first
     secondWord = words[1]
+    thirdWord = words[2]
 
-    return firstWord + ' ' + secondWord if firstWord.end_with? ","
-    return firstWord
+    return StatusModel.new(firstWord + ' ' + secondWord) if (firstWord.end_with? "," and secondWord == "-")
+    return StatusModel.new(firstWord + ' ' + secondWord, thirdWord) if firstWord.end_with? ","
+    return StatusModel.new(firstWord)
   end
 
   private

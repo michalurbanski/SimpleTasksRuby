@@ -9,4 +9,8 @@ class DoneTask < Task
     super(title, originalDate)
     @doneDate = doneDate
   end
+
+  def was_delayed
+    return @doneDate > @originalDate
+  end
 end

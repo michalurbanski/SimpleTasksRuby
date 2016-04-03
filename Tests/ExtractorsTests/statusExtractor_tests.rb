@@ -9,7 +9,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal(TaskStatus::DONE, status)
+    assert_equal(TaskStatus::DONE, status.status)
   end
 
   def test_extract_delayed_and_not_done_status
@@ -18,7 +18,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal(TaskStatus::DELAYED, status)
+    assert_equal(TaskStatus::DELAYED, status.status)
   end
 
   def test_extract_delayed_and_done_status
@@ -27,7 +27,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal(TaskStatus::DELAYED_DONE, status)
+    assert_equal(TaskStatus::DELAYED_DONE, status.status)
   end
 
   def test_extract_aborted_status
@@ -36,7 +36,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_equal(TaskStatus::ABORTED, status)
+    assert_equal(TaskStatus::ABORTED, status.status)
   end
 
   def test_no_status
@@ -45,7 +45,7 @@ class StatusExtractorTests < Test::Unit::TestCase
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
-    assert_not_nil(status) # returns not empty string but we don't care what is it exactly
+    assert_not_nil(status.status) # returns not empty string but we don't care what is it exactly
   end
 end
 
