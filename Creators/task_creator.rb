@@ -18,7 +18,10 @@ class TaskCreator
 
     case(status)
       when TaskStatus::DONE then return DoneTask.new(@action, @date, @date)
-
+      when TaskStatus::ABORTED then return AbortedTask.new(@action, @date)
+      when TaskStatus::DELAYED then return DelayedTask.new(@action, @date)
+        #TODO: fix finish date of the task
+      when TaskStatus::DELAYED_DONE then return DoneTask.new(@action, @date, @date)
     end
   end
 end
