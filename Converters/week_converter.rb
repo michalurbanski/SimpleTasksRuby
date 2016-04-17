@@ -3,8 +3,6 @@ require_relative '../Models/day'
 require_relative 'lines_converter'
 
 class WeekConverter
-  attr_reader :days
-
   def initialize(lines)
     @lines = lines # all lines as input
 
@@ -12,13 +10,10 @@ class WeekConverter
     @lines = linesConverter.remove_blank_lines
   end
 
+  # Returns week object based on raw input
   def convert_lines_to_week
     @week = Week.new
-
     @week_name = ""
-    @days = Array.new
-    day = nil
-
     possibleDaysTester = PossibleDaysTester.new
 
     # Input collection has no empty lines at this moment
@@ -31,7 +26,6 @@ class WeekConverter
 
       if(possibleDaysTester.is_day(line))
         day = Day.new(line) #TODO - name of day needs to be fixed - it's not full line
-        @days.push(day)
         @week.add_day(day)
         next
       end
@@ -48,8 +42,8 @@ class WeekConverter
   end
 
   def print_week
-    puts(@week_name)
-    @days.each do |day|
+    puts(@week.name)
+    @week.days.each do |day|
       day.print_day
     end
   end
