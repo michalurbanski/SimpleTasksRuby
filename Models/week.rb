@@ -1,5 +1,5 @@
 class Week
-  attr_accessor :name
+  attr_reader :name
   attr_reader :days
 
   def initialize(name)
