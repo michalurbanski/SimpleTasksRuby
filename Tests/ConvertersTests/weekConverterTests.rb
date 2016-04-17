@@ -34,4 +34,11 @@ class WeekConverterTests < Test::Unit::TestCase
 
     assert_equal(2, days.length)
   end
+
+  def test_convert_lines_to_week_should_return_week
+    weekConverter = WeekConverter.new(@@lines)
+    week = weekConverter.convert_lines_to_week
+
+    assert(week.is_a?(Week))
+  end
 end

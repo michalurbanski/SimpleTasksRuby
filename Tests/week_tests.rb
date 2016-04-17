@@ -14,4 +14,10 @@ class WeekTest < Test::Unit::TestCase
     assert_equal(1, week.days.count) # count property for number of array elements
     assert_equal(1, week.days[week.days.count-1])
   end
+
+  def test_default_week_has_undefined_name
+    week = Week.new()
+
+    assert_equal("undefined", week.name)
+  end
 end

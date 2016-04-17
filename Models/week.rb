@@ -1,8 +1,8 @@
 class Week
-  attr_reader :name
+  attr_accessor :name
   attr_reader :days
 
-  def initialize(name)
+  def initialize(name = "undefined")
     @name = name
     @days = Array.new # array
   end

@@ -13,7 +13,9 @@ class WeekConverter
   end
 
   def convert_lines_to_week
-    @weekName = ""
+    @week = Week.new
+
+    @week_name = ""
     @days = Array.new
     day = nil
 
@@ -21,8 +23,9 @@ class WeekConverter
 
     # Input collection has no empty lines at this moment
     @lines.each do |line|
-      if @weekName.empty? then
+      if @week_name.empty? then
         extract_week_name(line)
+        @week.name = @week_name
         next
       end
 
@@ -42,7 +45,7 @@ class WeekConverter
   end
 
   def print_week
-    puts(@weekName)
+    puts(@week_name)
     @days.each do |day|
       day.print_day
     end
@@ -53,7 +56,7 @@ class WeekConverter
       week_name_pattern = /^[Ww]eek/
 
       if line =~ week_name_pattern
-        @weekName = line
+        @week_name = line
       end
     end
 
