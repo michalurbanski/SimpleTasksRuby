@@ -34,11 +34,13 @@ class WeekConverterTests < Test::Unit::TestCase
     assert(week.is_a?(Week))
   end
 
+  # Week should have name, days and actions in day
   def test_convert_lines_to_week_should_return_week_with_proper_date
     weekConverter = WeekConverter.new(@@lines)
     week = weekConverter.convert_lines_to_week
 
     assert_equal("Week 1", week.name)
     assert_equal(2, week.days.length)
+    assert_equal(1, week.days[0].actions)
   end
 end

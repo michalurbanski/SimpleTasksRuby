@@ -26,7 +26,7 @@ class WeekConverter
 
       if(possibleDaysTester.is_day(line))
         day = Day.new(line) #TODO - name of day needs to be fixed - it's not full line
-        @week.add_day(day)
+        @week.add_day(day) #TODO - adding days need to be fixed
         next
       end
 
@@ -35,7 +35,10 @@ class WeekConverter
       end
 
       # Not a week line and not a day line - this means that we're parsing actions now
-      if !day.nil? then day.add_action(line) end
+      if !day.nil? then
+        day.add_action(line)
+        next
+      end
     end
 
     return @week
