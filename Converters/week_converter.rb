@@ -42,6 +42,8 @@ class WeekConverter
       # Not a week line and not a day line - this means that we're parsing actions now
       if !day.nil? then day.add_action(line) end
     end
+
+    return @week
   end
 
   def print_week
