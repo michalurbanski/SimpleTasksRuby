@@ -32,6 +32,7 @@ class WeekConverter
       if(possibleDaysTester.is_day(line))
         day = Day.new(line) #TODO - name of day needs to be fixed - it's not full line
         @days.push(day)
+        @week.add_day(day)
         next
       end
 
