@@ -43,4 +43,13 @@ class WeekConverterTests < Test::Unit::TestCase
     assert_equal(2, week.days.length)
     assert_equal(1, week.days[0].actions)
   end
+
+  def test_parse_week_should_return_proper_data
+    weekConverter = WeekConverter.new(@@lines)
+    parsed_week = weekConverter.parse_week
+
+    #assert_equal("Week 1", weekConverter.week_name)
+    assert_equal(2, parsed_week.length)
+  end
+
 end

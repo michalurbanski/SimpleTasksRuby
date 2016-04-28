@@ -16,6 +16,9 @@ class WeekConverter
     @week_name = ""
     possibleDaysTester = PossibleDaysTester.new
 
+    # Stores days in hash, values are arrays of actions
+    @all_days = Hash.new
+
     # Input collection has no empty lines at this moment
     @lines.each do |line|
       if @week_name.empty? then
@@ -42,6 +45,39 @@ class WeekConverter
     end
 
     return @week
+  end
+
+  def parse_week
+
+    day_name = nil
+    all_days = Hash.new
+    @week_name = ""
+    @week = Week.new
+    possibleDaysTester = PossibleDaysTester.new
+
+
+    @lines.each do |line|
+      if @week_name.empty? then
+        extract_week_name(line)
+        @week.name = @week_name
+        next
+      end
+
+      if(possibleDaysTester.is_day(line))
+        all_days[line] = Array.new
+        day_name = line
+        next
+      end
+
+      if(WeekConverter.is_end_of_week(line))
+        return all_days
+      end
+
+      if !day_name.nil? then
+        all_days[day_name].push(line)
+        next
+      end
+    end
   end
 
   def print_week
