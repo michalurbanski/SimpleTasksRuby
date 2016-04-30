@@ -12,6 +12,7 @@ class WeekConverterTests < Test::Unit::TestCase
       @@lines.push("Week 1")
       @@lines.push("Monday 2015-01-01")
       @@lines.push("- first task")
+      @@lines.push("- second task")
       @@lines.push("Tuesday 2015-01-02")
     end
   end
@@ -51,5 +52,8 @@ class WeekConverterTests < Test::Unit::TestCase
     assert_equal("Week 1", weekConverter.week.name)
     assert(parsed_week.is_a?(Hash))
     assert_equal(2, parsed_week.keys.length)
+
+    # we have two actions on first day
+    assert_equal(2, parsed_week[parsed_week.keys[0]].length)
   end
 end
