@@ -3,6 +3,8 @@ require_relative '../Models/day'
 require_relative 'lines_converter'
 
 class WeekConverter
+  attr_reader :week
+
   def initialize(lines)
     @lines = lines # all lines as input
 
@@ -48,13 +50,11 @@ class WeekConverter
   end
 
   def parse_week
-
     day_name = nil
     all_days = Hash.new
     @week_name = ""
     @week = Week.new
     possibleDaysTester = PossibleDaysTester.new
-
 
     @lines.each do |line|
       if @week_name.empty? then
@@ -78,6 +78,11 @@ class WeekConverter
         next
       end
     end
+
+    # If value wasn't returned from method earlier this means that
+    # there's no end of week sign in content and we return content as is
+    # in this case
+    return all_days
   end
 
   def print_week

@@ -48,8 +48,8 @@ class WeekConverterTests < Test::Unit::TestCase
     weekConverter = WeekConverter.new(@@lines)
     parsed_week = weekConverter.parse_week
 
-    #assert_equal("Week 1", weekConverter.week_name)
-    assert_equal(2, parsed_week.length)
+    assert_equal("Week 1", weekConverter.week.name)
+    assert(parsed_week.is_a?(Hash))
+    assert_equal(2, parsed_week.keys.length)
   end
-
 end
