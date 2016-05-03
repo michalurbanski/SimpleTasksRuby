@@ -42,7 +42,7 @@ class WeekConverterTests < Test::Unit::TestCase
 
     assert_equal("Week 1", week.name)
     assert_equal(2, week.days.length)
-    assert_equal(1, week.days[0].actions)
+    assert_equal(2, week.days[0].actions.length)
   end
 
   def test_parse_week_should_return_proper_data
@@ -55,5 +55,12 @@ class WeekConverterTests < Test::Unit::TestCase
 
     # we have two actions on first day
     assert_equal(2, parsed_week[parsed_week.keys[0]].length)
+  end
+
+  def test_conver_lines_to_week_days_should_be_created
+    weekConverter = WeekConverter.new(@@lines)
+    week = weekConverter.convert_lines_to_week
+
+    assert_equal(2, week.days.length)
   end
 end

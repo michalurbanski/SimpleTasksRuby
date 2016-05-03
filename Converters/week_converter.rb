@@ -12,38 +12,20 @@ class WeekConverter
     @lines = linesConverter.remove_blank_lines
   end
 
-  # Returns week object based on raw input
+  # Returns week object (with days and actions in them) based on raw input
   def convert_lines_to_week
-    @week = Week.new
-    @week_name = ""
-    possibleDaysTester = PossibleDaysTester.new
+    all_week_days_hash = parse_week
 
-    # Stores days in hash, values are arrays of actions
-    @all_days = Hash.new
+    all_week_days_hash.each do |key, array|
+      day = Day.new(key)
 
-    # Input collection has no empty lines at this moment
-    @lines.each do |line|
-      if @week_name.empty? then
-        extract_week_name(line)
-        @week.name = @week_name
-        next
+      if !array.nil? && array.length > 0
+        array.each do |action|
+          day.add_action(action)
+        end
       end
 
-      if(possibleDaysTester.is_day(line))
-        day = Day.new(line) #TODO - name of day needs to be fixed - it's not full line
-        @week.add_day(day) #TODO - adding days need to be fixed
-        next
-      end
-
-      if(WeekConverter.is_end_of_week(line))
-        return
-      end
-
-      # Not a week line and not a day line - this means that we're parsing actions now
-      if !day.nil? then
-        day.add_action(line)
-        next
-      end
+      @week.add_day(day)
     end
 
     return @week
