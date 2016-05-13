@@ -28,5 +28,8 @@ class TaskCreator
       when TaskStatus::DELAYED then return DelayedTask.new(@action, @date)
       when TaskStatus::DELAYED_DONE then return DoneTask.new(@action, @date, delayedDoneDate)
     end
+
+    # If not the case then this is task without any status, i.e. original one
+    return Task.new(@action, @date)
   end
 end
