@@ -22,12 +22,21 @@ class StatusExtractorTests < Test::Unit::TestCase
   end
 
   def test_extract_delayed_and_done_status
-    action = "- delayed, DONE - this is delayed, but done task"
+    action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
 
     extractor = StatusExtractor.new(action)
     status = extractor.extract_status
 
     assert_equal(TaskStatus::DELAYED_DONE, status.status)
+  end
+
+  def test_extract_delayed_and_done_has_correct_date
+    action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
+
+    extractor = StatusExtractor.new(action)
+    status = extractor.extract_status
+
+    assert_equal("2016-05-01", status.date)
   end
 
   def test_extract_aborted_status

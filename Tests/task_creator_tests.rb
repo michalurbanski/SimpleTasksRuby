@@ -5,7 +5,7 @@ require_relative '../Creators/task_creator'
 class TaskCreatorTests < Test::Unit::TestCase
   def test_done_task_created
     date = DateTime.new(2015, 3, 1)
-    action = "DONE - first task"
+    action = "- DONE - first task"
 
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
@@ -16,7 +16,7 @@ class TaskCreatorTests < Test::Unit::TestCase
 
   def test_aborted_task_created
     date = DateTime.new(2015, 3, 1)
-    action = "ABORTED - first task"
+    action = "- ABORTED - first task"
 
     taskCreator = TaskCreator.new(action, date)
     abortedTask = taskCreator.create_task
@@ -26,7 +26,7 @@ class TaskCreatorTests < Test::Unit::TestCase
 
   def test_delayed_task_created
     date = DateTime.new(2015, 3, 1)
-    action = "delayed, - first task"
+    action = "- delayed, - first task"
 
     taskCreator = TaskCreator.new(action, date)
     delayedTask = taskCreator.create_task
@@ -38,7 +38,7 @@ class TaskCreatorTests < Test::Unit::TestCase
   # has a later date than original one
   def test_delayed_and_done_task_created
     date = DateTime.new(2015, 3, 1)
-    action = "delayed, DONE 2016-03-03 - first task"
+    action = "- delayed, DONE 2016-03-03 - first task"
 
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
@@ -50,7 +50,7 @@ class TaskCreatorTests < Test::Unit::TestCase
     date = DateTime.new(2015, 3, 1)
 
     # Task done 2 days later
-    action = "delayed, DONE 2016-03-03 - first task"
+    action = "- delayed, DONE 2016-03-03 - first task"
 
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
