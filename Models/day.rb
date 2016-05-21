@@ -1,4 +1,6 @@
 require 'date'
+require_relative '../Exceptions/no_date_exception'
+
 class Day
   attr_reader :name, :actions, :date
 
@@ -27,6 +29,11 @@ class Day
 
   private
   def extract_date_from_day_name(name)
+    splitted = name.split
+    if splitted.length < 2
+      raise NoDateException, "Day must have date provided"
+    end
+
     datePart = name.split[1]
     @date = Date.strptime(datePart, '%Y-%m-%d') # TODO: move to module as date format
   end
