@@ -14,8 +14,7 @@ class DailyStatusExtractor
     @daily_tasks = Array.new
 
     @day.actions.each do |action|
-      # TODO: hardcoded date for now - this property should be taken from date
-      date = Date.new(2016, 1, 1)
+      date = @day.date
       taskCreator = TaskCreator.new(action, date)
       task = taskCreator.create_task
 
