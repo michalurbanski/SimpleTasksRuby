@@ -21,6 +21,20 @@ class DayTests < Test::Unit::TestCase
     end
   end
 
+  def test_day_has_tasks_equal_to_actions
+    day = Day.new("Monday 2016-05-12")
+    day.add_action("- First action")
+    day.add_action("- delayed, - Second action")
+
+    daily_status_extractor = DailyStatusExtractor.new(day)
+    daily_status_extractor.proceed_day
+
+    dailyTasks = daily_status_extractor.daily_tasks
+    day.add_tasks(dailyTasks)
+
+    assert_equal(day.actions.length, day.tasks.length)
+  end
+
   #def test_create_day_using_two_parameters_constructor
   #  day = Day.new("day", Array.new)
   #

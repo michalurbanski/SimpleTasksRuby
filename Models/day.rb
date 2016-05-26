@@ -2,7 +2,7 @@ require 'date'
 require_relative '../Exceptions/no_date_exception'
 
 class Day
-  attr_reader :name, :actions, :date
+  attr_reader :name, :actions, :date, :tasks
 
   # TODO: you can't have two constructors in ruby?
   #def initialize(name, actions)
@@ -25,6 +25,10 @@ class Day
     @actions.each do |action|
       puts(action)
     end
+  end
+
+  def add_tasks(tasks)
+    @tasks = tasks
   end
 
   private
