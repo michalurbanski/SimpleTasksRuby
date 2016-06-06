@@ -15,9 +15,10 @@ class TasksManagerTests < Test::Unit::TestCase
     daily_status_extractor.proceed_day
 
     tasks = daily_status_extractor.daily_tasks
+    day.add_tasks(tasks)
 
     tasks_manager = TasksManager.new
-    delayed_tasks = tasks_manager.find_delayed_tasks(tasks)
+    delayed_tasks = tasks_manager.find_delayed_tasks(day.tasks)
 
     assert_equal(2, delayed_tasks.length)
   end
