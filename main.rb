@@ -8,7 +8,7 @@ class Main
   end
 
   def read_from_file
-    filePath = "Samples/first.txt"
+    filePath = "Samples/realData.txt"
     fileReader = FileReader.new(filePath)
     fileReader.read_file
 
