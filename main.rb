@@ -8,8 +8,10 @@ class Main
   end
 
   def read_from_file
-    filePath = "Samples/realData.txt"
-    fileReader = FileReader.new(filePath)
+    file_relative_path = "/Samples/realData.txt"
+    path = File.join(File.dirname(__FILE__), file_relative_path)  # Directory of current file is stored in __FILE__
+
+    fileReader = FileReader.new(path)
     fileReader.read_file
 
     puts("Printing file content".colorize(:green))
