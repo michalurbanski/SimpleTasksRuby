@@ -1,11 +1,12 @@
-require 'test/unit'
+require 'minitest/autorun'
 require_relative '../../Modules/test_data_module'
 
-class DataReaderTests < Test::Unit::TestCase
-  include TestDataModule
-
-  def test_read_test_data
-    data = TestDataModule.read_data
-    assert_not_nil data
+# name of first element must be the same as class/module under test
+describe TestDataModule do
+  describe "read data" do
+    it "data read from test file is not null" do
+      data = TestDataModule.read_data
+      data.wont_be_nil
+    end
   end
 end
