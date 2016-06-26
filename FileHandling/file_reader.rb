@@ -5,6 +5,16 @@ class FileReader
     @filePath = filePath
   end
 
+  def read_file
+    print_message("Reading file #{@filePath}")
+
+    check_if_file_exists
+    @lines = read_lines
+
+    print_message("Reading file finished")
+  end
+
+  private
   def check_if_file_exists
     if File.exists?(@filePath) then
       if File.directory?(@filePath) then
@@ -17,15 +27,6 @@ class FileReader
       print_message "File #{@filePath} does not exist"
       exit
     end
-  end
-
-  def read_file
-    print_message("Reading file #{@filePath}")
-
-    check_if_file_exists
-    @lines = read_lines
-
-    print_message("Reading file finished")
   end
 
   def read_lines
