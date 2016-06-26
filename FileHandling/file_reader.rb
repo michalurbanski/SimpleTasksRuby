@@ -1,8 +1,13 @@
+require_relative '../Logging/logging'
+
 class FileReader
+  include Logging
+
   attr_reader :lines
 
   def initialize(filePath)
     @filePath = filePath
+    logger.info("starting logging")
   end
 
   def read_file
