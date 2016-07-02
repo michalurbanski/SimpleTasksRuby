@@ -1,14 +1,7 @@
-require_relative '../FileHandling/file_reader'
 require_relative 'data_reader'
 
 class ProductionData < DataReader
-  def read_data
-    file_relative_path = "../../Samples/realData.txt"
-    absolute_path = File.expand_path(file_relative_path, __FILE__)
-
-    fileReader = FileReader.new(absolute_path)
-    fileReader.read_file
-
-    fileReader.lines
+  def initialize
+    super("../../Samples/realData.txt")
   end
 end
