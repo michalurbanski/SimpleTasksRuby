@@ -4,7 +4,7 @@ require 'date'
 
 # Day extractor proceeds tasks' statuses for a given day
 class DailyStatusExtractor
-  attr_reader :daily_tasks
+  attr_reader :daily_tasks # Array of tasks for a given day
 
   def initialize(day)
     @day = day

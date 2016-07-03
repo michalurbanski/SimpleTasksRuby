@@ -16,5 +16,7 @@ main.start
 
 main.read_from_file
 main.convert_fileLines_to_objects
+main.create_tasks_from_week_days
+all_delayed_tasks = main.find_delayed_tasks
 
 main.end

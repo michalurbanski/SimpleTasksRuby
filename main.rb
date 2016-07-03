@@ -1,4 +1,6 @@
 require_relative "Data/production_data"
+require_relative "Extractors/daily_status_extractor"
+require_relative "Managers/tasks_manager"
 
 class Main
   def start
@@ -28,6 +30,29 @@ class Main
 
     puts("Printing week for test purposes...")
     @week_converter.print_week
+  end
+
+  def create_tasks_from_week_days
+    week = @week_converter.week
+    @weekly_tasks = Array.new # each array element contains tasks for a given day
+
+    week.days.each do |day|
+      daily_extractor = DailyStatusExtractor.new(day)
+      daily_extractor.proceed_day
+      @weekly_tasks.push(daily_extractor.daily_tasks)
+    end
+  end
+
+  def find_delayed_tasks
+    tasks_manager = TasksManager.new
+    results = Array.new
+
+    @weekly_tasks.each do |daily_tasks|
+      delayed_tasks = tasks_manager.find_delayed_tasks(daily_tasks)
+      results += delayed_tasks
+    end
+
+    results
   end
 
   def end
