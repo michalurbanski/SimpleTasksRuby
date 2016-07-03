@@ -6,4 +6,8 @@ class Task
     @title = title
     @originalDate = originalDate
   end
+
+  def to_s
+    puts("#{@originalDate} - #{@title}")
+  end
 end

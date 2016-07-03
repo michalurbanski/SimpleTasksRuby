@@ -19,4 +19,9 @@ main.convert_fileLines_to_objects
 main.create_tasks_from_week_days
 all_delayed_tasks = main.find_delayed_tasks
 
+puts("\nPrinting delayed tasks")
+all_delayed_tasks.each do |task|
+  task.to_s
+end
+
 main.end
