@@ -1,7 +1,7 @@
 require_relative 'data_reader'
 
 class ProductionData < DataReader
-  def initialize
-    super("../../Samples/realData.txt")
+  def default_path
+    "../../Samples/realData.txt"
   end
 end
