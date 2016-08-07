@@ -5,9 +5,11 @@ class DataReader
     @path = path
   end
 
-  def read_data
-    absolute_path = File.expand_path(@path, __FILE__)
+  def absolute_path
+    File.expand_path(@path, __FILE__)
+  end
 
+  def read_data
     fileReader = FileReader.new(absolute_path)
     fileReader.read_file
 
