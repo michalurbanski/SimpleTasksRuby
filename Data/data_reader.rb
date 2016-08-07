@@ -3,8 +3,8 @@ require_relative '../FileHandling/file_reader'
 class DataReader
   attr_reader :lines
 
-  def initialize(path)
-    @path = path
+  def initialize(path = nil)
+    @path = path || default_path
   end
 
   def read_data
@@ -16,5 +16,9 @@ class DataReader
   private
   def absolute_path
     File.expand_path(@path, __FILE__)
+  end
+
+  def default_path
+    nil
   end
 end
