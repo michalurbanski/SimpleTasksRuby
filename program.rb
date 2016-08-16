@@ -8,8 +8,9 @@ require_relative 'FileHandling/file_reader'
 require_relative 'Converters/week_converter'
 require_relative 'Models/day'
 require_relative 'Models/week'
+require_relative 'Common/console_writer'
 
-main = Main.new
+main = Main.new(ConsoleWriter.new)
 
 main.clear_screen
 main.start

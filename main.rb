@@ -3,8 +3,12 @@ require_relative "Extractors/daily_status_extractor"
 require_relative "Managers/tasks_manager"
 
 class Main
+  def initialize(writer)
+    @writer = writer
+  end
+
   def start
-    puts("Welcome to Simple Tasks Project")
+    @writer.write_message("Welcome to Simple Tasks Project")
   end
 
   def clear_screen
@@ -15,7 +19,7 @@ class Main
     data = ProductionData.new
     @file_lines = data.read_data
 
-    puts("Printing file content".colorize(:green))
+    @writer.write_message("Printing file content", :green)
     #p(fileReader.lines) # lines are in the array
 
     @file_lines.each do |line|
@@ -28,7 +32,7 @@ class Main
     @week_converter = WeekConverter.new(@file_lines)
     @week_converter.convert_lines_to_week
 
-    puts("Printing week for test purposes...")
+    @writer.write_message("Printing week for test purposes...")
     @week_converter.print_week
   end
 
@@ -56,6 +60,6 @@ class Main
   end
 
   def end
-    puts("Program execution finished".colorize(:green))
+    @writer.write_message("Program execution finished", :green)
   end
 end
