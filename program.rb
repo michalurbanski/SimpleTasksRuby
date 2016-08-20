@@ -9,10 +9,11 @@ require_relative 'Converters/week_converter'
 require_relative 'Models/day'
 require_relative 'Models/week'
 require_relative 'Common/console_writer'
+require_relative 'Modules/console_module'
 
 main = Main.new(ConsoleWriter.new)
 
-main.clear_screen
+ConsoleModule.clear_screen
 main.start
 
 main.read_from_file

@@ -11,10 +11,6 @@ class Main
     @writer.write_message("Welcome to Simple Tasks Project")
   end
 
-  def clear_screen
-    system "clear" or system "cls"
-  end
-
   def read_from_file
     data = ProductionData.new
     @file_lines = data.read_data
