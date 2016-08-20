@@ -1,10 +1,28 @@
 require_relative "Data/production_data"
 require_relative "Extractors/daily_status_extractor"
 require_relative "Managers/tasks_manager"
+require_relative "Converters/week_converter"
+require_relative "Models/week"
 
 class Main
   def initialize(writer)
     @writer = writer
+  end
+
+  # Main entry point in application - executes other implemented operations
+  def execute
+    start
+    read_from_file
+    convert_fileLines_to_objects
+    create_tasks_from_week_days
+    all_delayed_tasks = find_delayed_tasks
+
+    @writer.write_message("\nPrinting delayed tasks")
+    all_delayed_tasks.each do |task|
+      task.to_s
+    end
+
+    end_execution
   end
 
   def start
@@ -55,7 +73,7 @@ class Main
     results
   end
 
-  def end
+  def end_execution
     @writer.write_message("Program execution finished", :green)
   end
 end

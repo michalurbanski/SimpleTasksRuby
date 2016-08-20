@@ -1,3 +1,6 @@
+# Additional gem
+require 'colorize'
+
 # Wrapper for console messages
 class ConsoleWriter
   def write_message(message, color = nil)
