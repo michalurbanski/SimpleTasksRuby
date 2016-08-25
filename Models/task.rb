@@ -8,6 +8,6 @@ class Task
   end
 
   def to_s
-    puts("#{@originalDate} - #{@title}")
+    "#{@originalDate} - #{@title}"
   end
 end

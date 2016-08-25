@@ -19,7 +19,7 @@ class Main
 
     @writer.write_message("\nPrinting delayed tasks")
     all_delayed_tasks.each do |task|
-      task.to_s
+      puts(task) # puts calls to_s method of a given class
     end
 
     end_execution
@@ -34,10 +34,9 @@ class Main
     @file_lines = data.read_data
 
     @writer.write_message("Printing file content", :green)
-    #p(fileReader.lines) # lines are in the array
 
     @file_lines.each do |line|
-      p(line)
+      p(line) # prints each array's element - even non-visible characters
     end
   end
 
