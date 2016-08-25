@@ -18,9 +18,7 @@ class Main
     all_delayed_tasks = find_delayed_tasks
 
     @writer.write_message("\nPrinting delayed tasks")
-    all_delayed_tasks.each do |task|
-      puts(task) # puts calls to_s method of a given class
-    end
+    @writer.write_array(all_delayed_tasks)
 
     end_execution
   end
@@ -34,10 +32,7 @@ class Main
     @file_lines = data.read_data
 
     @writer.write_message("Printing file content", :green)
-
-    @file_lines.each do |line|
-      p(line) # prints each array's element - even non-visible characters
-    end
+    @writer.write_array(@file_lines, debug: true)
   end
 
   def convert_fileLines_to_objects
