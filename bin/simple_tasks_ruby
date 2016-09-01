@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+# Changes path only for current program run
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'simple_tasks_ruby/program'
+program
