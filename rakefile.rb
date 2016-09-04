@@ -4,6 +4,6 @@ require 'rake/testtask'
 Rake::TestTask.new do |t|
   t.libs << "test"
   #t.test_files = FileList['Tests/**/*test*.rb']
-  t.pattern = 'Tests/**/*.rb' # runs test from folder and subfolders in Tests folder
+  t.pattern = 'spec/**/*.rb' # runs test from folder and subfolders in spec folder
   t.verbose = true
 end
