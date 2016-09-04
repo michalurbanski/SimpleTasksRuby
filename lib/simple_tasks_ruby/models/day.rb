@@ -1,6 +1,3 @@
-require 'date'
-require_relative '../Exceptions/no_date_exception'
-
 class Day
   attr_reader :name, :actions, :date, :tasks
 

@@ -1,11 +1,3 @@
-require 'date'
-require_relative '../Models/task'
-require_relative '../Models/delayed_task'
-require_relative '../Models/aborted_task'
-require_relative '../Models/done_task'
-require_relative '../Extractors/status_extractor'
-require_relative '../Modules/task_status'
-
 class TaskCreator
   def initialize(action, date)
     @action = action

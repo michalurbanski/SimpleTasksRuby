@@ -1,5 +1,3 @@
-require_relative 'task'
-
 class DelayedTask < Task
   def initialize(title, originalDate)
     super(title, originalDate)

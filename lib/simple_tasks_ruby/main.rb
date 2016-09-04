@@ -1,9 +1,3 @@
-require_relative "Data/production_data"
-require_relative "Extractors/daily_status_extractor"
-require_relative "Managers/tasks_manager"
-require_relative "Converters/week_converter"
-require_relative "Models/week"
-
 class Main
   def initialize(writer)
     @writer = writer

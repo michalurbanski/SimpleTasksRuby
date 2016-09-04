@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'date'
+require 'logger'
 
 require 'lib/simple_tasks_ruby/main'
 
@@ -41,6 +43,10 @@ end
 
 %w[console_module task_status].each do |mod|
   require "lib/simple_tasks_ruby/modules/#{mod}"
+end
+
+%w[data_reader production_data test_data].each do |data|
+  require "data/#{data}"
 end
 
 main = Main.new(ConsoleWriter.new)

@@ -1,5 +1,3 @@
-require_relative '../FileHandling/file_reader'
-
 class DataReader
   attr_reader :lines
 
