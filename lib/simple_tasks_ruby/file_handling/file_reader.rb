@@ -1,5 +1,3 @@
-require_relative '../Logging/logging'
-
 class FileReader
   include Logging
 

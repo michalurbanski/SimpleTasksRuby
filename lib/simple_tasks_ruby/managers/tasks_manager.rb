@@ -1,5 +1,3 @@
-require_relative '../Models/task'
-
 class TasksManager
   def find_delayed_tasks(tasks)
     delayed_tasks = Array.new()

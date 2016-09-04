@@ -1,7 +1,3 @@
-require_relative '../Models/day'
-require_relative '../Creators/task_creator'
-require 'date'
-
 # Day extractor proceeds tasks' statuses for a given day
 class DailyStatusExtractor
   attr_reader :daily_tasks # Array of tasks for a given day

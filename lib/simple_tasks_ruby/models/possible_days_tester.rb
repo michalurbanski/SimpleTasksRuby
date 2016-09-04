@@ -1,5 +1,3 @@
-require_relative 'possible_days'
-
 class PossibleDaysTester
   def initialize
     @possibleDays = PossibleDays.new.days

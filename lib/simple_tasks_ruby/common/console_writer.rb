@@ -1,6 +1,3 @@
-# Additional gem
-require 'colorize'
-
 # Wrapper for console messages
 class ConsoleWriter
   @@standard_output = Proc.new{|x| puts(x)} # Uses object's to_s method

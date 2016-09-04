@@ -1,7 +1,3 @@
-require_relative '../Models/possible_days_tester'
-require_relative '../Models/day'
-require_relative 'lines_converter'
-
 class WeekConverter
   attr_reader :week
 

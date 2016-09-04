@@ -1,5 +1,3 @@
-require 'logger'
-
 # module implementation based on http://stackoverflow.com/questions/917566/ruby-share-logger-instance-among-module-classes
 module Logging
   def logger

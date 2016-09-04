@@ -1,5 +1,3 @@
-require_relative "../Models/status_model"
-
 # Extracts status from single action
 class StatusExtractor
   def initialize(action)
