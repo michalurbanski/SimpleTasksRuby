@@ -1,8 +1,3 @@
-require 'rubygems'
-gem 'test-unit'
-require 'test/unit'
-require_relative '../../Converters/week_converter'
-
 class WeekConverterTests < Test::Unit::TestCase
   class << self
     # Startup method runs only once for each test suite

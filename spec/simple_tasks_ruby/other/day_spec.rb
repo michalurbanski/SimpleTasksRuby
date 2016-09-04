@@ -1,5 +1,4 @@
-require 'test/unit'
-require_relative '../Models/day'
+require 'spec_helper'
 
 class DayTests < Test::Unit::TestCase
   def test_create_day_using_simple_constructor

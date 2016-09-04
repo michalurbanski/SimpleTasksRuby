@@ -1,5 +1,4 @@
 require 'test/unit'
-require_relative '../../Converters/lines_converter'
 
 class LinesConverterTests < Test::Unit::TestCase
   def test_removes_one_empty_line

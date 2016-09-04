@@ -1,6 +1,3 @@
-require 'test/unit'
-require_relative '../Models/possible_days_tester'
-
 class PossibleDaysTesterTests < Test::Unit::TestCase
   def test_is_valid_possible_day
     tester = PossibleDaysTester.new

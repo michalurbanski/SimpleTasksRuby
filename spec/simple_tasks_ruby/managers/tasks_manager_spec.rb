@@ -1,6 +1,3 @@
-require 'test/unit'
-require_relative '../../Managers/tasks_manager'
-
 class TasksManagerTests < Test::Unit::TestCase
   def test_find_delayed_tasks
 
