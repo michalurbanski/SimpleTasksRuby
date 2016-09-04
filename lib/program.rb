@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'date'
 require 'logger'
+require 'colorize'
 
 require 'simple_tasks_ruby/main'
 
@@ -25,19 +26,19 @@ end
   require "simple_tasks_ruby/extractors/#{extractor}"
 end
 
-%w[file_reader].each do |file_handling|
-  require "simple_tasks_ruby/file_handling/#{file_handling}"
-end
-
 %w[logging].each do |logging|
   require "simple_tasks_ruby/logging/#{logging}"
+end
+
+%w[file_reader].each do |file_handling|
+  require "simple_tasks_ruby/file_handling/#{file_handling}"
 end
 
 %w[tasks_manager].each do |manager|
   require "simple_tasks_ruby/managers/#{manager}"
 end
 
-%w[aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week].each do |model|
+%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week].each do |model|
   require "simple_tasks_ruby/models/#{model}"
 end
 

@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-# Changes path only for current program run
+# Changes load_path only for current program execution
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'data')
 
-require 'program'
-program
+require 'program' # this executes logic in program.rb right away
