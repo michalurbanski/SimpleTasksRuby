@@ -2,6 +2,7 @@
 
 # Changes path only for current program run
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'data')
 
-require 'simple_tasks_ruby/program'
+require 'program'
 program
