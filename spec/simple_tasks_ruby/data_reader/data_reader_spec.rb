@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'spec_helper'
 
 # name of first element must be the same as class/module under test
 describe TestData do
