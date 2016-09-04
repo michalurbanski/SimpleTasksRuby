@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require_relative '../../Data/test_data'
 
 # name of first element must be the same as class/module under test
 describe TestData do

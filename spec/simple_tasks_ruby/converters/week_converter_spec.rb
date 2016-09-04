@@ -1,7 +1,6 @@
-require 'rubygems'
-gem 'test-unit'
+#require 'rubygems'
+#gem 'test-unit'
 require 'test/unit'
-require_relative '../../Converters/week_converter'
 
 class WeekConverterTests < Test::Unit::TestCase
   class << self

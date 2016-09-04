@@ -1,5 +1,4 @@
 require 'test/unit'
-require_relative '../Models/week'
 
 class WeekTest < Test::Unit::TestCase
   def test_week_creation_should_have_name

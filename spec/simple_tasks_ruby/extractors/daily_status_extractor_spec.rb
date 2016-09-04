@@ -1,7 +1,5 @@
 require 'test/unit'
 
-require_relative '../../Extractors/daily_status_extractor'
-
 class DailyStatusExtractorTests < Test::Unit::TestCase
   def test_proceed_day_actions_number_equals_tasks_number
     day = Day.new("Monday 2016-05-01")

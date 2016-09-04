@@ -1,6 +1,5 @@
 require 'test/unit'
 require 'date'
-require_relative '../Models/task'
 
 class TaskTests < Test::Unit::TestCase
   def test_task_after_creation_all_members_are_nil

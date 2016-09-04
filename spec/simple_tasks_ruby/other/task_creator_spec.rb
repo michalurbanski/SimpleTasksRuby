@@ -1,6 +1,4 @@
 require 'test/unit'
-require_relative '../Models/done_task'
-require_relative '../Creators/task_creator'
 
 class TaskCreatorTests < Test::Unit::TestCase
   def test_done_task_created
