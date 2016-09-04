@@ -1,5 +1,3 @@
-require 'test/unit'
-
 class TaskCreatorTests < Test::Unit::TestCase
   def test_done_task_created
     date = DateTime.new(2015, 3, 1)

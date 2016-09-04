@@ -1,5 +1,3 @@
-require 'test/unit'
-
 class WeekTest < Test::Unit::TestCase
   def test_week_creation_should_have_name
     week = Week.new("test")

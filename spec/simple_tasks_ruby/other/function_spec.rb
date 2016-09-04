@@ -1,5 +1,3 @@
-require 'test/unit'
-
 class FunctionTest < Test::Unit::TestCase
   def test_function
     printer = lambda{|x| puts(x)}

@@ -1,5 +1,3 @@
-require 'test/unit'
-
 class StatusExtractorTests < Test::Unit::TestCase
   def test_extract_done_status
     action = "- DONE - first task"

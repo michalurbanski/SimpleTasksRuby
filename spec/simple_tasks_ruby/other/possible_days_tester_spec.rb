@@ -1,5 +1,3 @@
-require 'test/unit'
-
 class PossibleDaysTesterTests < Test::Unit::TestCase
   def test_is_valid_possible_day
     tester = PossibleDaysTester.new

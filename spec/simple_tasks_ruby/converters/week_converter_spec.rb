@@ -1,7 +1,3 @@
-#require 'rubygems'
-#gem 'test-unit'
-require 'test/unit'
-
 class WeekConverterTests < Test::Unit::TestCase
   class << self
     # Startup method runs only once for each test suite
