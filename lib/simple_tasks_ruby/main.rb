@@ -17,19 +17,24 @@ class Main
     end_execution
   end
 
-  def start
-    @writer.write_message("Welcome to Simple Tasks Project")
-  end
+  private
+    def start
+      @writer.write_message("Welcome to Simple Tasks Project")
+    end
 
-  def read_from_file
-    data = ProductionData.new
-    @file_lines = data.read_data
+    def end_execution
+      @writer.write_message("Program execution finished", :green)
+    end
 
-    @writer.write_message("Printing file content", :green)
-    @writer.write_array(@file_lines, debug: true)
-  end
+    def read_from_file
+      data = ProductionData.new
+      @file_lines = data.read_data
 
-  def convert_fileLines_to_objects
+      @writer.write_message("Printing file content", :green)
+      @writer.write_array(@file_lines, debug: true)
+    end
+
+    def convert_fileLines_to_objects
     # TODO: assumption that input file has only one week - this will be changed later
     @week_converter = WeekConverter.new(@file_lines)
     @week_converter.convert_lines_to_week
@@ -59,9 +64,5 @@ class Main
     end
 
     results
-  end
-
-  def end_execution
-    @writer.write_message("Program execution finished", :green)
   end
 end
