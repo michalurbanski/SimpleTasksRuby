@@ -1,4 +1,4 @@
-class DataReader
+class FileSystemDataReader
   attr_reader :lines
 
   def initialize(path = nil)

@@ -1,4 +1,4 @@
-class ProductionData < DataReader
+class ProductionData < FileSystemDataReader
   def default_path
     "../../Samples/realData.txt"
   end
