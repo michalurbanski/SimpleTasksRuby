@@ -1,5 +1,5 @@
-class TestData < FileSystemDataReader
-  def default_path
-    "../../Samples/test.txt"
+class TestData
+  def self.default_path
+    File.expand_path("../../Samples/test.txt", __FILE__)
   end
 end

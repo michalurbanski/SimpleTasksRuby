@@ -1,5 +1,5 @@
-class ProductionData < FileSystemDataReader
+class ProductionData
   def default_path
-    "../../Samples/realData.txt"
+    File.expand_path("../../Samples/realData.txt", __FILE__)
   end
 end

@@ -19,7 +19,7 @@ class Main
 
   private
     def start
-      @writer.write_message("Welcome to Simple Tasks Project")
+      @writer.write_message("Welcome to Simple Tasks Project", :green)
     end
 
     def end_execution
@@ -35,34 +35,34 @@ class Main
     end
 
     def convert_fileLines_to_objects
-    # TODO: assumption that input file has only one week - this will be changed later
-    @week_converter = WeekConverter.new(@file_lines)
-    @week_converter.convert_lines_to_week
+      # TODO: assumption that input file has only one week - this will be changed later
+      @week_converter = WeekConverter.new(@file_lines)
+      @week_converter.convert_lines_to_week
 
-    @writer.write_message("Printing week for test purposes...")
-    @week_converter.print_week
-  end
-
-  def create_tasks_from_week_days
-    week = @week_converter.week
-    @weekly_tasks = Array.new # each array element contains tasks for a given day
-
-    week.days.each do |day|
-      daily_extractor = DailyStatusExtractor.new(day)
-      daily_extractor.proceed_day
-      @weekly_tasks.push(daily_extractor.daily_tasks)
-    end
-  end
-
-  def find_delayed_tasks
-    tasks_manager = TasksManager.new
-    results = Array.new
-
-    @weekly_tasks.each do |daily_tasks|
-      delayed_tasks = tasks_manager.find_delayed_tasks(daily_tasks)
-      results += delayed_tasks
+      @writer.write_message("Printing week for test purposes...")
+      @week_converter.print_week
     end
 
-    results
-  end
+    def create_tasks_from_week_days
+      week = @week_converter.week
+      @weekly_tasks = Array.new # each array element contains tasks for a given day
+
+      week.days.each do |day|
+        daily_extractor = DailyStatusExtractor.new(day)
+        daily_extractor.proceed_day
+        @weekly_tasks.push(daily_extractor.daily_tasks)
+      end
+    end
+
+    def find_delayed_tasks
+      tasks_manager = TasksManager.new
+      results = Array.new
+
+      @weekly_tasks.each do |daily_tasks|
+        delayed_tasks = tasks_manager.find_delayed_tasks(daily_tasks)
+        results += delayed_tasks
+      end
+
+      results
+    end
 end

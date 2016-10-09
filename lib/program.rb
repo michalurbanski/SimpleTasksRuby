@@ -5,5 +5,3 @@ main = Main.new(ConsoleWriter.new)
 ConsoleModule.clear_screen
 
 main.execute
-
-
