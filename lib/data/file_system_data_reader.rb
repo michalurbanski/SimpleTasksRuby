@@ -3,7 +3,6 @@ class FileSystemDataReader < DataReader
   attr_reader :lines
 
   def post_initialize(args)
-    @path = args[:path]
-    @reader = FileReader.new @path
+    @reader = FileReader.new args[:path]
   end
 end

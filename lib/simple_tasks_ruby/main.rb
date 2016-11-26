@@ -22,10 +22,6 @@ class Main
       @writer.write_message("Welcome to Simple Tasks Project", :green)
     end
 
-    def end_execution
-      @writer.write_message("Program execution finished", :green)
-    end
-
     def read_from_file
       data = ProductionData.new
       @file_lines = data.read_data
@@ -64,5 +60,9 @@ class Main
       end
 
       results
+    end
+
+    def end_execution
+      @writer.write_message("Program execution finished", :green)
     end
 end
