@@ -23,8 +23,13 @@ class Main
     end
 
     def read_from_file
-      data = ProductionData.new
-      @file_lines = data.read_data
+      path = ProductionData.default_path
+      reader = FileSystemDataReader.new({
+          :path => path
+        })
+
+      reader.read
+      @file_lines = reader.lines
 
       @writer.write_message("Printing file content", :green)
       @writer.write_array(@file_lines, debug: true)
