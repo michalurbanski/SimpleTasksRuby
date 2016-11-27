@@ -1,22 +1,20 @@
+# Abstract class for data readers
 class DataReader
   attr_reader :lines
 
-  def initialize(path = nil)
-    @path = path || default_path
+  def initialize(args={})
+    @reader = args[:reader]
+
+    post_initialize(args)
   end
 
-  def read_data
-    fileReader = FileReader.new(absolute_path)
-    fileReader.read_file
-    @lines = fileReader.lines
+  def read
+    @reader.read
+    @lines = @reader.lines
   end
 
   private
-  def absolute_path
-    File.expand_path(@path, __FILE__)
-  end
-
-  def default_path
+  def post_initialize args
     nil
   end
 end
