@@ -46,6 +46,10 @@ end
   require "simple_tasks_ruby/modules/#{mod}"
 end
 
+%w[file_service].each do |service|
+  require "simple_tasks_ruby/services/#{service}"
+end
+
 %w[data_reader file_system_data_reader production_data test_data].each do |data|
   require "data/#{data}"
 end

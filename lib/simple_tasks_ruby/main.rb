@@ -1,12 +1,15 @@
 class Main
   def initialize(writer)
     @writer = writer
+    @file_service = FileService.new @writer
   end
 
   # Main entry point in application - executes other implemented operations
   def execute
     start
-    read_from_file
+    file_lines = read_from_file
+    print_file_content file_lines
+
     convert_fileLines_to_objects
     create_tasks_from_week_days
     all_delayed_tasks = find_delayed_tasks
@@ -24,15 +27,12 @@ class Main
 
     def read_from_file
       path = ProductionData.default_path
-      reader = FileSystemDataReader.new({
-          :path => path
-        })
+      file_lines = @file_service.get_lines_from_file path
+    end
 
-      reader.read
-      @file_lines = reader.lines
-
+    def print_file_content(file_lines)
       @writer.write_message("Printing file content", :green)
-      @writer.write_array(@file_lines, debug: true)
+      @writer.write_array(file_lines, debug: true)
     end
 
     def convert_fileLines_to_objects
