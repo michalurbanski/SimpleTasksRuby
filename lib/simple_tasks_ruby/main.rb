@@ -8,8 +8,9 @@ class Main
   def execute
     start
     file_lines = read_from_file
-    print_file_content file_lines
+    print_file_content file_lines # Debug information
 
+    #TODO: Continue here !!!
     convert_fileLines_to_objects
     create_tasks_from_week_days
     all_delayed_tasks = find_delayed_tasks

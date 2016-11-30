@@ -1,61 +1,59 @@
-class WeekConverterTests < Test::Unit::TestCase
-  class << self
-    # Startup method runs only once for each test suite
-    def startup
-      # test data
-      @@lines = Array.new
-      @@lines.push("Week 1")
-      @@lines.push("Monday 2015-01-01")
-      @@lines.push("- first task")
-      @@lines.push("- second task")
-      @@lines.push("Tuesday 2015-01-02")
+require 'spec_helper'
+
+describe WeekConverter do
+  # Runs code before each expectation
+  before do
+    # test data
+    @lines = Array.new
+    @lines.push("Week 1")
+    @lines.push("Monday 2015-01-01")
+    @lines.push("- first task")
+    @lines.push("- second task")
+    @lines.push("Tuesday 2015-01-02")
+
+    @week_converter = WeekConverter.new @lines
+  end
+
+  describe "Determine end of the week" do
+    it "End of the week is valid" do
+      result = WeekConverter.is_end_of_week("---")
+      result.must_equal true
+      #result.must_be :==, true # this condition can also be written as
+    end
+
+    it "End of the week is not valid" do
+      result = WeekConverter.is_end_of_week("--")
+      result.must_equal false
     end
   end
 
-  # End of week should have at least three hyphens
-  def test_is_valid_end_of_week
-    result = WeekConverter.is_end_of_week("---")
-    assert_equal(true, result)
-  end
+  describe "Convert lines to week" do
+    it "convert lines to week should return week object" do
+      week = @week_converter.convert_lines_to_week
 
-  def test_two_hyphens_are_not_valid_end_of_week
-    result = WeekConverter.is_end_of_week("--")
-    assert_equal(false, result)
-  end
+      week.must_be_instance_of Week
+    end
 
-  def test_convert_lines_to_week_should_return_week_object
-    weekConverter = WeekConverter.new(@@lines)
-    week = weekConverter.convert_lines_to_week
+    it "converting lines to week should return week object with proper data" do
+      week = @week_converter.convert_lines_to_week
 
-    assert(week.is_a?(Week))
-  end
+      week.name.must_equal "Week 1"
+      week.days.length.must_equal 2
+      week.days[0].actions.length.must_equal 2
+    end
 
-  # Week should have name, days and actions in day
-  def test_convert_lines_to_week_should_return_week_with_proper_date
-    weekConverter = WeekConverter.new(@@lines)
-    week = weekConverter.convert_lines_to_week
+    it "converted lines to week should have defined number of days" do
+      week = @week_converter.convert_lines_to_week
 
-    assert_equal("Week 1", week.name)
-    assert_equal(2, week.days.length)
-    assert_equal(2, week.days[0].actions.length)
-  end
+      week.days.length.must_equal 2
+    end
 
-  def test_parse_week_should_return_proper_data
-    weekConverter = WeekConverter.new(@@lines)
-    parsed_week = weekConverter.parse_week
+    it "return correct data from parsed week" do
+      parsed_week = @week_converter.parse_week
 
-    assert_equal("Week 1", weekConverter.week.name)
-    assert(parsed_week.is_a?(Hash))
-    assert_equal(2, parsed_week.keys.length)
-
-    # we have two actions on first day
-    assert_equal(2, parsed_week[parsed_week.keys[0]].length)
-  end
-
-  def test_conver_lines_to_week_days_should_be_created
-    weekConverter = WeekConverter.new(@@lines)
-    week = weekConverter.convert_lines_to_week
-
-    assert_equal(2, week.days.length)
+      @week_converter.week.name.must_equal "Week 1"
+      parsed_week.must_be_instance_of Hash
+      parsed_week.keys.length.must_equal 2
+    end
   end
 end
