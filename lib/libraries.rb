@@ -10,7 +10,7 @@ require 'simple_tasks_ruby/main'
   require "simple_tasks_ruby/common/#{common}"
 end
 
-%w[lines_converter week_converter].each do |converter|
+%w[lines_converter week_converter lines_to_weeks_converter].each do |converter|
   require "simple_tasks_ruby/converters/#{converter}"
 end
 

@@ -11,6 +11,9 @@ class Main
     print_file_content file_lines # Debug information
 
     #TODO: Continue here !!!
+    weeks = LinesToWeeksConverter.convert nil
+
+    # OLD LOGIC
     convert_fileLines_to_objects
     create_tasks_from_week_days
     all_delayed_tasks = find_delayed_tasks
