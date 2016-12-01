@@ -27,6 +27,7 @@ class WeekConverter
     return @week
   end
 
+  # Converts lines from file to hash of days objects
   def parse_week
     day_name = nil
     all_days = Hash.new

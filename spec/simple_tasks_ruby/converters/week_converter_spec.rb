@@ -48,7 +48,7 @@ describe WeekConverter do
       week.days.length.must_equal 2
     end
 
-    it "return correct data from parsed week" do
+    it "parse lines and convert them to days" do
       parsed_week = @week_converter.parse_week
 
       @week_converter.week.name.must_equal "Week 1"
