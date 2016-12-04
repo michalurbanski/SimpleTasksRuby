@@ -6,22 +6,27 @@ class Main
 
   # Main entry point in application - executes other implemented operations
   def execute
-    start
-    file_lines = read_from_file
-    print_file_content file_lines # Debug information
+    begin
+      start
+      file_lines = read_from_file
+      print_file_content file_lines # Debug information
 
-    #TODO: Continue here !!!
-    weeks = LinesToWeeksConverter.convert nil
+      #TODO: Continue here !!!
+      weeks = LinesToWeeksConverter.convert nil
 
-    # OLD LOGIC
-    convert_fileLines_to_objects
-    create_tasks_from_week_days
-    all_delayed_tasks = find_delayed_tasks
+      # OLD LOGIC
+      convert_fileLines_to_objects
+      create_tasks_from_week_days
+      all_delayed_tasks = find_delayed_tasks
 
-    @writer.write_message("\nPrinting delayed tasks")
-    @writer.write_array(all_delayed_tasks)
+      @writer.write_message("\nPrinting delayed tasks")
+      @writer.write_array(all_delayed_tasks)
 
-    end_execution
+      end_execution
+    rescue Exception => e
+      puts e
+      puts e.backtrace
+    end
   end
 
   private
