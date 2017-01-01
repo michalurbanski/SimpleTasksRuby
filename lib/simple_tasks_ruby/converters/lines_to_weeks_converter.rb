@@ -19,7 +19,7 @@ class LinesToWeeksConverter
           current_week = line
           weeks[current_week] = Array.new # TODO: Assumption is that lines start with week statement so this object is always initialized here correctly
         else
-          weeks[current_week].push line
+          weeks[current_week].push line # TODO: in this way week contains mixed days with actions, so in fact week still has lines
         end
       end
 
