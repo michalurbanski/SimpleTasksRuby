@@ -10,4 +10,12 @@ class Week
   def add_day(day)
     @days.push(day)
   end
+
+  def is_valid
+    length == 7 # later constraint that all objects must days can be added, but this will require tests to change
+  end
+
+  def length
+    @days.length
+  end
 end
