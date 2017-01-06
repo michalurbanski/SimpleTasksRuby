@@ -17,15 +17,16 @@ class Day
     @actions.push(text)
   end
 
-  def print_day
+  def add_tasks(tasks)
+    @tasks = tasks
+  end
+
+  def to_s
     puts(@name)
+
     @actions.each do |action|
       puts(action)
     end
-  end
-
-  def add_tasks(tasks)
-    @tasks = tasks
   end
 
   private

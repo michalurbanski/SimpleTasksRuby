@@ -67,7 +67,7 @@ class WeekConverter
   def print_week
     puts(@week.name)
     @week.days.each do |day|
-      day.print_day
+      day.to_s
     end
   end
 
