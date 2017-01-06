@@ -23,7 +23,7 @@ class Main
       @writer.write_array(all_delayed_tasks)
 
       end_execution
-    rescue Exception => e
+    rescue => e # Rescues StandardError
       puts e
       puts e.backtrace
     end

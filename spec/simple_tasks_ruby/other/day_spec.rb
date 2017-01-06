@@ -39,11 +39,4 @@ class DayTests < Test::Unit::TestCase
       day = Day.new("Monday 2017-01-44")
     end
   end
-
-  #def test_create_day_using_two_parameters_constructor
-  #  day = Day.new("day", Array.new)
-  #
-  #  assert_equal("day", day.name)
-  #  assert_equal(false, (day.respond_to? :actions))
-  #end
 end

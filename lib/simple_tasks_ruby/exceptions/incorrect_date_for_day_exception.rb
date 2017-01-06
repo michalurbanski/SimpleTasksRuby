@@ -1,5 +1,5 @@
-class IncorrectDateForDayException < Exception
-  def initialize(text)
+class IncorrectDateForDayException < StandardError
+  def initialize(text="Default day")
     @text = text
   end
 

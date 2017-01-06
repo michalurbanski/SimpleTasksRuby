@@ -1,5 +1,9 @@
-class NoDateException < Exception
+class NoDateException < StandardError
+  def initialize(text="default day")
+    @text = text
+  end
+
   def to_s
-    puts "Day must have date provided"
+    puts "Day \"#{@text}\" must have date provided"
   end
 end
