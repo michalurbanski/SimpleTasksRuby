@@ -1,18 +1,13 @@
 class Day
   attr_reader :name, :actions, :date, :tasks
 
-  # TODO: you can't have two constructors in ruby?
-  #def initialize(name, actions)
-  #  @name = name
-  #  @actions = actions
-  #end
-
   def initialize(name)
     @name = name
     @actions = Array.new
     @date = extract_date_from_day_name(name)
   end
 
+  # TODO: one of these methods have to be remove
   def add_action(text)
     @actions.push(text)
   end
@@ -39,7 +34,7 @@ class Day
     datePart = name.split[1]
 
     begin
-      @date = Date.strptime(datePart, '%Y-%m-%d') # TODO: move to module as date format
+      @date = Date.strptime(datePart, DateConsts.day_format)
     rescue Exception => e
       raise IncorrectDateForDayException.new(name)
     end

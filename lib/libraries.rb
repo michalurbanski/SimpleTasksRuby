@@ -46,7 +46,7 @@ end
   require "simple_tasks_ruby/models/#{model}"
 end
 
-%w[console_module task_status].each do |mod|
+%w[console_module task_status date_consts].each do |mod|
   require "simple_tasks_ruby/modules/#{mod}"
 end
 
