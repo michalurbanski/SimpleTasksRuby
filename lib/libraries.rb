@@ -22,7 +22,7 @@ end
   require "simple_tasks_ruby/creators/#{creator}"
 end
 
-%w[no_date_exception].each do |exception|
+%w[no_date_exception incorrect_date_for_day_exception].each do |exception|
   require "simple_tasks_ruby/exceptions/#{exception}"
 end
 

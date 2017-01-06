@@ -33,10 +33,15 @@ class Day
   def extract_date_from_day_name(name)
     splitted = name.split
     if splitted.length < 2
-      raise NoDateException, "Day must have date provided"
+      raise NoDateException
     end
 
     datePart = name.split[1]
-    @date = Date.strptime(datePart, '%Y-%m-%d') # TODO: move to module as date format
+
+    begin
+      @date = Date.strptime(datePart, '%Y-%m-%d') # TODO: move to module as date format
+    rescue Exception => e
+      raise IncorrectDateForDayException.new(name)
+    end
   end
 end

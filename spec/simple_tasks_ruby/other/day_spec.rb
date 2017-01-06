@@ -34,6 +34,12 @@ class DayTests < Test::Unit::TestCase
     assert_equal(day.actions.length, day.tasks.length)
   end
 
+  def test_date_cant_be_parsed_throws_exception_with_meaningfull_information
+    assert_raise IncorrectDateForDayException do
+      day = Day.new("Monday 2017-01-44")
+    end
+  end
+
   #def test_create_day_using_two_parameters_constructor
   #  day = Day.new("day", Array.new)
   #
