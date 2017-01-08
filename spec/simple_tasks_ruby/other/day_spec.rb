@@ -2,20 +2,27 @@ require 'spec_helper'
 
 describe Day do
   describe "Day tests" do
-    before do
+    before do # runs before each test
       @name = "Monday 2016-05-01"
+      @day = Day.new(@name)
     end
 
     it "Created day has name" do
-      day = Day.new(@name)
-
-      day.name.must_equal @name
+      @day.name.must_equal @name
     end
 
     it "Day has proper date" do
-      day = Day.new(@name)
+      @day.date.must_equal Date.parse("2016-05-01")
+    end
 
-      day.date.must_equal Date.parse("2016-05-01")
+    it "Day allows to add tasks" do
+      @day.add_task("First task")
+
+      @day.length.must_equal 1
+    end
+
+    it "Day can have no tasks" do
+      @day.length.must_equal 0
     end
   end
 

@@ -1,26 +1,25 @@
 class Day
-  attr_reader :name, :actions, :date, :tasks
+  attr_reader :name, :date, :tasks
 
   def initialize(name)
     @name = name
-    @actions = Array.new
+    @tasks = Array.new
     @date = extract_date_from_day_name(name)
   end
 
-  # TODO: one of these methods have to be remove
-  def add_action(text)
-    @actions.push(text)
+  def add_task(task)
+    @tasks.push(task)
   end
 
-  def add_tasks(tasks)
-    @tasks = tasks
+  def length
+    @tasks.length
   end
 
   def to_s
     puts(@name)
 
-    @actions.each do |action|
-      puts(action)
+    @tasks.each do |task|
+      puts(task)
     end
   end
 

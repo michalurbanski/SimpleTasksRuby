@@ -9,23 +9,23 @@ class WeekConverter
   end
 
   # Returns week object (with days and actions in them) based on raw input
-  def convert_lines_to_week
-    all_week_days_hash = parse_week
+  # def convert_lines_to_week
+  #   all_week_days_hash = parse_week
 
-    all_week_days_hash.each do |key, array|
-      day = Day.new(key)
+  #   all_week_days_hash.each do |key, array|
+  #     day = Day.new(key)
 
-      if !array.nil? && array.length > 0
-        array.each do |action|
-          day.add_action(action)
-        end
-      end
+  #     if !array.nil? && array.length > 0
+  #       array.each do |action|
+  #         day.add_action(action)
+  #       end
+  #     end
 
-      @week.add_day(day)
-    end
+  #     @week.add_day(day)
+  #   end
 
-    return @week
-  end
+  #   return @week
+  # end
 
   # Converts lines from file to hash of days objects
   def parse_week
