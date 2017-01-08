@@ -1,28 +1,29 @@
 require 'spec_helper'
 
 describe Day do
+  subject { day }
+
   describe "Day tests" do
-    before do # runs before each test
-      @name = "Monday 2016-05-01"
-      @day = Day.new(@name)
-    end
+    # http://chriskottom.com/blog/2014/10/4-fantastic-ways-to-set-up-state-in-minitest/
+    let(:name) {"Monday 2016-05-01"}
+    let(:day) { Day.new(name) }
 
     it "Created day has name" do
-      @day.name.must_equal @name
+      subject.name.must_equal name
     end
 
     it "Day has proper date" do
-      @day.date.must_equal Date.parse("2016-05-01")
+      subject.date.must_equal Date.parse("2016-05-01")
+    end
+
+    it "Day has no tasks when created" do
+      subject.length.must_equal 0
     end
 
     it "Day allows to add tasks" do
-      @day.add_task("First task")
+      subject.add_task("First task")
 
-      @day.length.must_equal 1
-    end
-
-    it "Day can have no tasks" do
-      @day.length.must_equal 0
+      subject.length.must_equal 1
     end
   end
 
