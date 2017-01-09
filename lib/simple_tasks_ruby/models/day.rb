@@ -8,6 +8,9 @@ class Day
   end
 
   def add_task(task)
+    # TODO: Not a perfect solution (checking type of class) but a different handling would require Task and its hierarchy to be changed
+    raise ArgumentError, "Only tasks can be added to days. You tried to add object of type: #{task.class}" unless task.is_a?(Task)
+
     @tasks.push(task)
   end
 

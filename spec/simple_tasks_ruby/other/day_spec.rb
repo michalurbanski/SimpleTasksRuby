@@ -21,7 +21,8 @@ describe Day do
     end
 
     it "Day allows to add tasks" do
-      subject.add_task("First task")
+      task = Task.new("Title", Date.new(2016, 1,1))
+      subject.add_task(task)
 
       subject.length.must_equal 1
     end
@@ -38,6 +39,14 @@ describe Day do
       lambda {
         day = Day.new("Monday 2016-05-44")
       }.must_raise IncorrectDateForDayException
+    end
+
+    it "Day can have only tasks instances added" do
+      day = Day.new("Monday 2016-05-01")
+
+      lambda{
+        day.add_task("test")
+      }.must_raise ArgumentError
     end
   end
 end
