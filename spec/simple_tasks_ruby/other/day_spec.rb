@@ -5,11 +5,11 @@ describe Day do
 
   describe "Day tests" do
     # http://chriskottom.com/blog/2014/10/4-fantastic-ways-to-set-up-state-in-minitest/
-    let(:name) {"Monday 2016-05-01"}
-    let(:day) { Day.new(name) }
+    let(:day_name) {"Monday 2016-05-01"}
+    let(:day) { Day.new(day_name) }
 
     it "Created day has name" do
-      subject.name.must_equal name
+      subject.name.must_equal day_name
     end
 
     it "Day has proper date" do

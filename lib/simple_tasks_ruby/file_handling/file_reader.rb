@@ -22,7 +22,7 @@ class FileReader
 
   private
   def check_if_file_exists
-    if File.exists?(@filePath) then
+    if File.exist?(@filePath) then
       if File.directory?(@filePath) then
         logger.info "File #{@filePath} is a directory, and not a file"
         return false
