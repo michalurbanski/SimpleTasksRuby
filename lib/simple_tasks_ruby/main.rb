@@ -11,7 +11,7 @@ class Main
       file_lines = read_from_file
       print_file_content file_lines # Debug information
 
-      #TODO: Continue here !!!
+      #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
       weeks = LinesToWeeksConverter.convert nil
 
       # OLD LOGIC
