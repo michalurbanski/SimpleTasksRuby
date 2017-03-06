@@ -8,30 +8,35 @@ class Main
   def execute
     begin
       start
-      file_lines = read_from_file
-      print_file_content file_lines # Debug information
+      # file_lines = read_from_file
+      # print_file_content file_lines # Debug information
 
-      #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
-      weeks = LinesToWeeksConverter.convert nil
+      # #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
+      # weeks = LinesToWeeksConverter.convert nil
 
-      # OLD LOGIC
-      convert_fileLines_to_objects
-      create_tasks_from_week_days
-      all_delayed_tasks = find_delayed_tasks
+      # # OLD LOGIC
+      # convert_fileLines_to_objects
+      # create_tasks_from_week_days
+      # all_delayed_tasks = find_delayed_tasks
 
-      @writer.write_message("\nPrinting delayed tasks")
-      @writer.write_array(all_delayed_tasks)
+      # @writer.write_message("\nPrinting delayed tasks")
+      # @writer.write_array(all_delayed_tasks)
+      
+      # exception raised on purpose to test logic
+      raise StandardError, "message" 
 
       end_execution
     rescue => e # Rescues StandardError
-      puts e
-      puts e.backtrace
+      @writer.write_error("Error occured during application execution: " + e.to_s + "\n")
+      @writer.write_error_array(e.backtrace) 
+    ensure
+      end_execution
     end
   end
 
   private
     def start
-      @writer.write_message("Welcome to Simple Tasks Project", :green)
+      @writer.write_success("Welcome to Simple Tasks Project")
     end
 
     def read_from_file
@@ -77,6 +82,6 @@ class Main
     end
 
     def end_execution
-      @writer.write_message("Program execution finished", :green)
+      @writer.write_success("Program execution finished")
     end
 end
