@@ -8,7 +8,7 @@ class Main
   def execute
     begin
       start
-      # file_lines = read_from_file
+      file_lines = read_from_file
       # print_file_content file_lines # Debug information
 
       # #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
@@ -23,7 +23,7 @@ class Main
       # @writer.write_array(all_delayed_tasks)
       
       # exception raised on purpose to test logic
-      raise StandardError, "message" 
+      # raise StandardError, "message" 
 
       end_execution
     rescue => e # Rescues StandardError
@@ -41,7 +41,7 @@ class Main
 
     def read_from_file
       path = ProductionData.default_path
-      file_lines = @file_service.get_lines_from_file path
+      file_lines = @file_service.get_lines_from_file(path)
     end
 
     def print_file_content(file_lines)
