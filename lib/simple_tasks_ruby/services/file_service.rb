@@ -5,11 +5,18 @@ class FileService
   end
 
   def get_lines_from_file(path)
-    reader = FileSystemDataReader.new({
-          :path => path
-        })
+    raise ArgumentError if path.nil?  
+  
+    # reader = FileSystemDataReader.new({
+    #       :path => path
+    #     })
+  
+    Array.new()
 
-    reader.read
-    @file_lines = reader.lines
+
+    # reader = FileReader.new(path)
+
+    # reader.read
+    # @file_lines = reader.lines
   end
 end
