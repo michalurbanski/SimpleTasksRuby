@@ -1,7 +1,5 @@
-# Reads from file system
+# Concrete implementation of data reader for reading file system data
 class FileSystemDataReader < DataReader
-  attr_reader :lines
-
   def post_initialize(args)
     @reader = FileReader.new args[:path]
   end

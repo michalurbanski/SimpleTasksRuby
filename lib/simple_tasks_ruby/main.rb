@@ -26,10 +26,9 @@ class Main
       # @writer.write_message("\nPrinting delayed tasks")
       # @writer.write_array(all_delayed_tasks)
       
-      # exception raised on purpose to test logic
+      # Error raised on purpose to test logic
       # raise StandardError, "message" 
 
-      end_execution
     rescue => e # Rescues StandardError
       @writer.write_error("Error occured during application execution: " + e.to_s + "\n")
       @writer.write_error_array(e.backtrace) 
@@ -44,8 +43,7 @@ class Main
     end
 
     def read_from_file
-      # path = ProductionData.default_path
-      file_lines = @file_service.get_lines_from_file(path)
+      @file_service.get_lines_from_file
     end
 
     def print_file_content(file_lines)
