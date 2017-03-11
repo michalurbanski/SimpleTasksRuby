@@ -1,7 +1,11 @@
 class Main
-  def initialize(writer)
-    @writer = writer
-    @file_service = FileService.new @writer
+  def initialize()
+    @writer = ConsoleWriter.new
+    reader = FileSystemDataReader.new({
+      :path => ProductionData.default_path
+      })
+
+    @file_service = FileService.new(@writer, reader)
   end
 
   # Main entry point in application - executes other implemented operations
@@ -40,7 +44,7 @@ class Main
     end
 
     def read_from_file
-      path = ProductionData.default_path
+      # path = ProductionData.default_path
       file_lines = @file_service.get_lines_from_file(path)
     end
 

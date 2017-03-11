@@ -5,18 +5,9 @@ class FileService
     @file_reader = file_reader
   end
 
-  def get_lines_from_file(path)
-    raise ArgumentError if path.nil?  
-  
-    # reader = FileSystemDataReader.new({
-    #       :path => path
-    #     })
-  
-    # Array.new()
-
-
-    # reader = FileReader.new(path)
-
+  def get_lines_from_file
+    raise ArgumentError.new "Reader is not initialized" if @file_reader.nil?
+    
     @file_reader.read # perform action 
     @file_reader.lines # get state of the object
   end
