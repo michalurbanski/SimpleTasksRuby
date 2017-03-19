@@ -38,7 +38,7 @@ end
   require "simple_tasks_ruby/file_handling/#{file_handling}"
 end
 
-%w[tasks_manager].each do |manager|
+%w[weeks_manager tasks_manager].each do |manager|
   require "simple_tasks_ruby/managers/#{manager}"
 end
 

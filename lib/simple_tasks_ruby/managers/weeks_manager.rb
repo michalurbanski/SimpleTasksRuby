@@ -1,0 +1,3 @@
+class WeeksManager
+
+end
