@@ -1,6 +1,8 @@
 class Main
   def initialize()
     @writer = ConsoleWriter.new
+    start
+
     reader = FileSystemDataReader.new({
       :path => ProductionData.default_path
       })
@@ -11,9 +13,8 @@ class Main
   # Main entry point in application - executes other implemented operations
   def execute
     begin
-      start
       file_lines = read_from_file
-      # print_file_content file_lines # Debug information
+      # print_file_content file_lines # Debug information - write this to file if needed
 
       # #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
       # weeks = LinesToWeeksConverter.convert nil
