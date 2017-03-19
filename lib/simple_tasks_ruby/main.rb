@@ -8,6 +8,7 @@ class Main
       })
 
     @file_service = FileService.new(@writer, reader)
+    @weeks_manager = WeeksManager.new
   end
 
   # Main entry point in application - executes other implemented operations
@@ -16,8 +17,8 @@ class Main
       file_lines = read_from_file
       # print_file_content file_lines # Debug information - write this to file if needed
 
-      # #TODO: Continue here !!! - line below will throw an error and this is on purpose - as logic is under rewrite
-      # weeks = LinesToWeeksConverter.convert nil
+      @weeks_manager.convert_data_to_weeks(file_lines) 
+      @weeks_manager.weeks
 
       # # OLD LOGIC
       # convert_fileLines_to_objects

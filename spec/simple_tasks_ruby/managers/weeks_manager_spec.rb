@@ -18,6 +18,7 @@ describe WeeksManager do
       weeks_manager.convert_data_to_weeks(@lines) 
 
       weeks_manager.weeks.wont_be_nil 
+      weeks_manager.weeks.length.must_equal(2)
     end 
   end 
 
