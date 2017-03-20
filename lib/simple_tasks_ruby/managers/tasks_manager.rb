@@ -1,5 +1,7 @@
 class TasksManager
   def find_delayed_tasks(tasks)
+    return nil if tasks.nil? || tasks.empty? 
+ 
     delayed_tasks = Array.new()
 
     tasks.each do |task|

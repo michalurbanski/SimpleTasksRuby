@@ -1,22 +1,32 @@
-# class TasksManagerTests < Test::Unit::TestCase
-#   def test_find_delayed_tasks
+require 'spec_helper' 
 
-#     #TODO: extract creating sample day to another class or module
-#     day = Day.new("Monday 2016-05-20")
-#     day.add_action("- delayed, - first task")
-#     day.add_action("- DONE - second task")
-#     day.add_action("- delayed, - third task")
-#     day.add_action("- new task")
+describe TasksManager do 
+  before do 
+    @tasks_manager = TasksManager.new
+  end
 
-#     daily_status_extractor = DailyStatusExtractor.new(day)
-#     daily_status_extractor.proceed_day
+  describe "Positive cases" do 
+    it "Finds delayed tasks when one exists" do 
+      delayed_task = DelayedTask.new('title', DateTime.now) 
+      aborted_task = AbortedTask.new('aborted', DateTime.now)
 
-#     tasks = daily_status_extractor.daily_tasks
-#     day.add_tasks(tasks)
+      tasks = [delayed_task, aborted_task]
 
-#     tasks_manager = TasksManager.new
-#     delayed_tasks = tasks_manager.find_delayed_tasks(day.tasks)
+      @tasks_manager.find_delayed_tasks(tasks).length.must_equal(1)
+    end
+  end
 
-#     assert_equal(2, delayed_tasks.length)
-#   end
-# end
+  describe "Negative cases" do 
+    it "When tasks list is nil then result is nil" do 
+      tasks = nil
+  
+      @tasks_manager.find_delayed_tasks(tasks).must_be_nil 
+    end
+
+    it "When tasks list is empty then result is nil" do 
+      tasks = Array.new
+
+      @tasks_manager.find_delayed_tasks(tasks).must_be_nil
+    end
+  end
+end
