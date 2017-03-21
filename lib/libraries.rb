@@ -14,7 +14,7 @@ end
   require "simple_tasks_ruby/parsers/#{parser}"
 end
 
-%w[lines_converter week_converter lines_to_weeks_converter].each do |converter|
+%w[week_converter lines_to_weeks_converter].each do |converter|
   require "simple_tasks_ruby/converters/#{converter}"
 end
 
@@ -46,7 +46,7 @@ end
   require "simple_tasks_ruby/models/#{model}"
 end
 
-%w[console_module task_status date_consts].each do |mod|
+%w[console_module task_status date_consts empty_lines_removal_module].each do |mod|
   require "simple_tasks_ruby/modules/#{mod}"
 end
 
