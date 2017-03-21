@@ -18,7 +18,7 @@ class Main
       # print_file_content file_lines # Debug information - write this to file if needed
 
       @weeks_manager.convert_data_to_weeks(file_lines) 
-      @weeks_manager.weeks
+      weeks = @weeks_manager.weeks
 
       # # OLD LOGIC
       # convert_fileLines_to_objects
