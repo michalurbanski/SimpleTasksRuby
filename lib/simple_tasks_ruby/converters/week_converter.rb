@@ -2,10 +2,9 @@ class WeekConverter
   attr_reader :week
 
   def initialize(lines)
-    @lines = lines # all lines as input
+    # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
 
-    linesConverter = LinesConverter.new(@lines)
-    @lines = linesConverter.remove_blank_lines
+    @lines = EmptyLinesRemovalModule.remove_blank_lines(lines)
   end
 
   # Returns week object (with days and actions in them) based on raw input
