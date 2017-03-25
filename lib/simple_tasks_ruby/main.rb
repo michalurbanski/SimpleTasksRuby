@@ -21,7 +21,6 @@ class Main
       weeks = @weeks_manager.weeks
 
       # # OLD LOGIC
-      # convert_fileLines_to_objects
       # create_tasks_from_week_days
       # all_delayed_tasks = find_delayed_tasks
 
@@ -51,15 +50,6 @@ class Main
     def print_file_content(file_lines)
       @writer.write_message("Printing file content", :green)
       @writer.write_array(file_lines, debug: true)
-    end
-
-    def convert_fileLines_to_objects
-      # TODO: assumption that input file has only one week - this will be changed later
-      @week_converter = WeekConverter.new(@file_lines)
-      @week_converter.convert_lines_to_week
-
-      @writer.write_message("Printing week for test purposes...")
-      @week_converter.print_week
     end
 
     def create_tasks_from_week_days

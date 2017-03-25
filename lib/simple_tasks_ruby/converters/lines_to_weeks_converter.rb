@@ -1,12 +1,13 @@
 # Converts lines to week objects
 class LinesToWeeksConverter
-  def convert(lines) 
+  def convert(lines)
+    @lines = lines 
+    @week_converter = WeekConverter.new(@lines)
 
-    # TODO: steps to be implemented
     # Convert lines to weeks hash 
-    # Convert hash to weeks objects - currently this implementation is in main.rb class
-
-    raise "To be implemented"
+    # Convert hash to weeks objects
+    convert_lines_to_weeks_hash(@lines) 
+    @week_converter.convert_lines_to_week
   end
     
   private
