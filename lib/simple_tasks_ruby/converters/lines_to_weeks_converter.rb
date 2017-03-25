@@ -1,6 +1,8 @@
 # Converts lines to week objects
 class LinesToWeeksConverter
   def convert(lines)
+    raise ArgumentError.new("Lines can't be empty") if lines.nil? || lines.empty?
+
     @lines = lines 
     @week_converter = WeekConverter.new(@lines)
 
