@@ -1,15 +1,11 @@
 require "spec_helper" 
+require "test_data_reader_module" 
 
 # This test reads test data from disk
 describe WeeksManager do
   before do 
     writer = mock()
-    data_reader = FileSystemDataReader.new({
-      :path => TestData.default_path
-    })  
-
-    file_service = FileService.new(writer, data_reader) 
-    @lines = file_service.get_lines_from_file
+    @lines = TestDataReader.read_test_data
   end
 
   describe "Valid cases" do 
