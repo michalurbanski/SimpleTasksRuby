@@ -1,7 +1,6 @@
 # Manages files handling in application
 class FileService
-  def initialize(writer, file_reader)
-    @writer = writer #TODO: currently not used. Should this class print results itself?
+  def initialize(file_reader)
     @file_reader = file_reader
   end
 
