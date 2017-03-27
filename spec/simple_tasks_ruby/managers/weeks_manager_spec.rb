@@ -4,7 +4,6 @@ require "test_data_reader_module"
 # This test reads test data from disk
 describe WeeksManager do
   before do 
-    writer = mock()
     @lines = TestDataReader.read_test_data
   end
 
