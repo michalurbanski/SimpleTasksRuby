@@ -8,7 +8,10 @@ class LinesToWeeksConverter
 
     # Convert lines to weeks hash 
     # Convert hash to weeks objects
-    convert_lines_to_weeks_hash(@lines) 
+    weeks_hash = convert_lines_to_weeks_hash(@lines) 
+
+    # Each hash key is converted to Week object
+
     @week_converter.convert_lines_to_week
   end
     

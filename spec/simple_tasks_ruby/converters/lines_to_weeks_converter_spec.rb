@@ -10,45 +10,45 @@ describe LinesToWeeksConverter do
       @lines_to_weeks_converter = LinesToWeeksConverter.new
     end
 
-    it "Weeks are properly parsed" do
-      weeks = @lines_to_weeks_converter.convert(@week_lines)
+    # it "Weeks are properly parsed" do
+    #   weeks = @lines_to_weeks_converter.convert(@week_lines)
 
-      weeks.length.must_equal(@week_lines.length)
-    end
+    #   weeks.length.must_equal(@week_lines.length)
+    # end
 
-    it "Weeks with first week having days is properly parsed" do
-      lines = Array.new(@week_lines)
-      lines.insert(1, @days_for_first_week).flatten! # first week has days
+    # it "Weeks with first week having days is properly parsed" do
+    #   lines = Array.new(@week_lines)
+    #   lines.insert(1, @days_for_first_week).flatten! # first week has days
 
-      weeks = @lines_to_weeks_converter.convert(lines)
+    #   weeks = @lines_to_weeks_converter.convert(lines)
 
-      weeks.length.must_equal(@week_lines.length)
-      weeks[@week_lines[0]].length.must_equal(@days_for_first_week.length)
-    end
+    #   weeks.length.must_equal(@week_lines.length)
+    #   weeks[@week_lines[0]].length.must_equal(@days_for_first_week.length)
+    # end
 
-    it "Weeks with days for each one are properly parsed" do
-      lines = Array.new(@week_lines)
-      lines.insert(1, @days_for_first_week)
-      lines.insert(3, @days_for_second_week)
-      lines.flatten! # first and second week have days with actions
+    # it "Weeks with days for each one are properly parsed" do
+    #   lines = Array.new(@week_lines)
+    #   lines.insert(1, @days_for_first_week)
+    #   lines.insert(3, @days_for_second_week)
+    #   lines.flatten! # first and second week have days with actions
 
-      weeks = @lines_to_weeks_converter.convert(lines)
+    #   weeks = @lines_to_weeks_converter.convert(lines)
 
-      weeks.length.must_equal(@week_lines.length)
-      weeks[@week_lines[0]].length.must_equal(@days_for_first_week.length)
-      weeks[@week_lines[1]].length.must_equal(@days_for_second_week.length)
-    end
+    #   weeks.length.must_equal(@week_lines.length)
+    #   weeks[@week_lines[0]].length.must_equal(@days_for_first_week.length)
+    #   weeks[@week_lines[1]].length.must_equal(@days_for_second_week.length)
+    # end
 
-    it "Nil input collection of lines causes runtime error" do
-      lambda {
-          @lines_to_weeks_converter.convert(nil)
-        }.must_raise ArgumentError
-    end
+    # it "Nil input collection of lines causes runtime error" do
+    #   lambda {
+    #       @lines_to_weeks_converter.convert(nil)
+    #     }.must_raise ArgumentError
+    # end
 
-    it "Empty input collection of lines causes runtime error" do
-      lambda {
-          @lines_to_weeks_converter.convert(Array.new)
-        }.must_raise ArgumentError
-    end
+    # it "Empty input collection of lines causes runtime error" do
+    #   lambda {
+    #       @lines_to_weeks_converter.convert(Array.new)
+    #     }.must_raise ArgumentError
+    # end
   end
 end

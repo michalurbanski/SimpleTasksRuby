@@ -7,15 +7,15 @@ describe WeeksManager do
     @lines = TestDataReader.read_test_data
   end
 
-  describe "Valid cases" do 
-    it "Creates weeks when input lines are not empty" do 
-      weeks_manager = WeeksManager.new
-      weeks_manager.convert_data_to_weeks(@lines) 
+  # describe "Valid cases" do 
+  #   it "Creates weeks when input lines are not empty" do 
+  #     weeks_manager = WeeksManager.new
+  #     weeks_manager.convert_data_to_weeks(@lines) 
 
-      weeks_manager.weeks.wont_be_nil 
-      weeks_manager.weeks.length.must_equal(2)
-    end 
-  end 
+  #     weeks_manager.weeks.wont_be_nil 
+  #     weeks_manager.weeks.length.must_equal(2)
+  #   end 
+  # end 
 
   describe "Invalid cases" do 
     it "Weeks are nil for empty input" do 
