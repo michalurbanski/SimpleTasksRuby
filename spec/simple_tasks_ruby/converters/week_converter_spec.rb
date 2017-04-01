@@ -2,39 +2,39 @@ require 'spec_helper'
 
 describe WeekConverter do
   # Runs code before each expectation
-  before do 
-    @converter = LinesToWeeksConverter.new
-  end
+  # before do 
+  #   @converter = LinesToWeeksConverter.new
+  # end
 
-  describe "Converts correct input to weeks" do 
-    it "Converts lines to week" do 
-      skip("Temporary skipped")
+  # describe "Converts correct input to weeks" do 
+  #   it "Converts lines to week" do 
+  #     skip("Temporary skipped")
 
-      lines = Array.new
-      lines << "Week 1"
-      lines << "Monday 2015-01-01"
-      lines << "- first task"
-      lines << "- second task"
-      lines << "Tuesday 2015-01-02"
+  #     lines = Array.new
+  #     lines << "Week 1"
+  #     lines << "Monday 2015-01-01"
+  #     lines << "- first task"
+  #     lines << "- second task"
+  #     lines << "Tuesday 2015-01-02"
 
-      converter = LinesToWeeksConverter.new
-      weeks = converter.convert(lines) 
-    end 
-  end
+  #     converter = LinesToWeeksConverter.new
+  #     weeks = converter.convert(lines) 
+  #   end 
+  # end
 
-  describe "Handles incorrect input" do 
-    it "Nil lines cause error" do 
-      lambda { 
-        @converter.convert(nil)
-      }.must_raise ArgumentError      
-    end
+  # describe "Handles incorrect input" do 
+  #   it "Nil lines cause error" do 
+  #     lambda { 
+  #       @converter.convert(nil)
+  #     }.must_raise ArgumentError      
+  #   end
 
-    it "Empty lines cause error" do 
-      lambda { 
-        @converter.convert([])
-      }.must_raise ArgumentError    
-    end
-  end
+  #   it "Empty lines cause error" do 
+  #     lambda { 
+  #       @converter.convert([])
+  #     }.must_raise ArgumentError    
+  #   end
+  # end
 
   # describe "Determine end of the week" do
   #   it "End of the week is valid" do
