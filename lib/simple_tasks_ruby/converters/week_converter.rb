@@ -1,4 +1,4 @@
-# Creates week objects, each object has days with actions
+# Creates week object, with days and tasks for them - based on lines for this week
 class WeekConverter
   attr_reader :week
 

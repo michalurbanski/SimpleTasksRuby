@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Day do
-  subject { day }
+  subject { day } # sets accessor called subject to day variable
 
   describe "Day tests" do
     # http://chriskottom.com/blog/2014/10/4-fantastic-ways-to-set-up-state-in-minitest/
+    # Each let invocation defines a new method with the specified name that executes the block argument upon the first invocation and caches the result for later access - in other words, a lazy initializer. 
     let(:day_name) {"Monday 2016-05-01"}
     let(:day) { Day.new(day_name) }
 
@@ -50,18 +51,3 @@ describe Day do
     end
   end
 end
-
-#   def test_day_has_tasks_equal_to_actions
-#     day = Day.new("Monday 2016-05-12")
-#     day.add_action("- First action")
-#     day.add_action("- delayed, - Second action")
-
-#     daily_status_extractor = DailyStatusExtractor.new(day)
-#     daily_status_extractor.proceed_day
-
-#     dailyTasks = daily_status_extractor.daily_tasks
-#     day.add_tasks(dailyTasks)
-
-#     assert_equal(day.actions.length, day.tasks.length)
-#   end
-
