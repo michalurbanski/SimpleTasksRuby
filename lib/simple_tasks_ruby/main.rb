@@ -7,7 +7,7 @@ class Main
       :path => ProductionData.default_path
       })
 
-    @file_service = FileService.new(@writer, reader)
+    @file_service = FileService.new(reader)
     @weeks_manager = WeeksManager.new
   end
 
