@@ -2,29 +2,55 @@
 class WeekConverter
   attr_reader :week
 
-  def initialize(lines)
+  def initialize(week_name, week_lines)
     # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
 
-    @lines = EmptyLinesRemovalModule.remove_blank_lines(lines)
+    @week_name = week_name
+    @lines = EmptyLinesRemovalModule.remove_blank_lines(week_lines)
   end
 
   # Returns week object (with days and actions in them) based on raw input
   def convert_lines_to_week
-    all_week_days_hash = parse_week
+    # all_week_days_hash = parse_week
 
-    all_week_days_hash.each do |key, array|
-      day = Day.new(key)
+    # all_week_days_hash.each do |key, array|
+    #   day = Day.new(key)
 
-      if !array.nil? && array.length > 0
-        array.each do |action|
-          day.add_action(action)
-        end
-      end
+    #   if !array.nil? && array.length > 0
+    #     array.each do |action|
+    #       day.add_action(action)
+    #     end
+    #   end
 
-      @week.add_day(day)
-    end
+    #   @week.add_day(day)
+    # end
+
+    temp_parse
 
     return @week
+  end
+
+  # TODO: method name to be changed when implemented
+  def temp_parse
+    possibleDaysTester = PossibleDaysTester.new
+    @week = Week.new(@week_name)
+    
+    current_day = nil
+
+    @lines.each do |line|
+      if possibleDaysTester.is_day(line) 
+        current_day = Day.new(line) 
+        @week.add_day(current_day)
+        next
+      end
+
+      return if WeekConverter.is_end_of_week(line)
+      
+      # If not day and not end of the week then it has to be a task
+      task_creator = TaskCreator.new(line, current_day.date)
+      task = task_creator.create_task
+      current_day.add_task(task)
+    end
   end
 
   # Converts lines from file to hash of days objects
