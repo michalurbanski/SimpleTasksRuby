@@ -1,7 +1,5 @@
 # Creates week object, with days and tasks for them - based on lines for this week
 class WeekConverter
-  attr_reader :week
-
   def initialize(week_name, week_lines)
     # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
 
@@ -23,7 +21,7 @@ class WeekConverter
         next
       end
 
-      return if WeekConverter.is_end_of_week(line)
+      return @week if self.class.is_end_of_week(line)
       
       # If not day and not end of the week then it has to be a task
       task_creator = TaskCreator.new(line, current_day.date)
