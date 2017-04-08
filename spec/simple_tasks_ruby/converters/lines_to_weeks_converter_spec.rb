@@ -5,6 +5,10 @@ describe LinesToWeeksConverter do
     @converter = LinesToWeeksConverter.new
   end
 
+  def act(lines) 
+    @converter.convert(lines) 
+  end
+
   describe "Converts correct input to weeks" do 
     it "Converts lines to week" do 
       lines = Array.new
@@ -15,7 +19,7 @@ describe LinesToWeeksConverter do
       lines << "Tuesday 2015-01-02"
 
       # converter = LinesToWeeksConverter.new
-      weeks = @converter.convert(lines) 
+      weeks = act(lines)
 
       weeks.length.must_equal 1
       weeks[0].days.length.must_equal 2
@@ -32,7 +36,7 @@ describe LinesToWeeksConverter do
       lines << "--------" 
       lines << "--------" 
 
-      weeks = @converter.convert(lines) 
+      weeks = act(lines) 
 
       weeks.length.must_equal 2
       weeks.first.days.length.must_equal 1
@@ -43,14 +47,24 @@ describe LinesToWeeksConverter do
   describe "Handles incorrect input" do 
     it "Nil lines cause error" do 
       lambda { 
-        @converter.convert(nil)
+        act(nil) 
       }.must_raise ArgumentError      
     end
 
     it "Empty lines cause error" do 
       lambda { 
-        @converter.convert([])
+        act([])
       }.must_raise ArgumentError    
+    end
+
+    it "Missing any week tag returns empty weeks collection" do 
+      lines = Array.new
+      lines << "Monday 2015-01-01" 
+      lines << "- this is first task" 
+
+      weeks = act(lines) 
+
+      weeks.must_be_empty
     end
   end
 end
