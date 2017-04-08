@@ -1,4 +1,5 @@
-# Creates week object, with days and tasks for them - based on lines for this week
+# Creates week object, with days and tasks for them - based on lines for this week.
+# Creates only one week object - based on lines input. 
 class WeekConverter
   def initialize(week_name, week_lines)
     # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
