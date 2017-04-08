@@ -66,5 +66,17 @@ describe LinesToWeeksConverter do
 
       weeks.must_be_empty
     end
+
+    it "Lines start not from a week tag, but have one" do 
+      lines = Array.new
+      lines << "Monday 2015-01-01" 
+      lines << "- this is first task" 
+      lines << "Week 1" 
+      lines << "Monday 2015-01-08" 
+
+      weeks = act(lines) 
+
+      weeks.length.must_equal 1
+    end 
   end
 end
