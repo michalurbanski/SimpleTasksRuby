@@ -5,15 +5,21 @@ class LinesToWeeksConverter
     raise ArgumentError.new("Lines can't be empty") if lines.nil? || lines.empty?
 
     @lines = lines 
-    @week_converter = WeekConverter.new(@lines)
+    weeks = Array.new
 
-    # Convert lines to weeks hash 
-    # Convert hash to weeks objects
+    # Convert lines to weeks hash
+    # Then convert hash to weeks objects
     weeks_hash = convert_lines_to_weeks_hash(@lines) 
 
-    # Each hash key is converted to Week object
+    # Each hash key is converted into a Week object
+    weeks_hash.each do |week_name, week_lines|
+      @week_converter = WeekConverter.new(week_name, week_lines)
+      week = @week_converter.convert_lines_to_week
 
-    @week_converter.convert_lines_to_week
+      weeks.push(week)
+    end
+
+    weeks
   end
     
   private
