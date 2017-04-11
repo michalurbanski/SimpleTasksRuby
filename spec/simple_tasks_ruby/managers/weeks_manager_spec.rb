@@ -1,5 +1,4 @@
 require "spec_helper" 
-require "test_data_reader_module" 
 
 describe WeeksManager do
   describe "Real input file with test data" do 
