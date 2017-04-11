@@ -1,21 +1,23 @@
 require "spec_helper" 
 require "test_data_reader_module" 
 
-# This test reads test data from disk
 describe WeeksManager do
-  before do 
-    @lines = TestDataReader.read_test_data
+  describe "Real input file with test data" do 
+    before do 
+      @lines = TestDataReader.read_test_data
+    end
+
+    # This test reads test data from disk
+    it "Reads test data with 2 weeks and first day with 3 tasks" do 
+      weeks_manager = WeeksManager.new
+      weeks_manager.convert_data_to_weeks(@lines) 
+
+      weeks = weeks_manager.weeks
+
+      weeks.length.must_equal 2
+      weeks.first.days.first.tasks.length.must_equal 3
+    end
   end
-
-  # describe "Valid cases" do 
-  #   it "Creates weeks when input lines are not empty" do 
-  #     weeks_manager = WeeksManager.new
-  #     weeks_manager.convert_data_to_weeks(@lines) 
-
-  #     weeks_manager.weeks.wont_be_nil 
-  #     weeks_manager.weeks.length.must_equal(2)
-  #   end 
-  # end 
 
   describe "Invalid cases" do 
     it "Weeks are nil for empty input" do 
