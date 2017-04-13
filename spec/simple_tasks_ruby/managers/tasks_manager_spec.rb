@@ -3,6 +3,7 @@ require 'spec_helper'
 describe TasksManager do 
   before do 
     @tasks_manager = TasksManager.new
+    @weeks_manager = WeeksManager.new
   end
 
   describe "Positive cases" do 
@@ -16,19 +17,23 @@ describe TasksManager do
     end
 
     it "Finds delayed tasks in one week" do 
-      week = nil 
+      lines = TestDataReader.read_single_week
+      delayed_tasks = act(lines)
 
-      delayed_tasks = @tasks_manager.find_delayed_tasks_in_week(week)
-
-      delayed_tasks.wont_be_empty
+      delayed_tasks.length.must_equal 3
     end
 
     it "Finds delayed tasks in multiple weeks" do 
-      weeks = nil
+      lines = TestDataReader.read_multiple_weeks
+      delayed_tasks = act(lines)
+
+      delayed_tasks.length.must_equal 4
+    end
+
+    def act(lines) 
+      weeks = @weeks_manager.convert_data_to_weeks(lines)
 
       delayed_tasks = @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks) 
-
-      delayed_tasks.wont_be_empty
     end
   end
 

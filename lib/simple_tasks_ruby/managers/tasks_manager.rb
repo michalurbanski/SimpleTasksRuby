@@ -1,4 +1,16 @@
 class TasksManager
+  def find_delayed_tasks_in_multiple_weeks(weeks) 
+    tasks = Array.new
+
+    weeks.each do |week|
+      week.days.each do |day| 
+        tasks += day.tasks
+      end
+    end
+
+    find_delayed_tasks(tasks)
+  end
+
   def find_delayed_tasks(tasks)
     return nil if tasks.nil? || tasks.empty? 
  

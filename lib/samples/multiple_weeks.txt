@@ -7,7 +7,7 @@ Monday 2016-06-06
 
 Tuesday 2016-06-07
 - delayed, DONE 2016-06-08 - this is delayed and done task
-- delayed - simply delayed
+- delayed, - simply delayed
 
 Wednesday 2016-06-08
 - ABORTED - test
