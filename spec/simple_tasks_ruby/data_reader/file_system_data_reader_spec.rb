@@ -32,7 +32,7 @@ describe FileSystemDataReader do
   private
   def valid_test_paths
     array = Array.new
-    array.push(TestData.default_path)
+    array.push(TestData.multiple_weeks_path)
     array.push(ProductionData.default_path)
     array
   end

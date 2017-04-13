@@ -14,6 +14,22 @@ describe TasksManager do
 
       @tasks_manager.find_delayed_tasks(tasks).length.must_equal(1)
     end
+
+    it "Finds delayed tasks in one week" do 
+      week = nil 
+
+      delayed_tasks = @tasks_manager.find_delayed_tasks_in_week(week)
+
+      delayed_tasks.wont_be_empty
+    end
+
+    it "Finds delayed tasks in multiple weeks" do 
+      weeks = nil
+
+      delayed_tasks = @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks) 
+
+      delayed_tasks.wont_be_empty
+    end
   end
 
   describe "Negative cases" do 

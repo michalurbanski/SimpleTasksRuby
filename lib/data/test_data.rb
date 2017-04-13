@@ -1,5 +1,9 @@
 class TestData
-  def self.default_path
-    File.expand_path("../../samples/test.txt", __FILE__)
+  def self.single_week_path
+    File.expand_path("../../samples/single_week.txt", __FILE__)
+  end
+
+  def self.multiple_weeks_path
+    File.expand_path("../../samples/multiple_weeks.txt", __FILE__)
   end
 end

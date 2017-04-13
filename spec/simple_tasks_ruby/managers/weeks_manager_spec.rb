@@ -3,7 +3,7 @@ require "spec_helper"
 describe WeeksManager do
   describe "Real input file with test data" do 
     before do 
-      @lines = TestDataReader.read_test_data
+      @lines = TestDataReader.read_multiple_weeks
     end
 
     # This test reads test data from disk

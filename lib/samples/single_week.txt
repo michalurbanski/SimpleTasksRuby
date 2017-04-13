@@ -1,0 +1,26 @@
+Week 1
+
+Monday 2016-06-06
+- first task
+- delayed, - second task
+- DONE - third task
+
+Tuesday 2016-06-07
+- delayed, DONE 2016-06-08 - this is delayed and done task
+- delayed - simply delayed
+
+Wednesday 2016-06-08
+- ABORTED - test
+- regular task
+
+Thursday 2016-06-09
+- DONE - this is done task
+
+Friday 2016-06-10
+- delayed, - this is delayed one
+
+Saturday 2016-06-11
+
+Sunday 2016-06-12
+
+---------------------
