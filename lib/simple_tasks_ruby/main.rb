@@ -10,6 +10,7 @@ class Main
     @file_service = FileService.new(reader)
     @weeks_manager = WeeksManager.new
     @tasks_manager = TasksManager.new
+    @tasks_printer = TasksPrinter.new(@writer)
   end
 
   # Main entry point in application - executes other implemented operations
@@ -22,6 +23,7 @@ class Main
       weeks = @weeks_manager.weeks
 
       delayed_tasks = find_delayed_tasks(weeks)
+      @tasks_printer.print_tasks_information(delayed_tasks)
 
       # # OLD LOGIC
       # create_tasks_from_week_days
