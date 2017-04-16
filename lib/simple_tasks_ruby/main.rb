@@ -21,21 +21,10 @@ class Main
 
       @weeks_manager.convert_data_to_weeks(file_lines) 
       weeks = @weeks_manager.weeks
-
       delayed_tasks = find_delayed_tasks(weeks)
 
       @writer.write_success("Printing delayed tasks:")
       @tasks_printer.print_tasks_information(delayed_tasks)
-
-      # # OLD LOGIC
-      # create_tasks_from_week_days
-      # all_delayed_tasks = find_delayed_tasks
-
-      # @writer.write_message("\nPrinting delayed tasks")
-      # @writer.write_array(all_delayed_tasks)
-      
-      # Error raised on purpose to test logic
-      # raise StandardError, "message" 
 
     rescue => e # Rescues StandardError
       @writer.write_error("Error occured during application execution: " + e.to_s + "\n")
@@ -59,31 +48,8 @@ class Main
       @writer.write_array(file_lines, debug: true)
     end
 
-    def create_tasks_from_week_days
-      week = @week_converter.week
-      @weekly_tasks = Array.new # each array element contains tasks for a given day
-
-      week.days.each do |day|
-        daily_extractor = DailyStatusExtractor.new(day)
-        daily_extractor.proceed_day
-        @weekly_tasks.push(daily_extractor.daily_tasks)
-      end
-    end
-
     def find_delayed_tasks(weeks) 
       @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks)
-    end
-
-    def find_delayed_tasks_old
-      tasks_manager = TasksManager.new
-      results = Array.new
-
-      @weekly_tasks.each do |daily_tasks|
-        delayed_tasks = tasks_manager.find_delayed_tasks(daily_tasks)
-        results += delayed_tasks
-      end
-
-      results
     end
 
     def end_execution
