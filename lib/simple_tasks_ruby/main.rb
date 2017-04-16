@@ -23,6 +23,8 @@ class Main
       weeks = @weeks_manager.weeks
 
       delayed_tasks = find_delayed_tasks(weeks)
+
+      @writer.write_success("Printing delayed tasks:")
       @tasks_printer.print_tasks_information(delayed_tasks)
 
       # # OLD LOGIC
