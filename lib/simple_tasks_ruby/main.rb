@@ -1,10 +1,10 @@
 class Main
-  def initialize()
+  def initialize
     @writer = ConsoleWriter.new
     start
 
     reader = FileSystemDataReader.new({
-      :path => ProductionData.default_path
+      :path => ProductionData.get_path
       })
 
     @file_service = FileService.new(reader)
