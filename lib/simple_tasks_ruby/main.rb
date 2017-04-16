@@ -9,6 +9,7 @@ class Main
 
     @file_service = FileService.new(reader)
     @weeks_manager = WeeksManager.new
+    @tasks_manager = TasksManager.new
   end
 
   # Main entry point in application - executes other implemented operations
@@ -19,6 +20,8 @@ class Main
 
       @weeks_manager.convert_data_to_weeks(file_lines) 
       weeks = @weeks_manager.weeks
+
+      delayed_tasks = find_delayed_tasks(weeks)
 
       # # OLD LOGIC
       # create_tasks_from_week_days
@@ -63,7 +66,11 @@ class Main
       end
     end
 
-    def find_delayed_tasks
+    def find_delayed_tasks(weeks) 
+      @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks)
+    end
+
+    def find_delayed_tasks_old
       tasks_manager = TasksManager.new
       results = Array.new
 
