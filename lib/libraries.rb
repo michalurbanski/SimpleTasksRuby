@@ -42,7 +42,7 @@ end
   require "simple_tasks_ruby/managers/#{manager}"
 end
 
-%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week].each do |model|
+%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week configuration].each do |model|
   require "simple_tasks_ruby/models/#{model}"
 end
 
@@ -50,7 +50,7 @@ end
   require "simple_tasks_ruby/modules/#{mod}"
 end
 
-%w[file_service].each do |service|
+%w[file_service configuration_service].each do |service|
   require "simple_tasks_ruby/services/#{service}"
 end
 
