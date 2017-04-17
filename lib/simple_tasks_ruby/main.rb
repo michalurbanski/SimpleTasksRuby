@@ -3,8 +3,11 @@ class Main
     @writer = ConsoleWriter.new
     start
 
+    @configuration_service = ConfigurationService.new
+    input_file_path = @configuration_service.read_value(:input_file_path)
+
     reader = FileSystemDataReader.new({
-      :path => ProductionData.get_path
+      :path => input_file_path ||= ProductionData.get_path
       })
 
     @file_service = FileService.new(reader)
