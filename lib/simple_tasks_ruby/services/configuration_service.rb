@@ -2,9 +2,6 @@ require 'yaml'
 
 # Handles configuration entries
 class ConfigurationService
-  def initialize 
-    @configuration = nil
-  end
 
   # returns nil if value is not found
   def read_value(entry_type)
