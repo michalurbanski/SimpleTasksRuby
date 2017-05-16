@@ -37,3 +37,6 @@ build/
 
 # mac files 
 .DS_Store
+
+# logs
+*.log

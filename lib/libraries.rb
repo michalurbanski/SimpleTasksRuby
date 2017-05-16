@@ -30,7 +30,7 @@ end
   require "simple_tasks_ruby/extractors/#{extractor}"
 end
 
-%w[logging].each do |logging|
+%w[logging logger_factory].each do |logging|
   require "simple_tasks_ruby/logging/#{logging}"
 end
 

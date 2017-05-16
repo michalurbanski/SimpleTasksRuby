@@ -9,6 +9,7 @@ module Logging
   
   class << self
     attr_accessor :is_logging_enabled
+    attr_accessor :options
 
     def is_logging_enabled
       # result = @is_logging_enabled ||= true # or-equals operator does not work for bool values
@@ -27,7 +28,7 @@ module Logging
     end
 
     def configure_logger_for(classname)
-      logger = Logger.new(STDOUT)
+      logger = LoggerFactory.create_logger(options) 
       logger.progname = classname
       
       # Custom decorator over Logger class
@@ -37,4 +38,9 @@ module Logging
       logger
     end
   end
+end
+
+module CustomLogging 
+  extend Logging
+
 end
