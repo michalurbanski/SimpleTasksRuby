@@ -10,6 +10,10 @@ require 'simple_tasks_ruby/main'
   require "simple_tasks_ruby/common/#{common}"
 end
 
+%w[logging logger_factory].each do |logging|
+  require "simple_tasks_ruby/logging/#{logging}"
+end
+
 %w[weeks_parser days_parser].each do |parser|
   require "simple_tasks_ruby/parsers/#{parser}"
 end
@@ -28,10 +32,6 @@ end
 
 %w[daily_status_extractor status_extractor].each do |extractor|
   require "simple_tasks_ruby/extractors/#{extractor}"
-end
-
-%w[logging logger_factory].each do |logging|
-  require "simple_tasks_ruby/logging/#{logging}"
 end
 
 %w[file_reader].each do |file_handling|

@@ -15,4 +15,8 @@ class LoggerDecorator
   def info(message)
     @logger.info(message) if is_enabled
   end
+
+  def error(message)
+    @logger.error(message) if is_enabled
+  end
 end

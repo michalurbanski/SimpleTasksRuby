@@ -39,8 +39,3 @@ module Logging
     end
   end
 end
-
-module CustomLogging 
-  extend Logging
-
-end

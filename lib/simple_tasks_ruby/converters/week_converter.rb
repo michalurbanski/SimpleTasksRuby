@@ -1,6 +1,8 @@
 # Creates week object, with days and tasks for them - based on lines for this week.
 # Creates only one week object - based on lines input. 
 class WeekConverter
+  include Logging
+
   def initialize(week_name, week_lines)
     # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
 
@@ -16,18 +18,23 @@ class WeekConverter
     current_day = nil
 
     @lines.each do |line|
-      if possibleDaysTester.is_day(line) 
-        current_day = Day.new(line) 
-        @week.add_day(current_day)
-        next
-      end
+      begin
+        if possibleDaysTester.is_day(line) 
+          current_day = Day.new(line) 
+          @week.add_day(current_day)
+          next
+        end
 
-      return @week if self.class.is_end_of_week(line)
-      
-      # If not day and not end of the week then it has to be a task
-      task_creator = TaskCreator.new(line, current_day.date)
-      task = task_creator.create_task
-      current_day.add_task(task)
+        return @week if self.class.is_end_of_week(line)
+        
+        # If not day and not end of the week then it has to be a task
+        task_creator = TaskCreator.new(line, current_day.date)
+        task = task_creator.create_task
+        current_day.add_task(task)
+      rescue
+        logger.error("Error for line #{line}")
+        raise
+      end
     end
 
     return @week
