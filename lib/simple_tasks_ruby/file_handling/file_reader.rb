@@ -37,6 +37,25 @@ class FileReader
   end
 
   def read_lines
-    IO.readlines(@filePath)
+    lines = IO.readlines(@filePath)
+
+    # Creates hash where keys are line numbers, and values are lines
+    # http://stackoverflow.com/questions/14528560/convert-an-array-to-hash-where-keys-are-the-indices
+    # Lines numbers start from 1 
+    lines_with_indices = ArrayModule.convert_to_hash_with_indices(lines)
+
+    # But I want to have a model, instead of a hash, for better encapsulation
+
+    results = Array.new
+
+    lines_with_indices.each do |index, line|
+      file_line = FileLine.new
+      file_line.line_number = index
+      file_line.line = line
+      
+      results.push(file_line)
+    end
+
+    results
   end
 end
