@@ -14,7 +14,7 @@ class DataReader
   end
 
   private
-  def post_initialize args
-    nil
-  end
+    def post_initialize args
+      nil
+    end
 end

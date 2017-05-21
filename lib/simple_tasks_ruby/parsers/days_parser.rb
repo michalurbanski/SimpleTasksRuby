@@ -10,17 +10,17 @@ module DaysParser
   end
 
   private
-  def self.build_regular_expression(days)
-    # TODO: check link http://stackoverflow.com/questions/2004688/create-regular-expression-from-string
-    final_condition = "("
+    def self.build_regular_expression(days)
+      # TODO: check link http://stackoverflow.com/questions/2004688/create-regular-expression-from-string
+      final_condition = "("
 
-    days.each do |day|
-      single_condition = day + "|"
-      final_condition << single_condition
+      days.each do |day|
+        single_condition = day + "|"
+        final_condition << single_condition
+      end
+
+      final_condition.chomp!("|")
+      final_condition << ')(\s*\d{4}-\d{2}-\d{2}\s*)'
+
     end
-
-    final_condition.chomp!("|")
-    final_condition << ')(\s*\d{4}-\d{2}-\d{2}\s*)'
-
-  end
 end

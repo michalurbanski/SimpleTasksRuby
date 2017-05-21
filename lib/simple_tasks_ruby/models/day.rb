@@ -27,18 +27,18 @@ class Day
   end
 
   private
-  def extract_date_from_day_name(name)
-    splitted = name.split
-    if splitted.length < 2
-      raise NoDateException, name
-    end
+    def extract_date_from_day_name(name)
+      splitted = name.split
+      if splitted.length < 2
+        raise NoDateException, name
+      end
 
-    datePart = name.split[1]
+      datePart = name.split[1]
 
-    begin
-      @date = Date.strptime(datePart, DateConsts.day_format)
-    rescue => e # rescues StandardError
-      raise IncorrectDateForDayException, name
+      begin
+        @date = Date.strptime(datePart, DateConsts.day_format)
+      rescue => e # rescues StandardError
+        raise IncorrectDateForDayException, name
+      end
     end
-  end
 end

@@ -11,7 +11,7 @@ class TasksPrinter
   end
 
   private
-  def print_single_task_information(task) 
-    @writer.write_message(task.to_s)
-  end
+    def print_single_task_information(task) 
+      @writer.write_message(task.to_s)
+    end
 end

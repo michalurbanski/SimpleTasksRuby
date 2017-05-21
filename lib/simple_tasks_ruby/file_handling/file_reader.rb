@@ -21,22 +21,22 @@ class FileReader
   end
 
   private
-  def check_if_file_exists
-    if File.exist?(@filePath) then
-      if File.directory?(@filePath) then
-        logger.info "File #{@filePath} is a directory, and not a file"
-        return false
+    def check_if_file_exists
+      if File.exist?(@filePath) then
+        if File.directory?(@filePath) then
+          logger.info "File #{@filePath} is a directory, and not a file"
+          return false
+        else
+          logger.info "Reading file..."
+          return true
+        end
       else
-        logger.info "Reading file..."
-        return true
+        logger.info "File #{@filePath} does not exist"
+        return false
       end
-    else
-      logger.info "File #{@filePath} does not exist"
-      return false
     end
-  end
 
-  def read_lines
-    IO.readlines(@filePath)
-  end
+    def read_lines
+      IO.readlines(@filePath)
+    end
 end

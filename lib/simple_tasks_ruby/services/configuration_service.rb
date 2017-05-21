@@ -11,10 +11,10 @@ class ConfigurationService
   end
 
   private 
-  def read_file
-    @configuration = Configuration.new
+    def read_file
+      @configuration = Configuration.new
 
-    path = File.expand_path("../../../../config.yaml", __FILE__)
-    @configuration.configuration_values = YAML::load_file(path)
-  end
+      path = File.expand_path("../../../../config.yaml", __FILE__)
+      @configuration.configuration_values = YAML::load_file(path)
+    end
 end

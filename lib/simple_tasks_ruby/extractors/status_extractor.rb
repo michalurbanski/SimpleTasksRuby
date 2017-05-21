@@ -18,8 +18,8 @@ class StatusExtractor
   end
 
   private
-  def trim_start
-    # sub! returns nil if no change was performed and result is unchanged
-    @action.sub!(/^- /, '') # note that regular expression is without apostrophe
-  end
+    def trim_start
+      # sub! returns nil if no change was performed and result is unchanged
+      @action.sub!(/^- /, '') # note that regular expression is without apostrophe
+    end
 end
