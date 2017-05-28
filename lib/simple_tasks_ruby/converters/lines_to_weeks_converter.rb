@@ -2,7 +2,8 @@
 # Creates multiple weeks at once - based on lines input.
 class LinesToWeeksConverter
   def convert(lines)
-    raise ArgumentError.new("Lines can't be empty") if lines.nil? || lines.empty?
+    #raise ArgumentError.new("Lines can't be empty") if lines.nil? || lines.empty?
+    raise ArgumentError.new("Lines can't be empty") if lines.to_a.empty? 
 
     @lines = lines 
     weeks = Array.new
@@ -41,7 +42,7 @@ class LinesToWeeksConverter
       #TODO: Can be moved later to a new class with parsing algorithm
       # Parsing algorithm
       lines.each do |line|
-        if WeeksParser.is_line_with_week(line) 
+        if WeeksParser.is_line_with_week(line.line) 
           current_week = line
           weeks[current_week] = Array.new
         else

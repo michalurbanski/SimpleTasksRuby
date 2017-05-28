@@ -10,13 +10,12 @@ module TestDataReader
   end  
 
   private 
+    def read_test_data(path) 
+      data_reader = FileSystemDataReader.new({
+        :path => path
+      })  
 
-  def read_test_data(path) 
-    data_reader = FileSystemDataReader.new({
-      :path => path
-    })  
-
-    file_service = FileService.new(data_reader) 
-    @lines = file_service.get_lines_from_file
-  end
+      file_service = FileService.new(data_reader) 
+      @lines = file_service.get_lines_from_file
+    end
 end

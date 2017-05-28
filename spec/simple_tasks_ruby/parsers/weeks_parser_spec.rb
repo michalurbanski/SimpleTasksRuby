@@ -45,4 +45,22 @@ describe WeeksParser do
       result.must_equal false
     end
   end
+
+  describe "Line representation parsing" do 
+    it 'Collection of file_lines can be parsed' do 
+      input_data = [FileLine.new(1, '- first task')]
+
+      result = WeeksParser.is_line_with_week(input_data.first.line)
+      
+      result.must_equal false
+    end
+
+    it 'Collection of file_lines allows to parse week name' do 
+      input_data = [FileLine.new(1, 'Week 1')]
+
+      result = WeeksParser.is_line_with_week(input_data.first.line)
+
+      result.must_equal true
+    end
+  end 
 end
