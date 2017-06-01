@@ -2,6 +2,8 @@ class TaskCreator
   def initialize(action, date)
     @action = action
     @date = date
+    puts "Task creator is checking statuses" 
+    p(action)
     @statusExtractor = StatusExtractor.new(@action)
   end
 

@@ -42,8 +42,8 @@ class LinesToWeeksConverter
       #TODO: Can be moved later to a new class with parsing algorithm
       # Parsing algorithm
       lines.each do |line|
-        if WeeksParser.is_line_with_week(line.line) 
-          current_week = line
+        if WeeksParser.is_line_with_week(line.data) 
+          current_week = line.data
           weeks[current_week] = Array.new
         else
           next if current_week.nil? # if any week hasn't been found yet then continue until any found

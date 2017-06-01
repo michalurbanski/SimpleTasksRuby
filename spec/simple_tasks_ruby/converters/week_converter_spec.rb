@@ -5,10 +5,10 @@ describe WeekConverter do
     it "Converts week lines to week" do 
       week_name = "Week 1" 
       week_lines = []
-      week_lines << "Monday 2017-04-03" 
-      week_lines << "- First task" 
-      week_lines << "Tuesday 2017-04-04" 
-      week_lines << "- Second task" 
+      week_lines << FileLine.new(2, "Monday 2017-04-03")
+      week_lines << FileLine.new(3, "- First task") 
+      week_lines << FileLine.new(4, "Tuesday 2017-04-04") 
+      week_lines << FileLine.new(5, "- Second task")
 
       week = act(week_name, week_lines)
       
@@ -23,12 +23,12 @@ describe WeekConverter do
     it "Converts week lines to week - end separator end empty lines" do 
       week_name = "Week 1" 
       week_lines = []
-      week_lines << "Monday 2017-04-03" 
-      week_lines << "- First task" 
-      week_lines << ""
-      week_lines << "Tuesday 2017-04-04" 
-      week_lines << "- Second task"       
-      week_lines << "--------------"
+      week_lines << FileLine.new(1, "Monday 2017-04-03") 
+      week_lines << FileLine.new(2, "- First task") 
+      week_lines << FileLine.new(3, "")
+      week_lines << FileLine.new(4, "Tuesday 2017-04-04") 
+      week_lines << FileLine.new(5, "- Second task") 
+      week_lines << FileLinew.ne(6, "--------------")
 
       week = act(week_name, week_lines)
 

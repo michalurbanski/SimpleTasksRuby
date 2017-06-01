@@ -48,10 +48,10 @@ class FileReader
 
       results = Array.new
 
-      lines_with_indices.each do |index, line|
+      lines_with_indices.each do |index, data|
         file_line = FileLine.new
         file_line.line_number = index
-        file_line.line = line
+        file_line.data = data
         
         results.push(file_line)
       end

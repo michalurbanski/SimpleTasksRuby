@@ -19,16 +19,16 @@ class WeekConverter
 
     @lines.each do |line|
       begin
-        if possibleDaysTester.is_day(line) 
-          current_day = Day.new(line) 
+        if possibleDaysTester.is_day(line.data) 
+          current_day = Day.new(line.data) 
           @week.add_day(current_day)
           next
         end
 
-        return @week if self.class.is_end_of_week(line)
+        return @week if self.class.is_end_of_week(line.data)
         
         # If not day and not end of the week then it has to be a task
-        task_creator = TaskCreator.new(line, current_day.date)
+        task_creator = TaskCreator.new(line.data, current_day.date)
         task = task_creator.create_task
         current_day.add_task(task)
       rescue
