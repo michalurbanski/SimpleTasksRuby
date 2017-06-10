@@ -2,6 +2,7 @@ module ArrayModule
   extend self
 
   def convert_to_hash_with_indices(array) 
+    # zip merges elements of self with corresponding elements from argument (which in this case is input array)
     Hash[(1...array.size+1).zip array]
   end
 

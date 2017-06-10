@@ -1,10 +1,19 @@
-module EmptyLinesRemovalModule 
+module EmptyLinesRemovalModule
   extend self
 
-  # Works only for arrays
-  def remove_blank_lines(lines) 
-    raise ArgumentError.new("Array of strings must be provided") unless ArrayModule.array_of_strings?(lines) 
+  @@empty_lines_values = ["\n", "", '']
 
-    lines -= ["\n", "", ''] # deletes element from source array and assigns it to the same variable
+  # This method expects FileLine objects
+  def remove_blank_lines(file_lines)
+    raise ArgumentError.new("Input must not be nil") if file_lines.nil?
+
+    # delete_if modifies original array
+    file_lines.delete_if do |elem|
+      contains_empty_line?(elem)
+    end
+  end
+
+  def contains_empty_line?(file_line)
+    @@empty_lines_values.include?(file_line.data) ? true : false
   end
 end
