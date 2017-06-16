@@ -15,7 +15,7 @@ class Week
     length == 7 # later constraint that all objects must days can be added, but this will require tests to change
   end
 
-  def length
+  def length #TODO: change to number_of_days - it will be more descriptive
     @days.length
   end
 end

@@ -20,15 +20,15 @@ describe WeekConverter do
       sum_of_tasks.must_equal 2
     end
 
-    it "Converts week lines to week - end separator end empty lines" do 
-      week_name = "Week 1" 
+    it "Converts week lines to week - end separator end empty lines are properly handled" do 
+      week_name = "Week 1"
       week_lines = []
-      week_lines << FileLine.new(1, "Monday 2017-04-03") 
-      week_lines << FileLine.new(2, "- First task") 
+      week_lines << FileLine.new(1, "Monday 2017-04-03")
+      week_lines << FileLine.new(2, "- First task")
       week_lines << FileLine.new(3, "")
-      week_lines << FileLine.new(4, "Tuesday 2017-04-04") 
-      week_lines << FileLine.new(5, "- Second task") 
-      week_lines << FileLinew.ne(6, "--------------")
+      week_lines << FileLine.new(4, "Tuesday 2017-04-04")
+      week_lines << FileLine.new(5, "- Second task")
+      week_lines << FileLine.new(6, "--------------")
 
       week = act(week_name, week_lines)
 
@@ -38,6 +38,24 @@ describe WeekConverter do
       week.wont_be_nil    
       week.length.must_equal 2
       sum_of_tasks.must_equal 2
+    end
+
+    it "Empty week does not cause error" do 
+      week_name = "Week 1" 
+      week_lines = []
+
+      week = act(week_name, week_lines)
+      week.wont_be_nil
+      week.length.must_equal 0
+    end
+
+    it "Week with empty lines shouldn't cause error" do 
+      week_name = "Week 1" 
+      week_lines = [FileLine.new(1, "")]
+
+      week = act(week_name, week_lines)
+      week.wont_be_nil
+      week.length.must_equal 0
     end
 
     def act(week_name, week_lines) 

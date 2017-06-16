@@ -13,8 +13,8 @@ class LinesToWeeksConverter
     weeks_hash = convert_lines_to_weeks_hash(@lines) 
 
     # Each hash key is converted into a Week object
-    weeks_hash.each do |week_name, week_lines|
-      @week_converter = WeekConverter.new(week_name, week_lines)
+    weeks_hash.each do |week_name, week_lines_objects|
+      @week_converter = WeekConverter.new(week_name, week_lines_objects)
       week = @week_converter.convert_lines_to_week
 
       weeks.push(week)

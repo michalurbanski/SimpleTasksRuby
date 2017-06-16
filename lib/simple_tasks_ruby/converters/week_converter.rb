@@ -4,9 +4,9 @@ class WeekConverter
   include Logging
 
   def initialize(week_name, week_lines)
-    # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
-
     @week_name = week_name
+
+    # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
     @lines = EmptyLinesRemovalModule.remove_blank_lines(week_lines)
   end
 
@@ -32,7 +32,7 @@ class WeekConverter
         task = task_creator.create_task
         current_day.add_task(task)
       rescue
-        logger.error("Error for line #{line}")
+        logger.error("Error for line #{line.line_number}, #{line.data}")
         raise
       end
     end
@@ -48,7 +48,7 @@ class WeekConverter
     end
   end
 
-  private
+  private # TODO: does private make sense here? it looks that it works in test without any issues
     def self.is_end_of_week(line)
       # End of week has at least three hyphens - by convention
       end_of_week_pattern = /^---/
