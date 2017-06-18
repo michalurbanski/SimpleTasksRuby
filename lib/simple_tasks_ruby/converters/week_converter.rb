@@ -30,7 +30,7 @@ class WeekConverter
         # Skip lines which are found before any day is found - these are old, 
         # not significant lines
         if current_day == nil
-          logger.info("Skipping line #{line.line_number}, #{line.data}")
+          logger.info("Skipping line #{line}")
           next
         else
           # If not day and not end of the week then it has to be a task
@@ -40,7 +40,7 @@ class WeekConverter
         end
       
       rescue
-        logger.error("Error for line #{line.line_number}, #{line.data}")
+        logger.error("Error for line #{line}")
         raise
       end
     end

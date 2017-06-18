@@ -6,4 +6,8 @@ class FileLine
     @line_number = line_number 
     @data = data
   end
+
+  def to_s
+    "#{line_number}, #{data}"
+  end
 end
