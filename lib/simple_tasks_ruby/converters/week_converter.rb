@@ -27,10 +27,18 @@ class WeekConverter
 
         return @week if self.class.is_end_of_week(line.data)
         
-        # If not day and not end of the week then it has to be a task
-        task_creator = TaskCreator.new(line.data, current_day.date)
-        task = task_creator.create_task
-        current_day.add_task(task)
+        # Skip lines which are found before any day is found - these are old, 
+        # not significant lines
+        if current_day == nil
+          logger.info("Skipping line #{line.line_number}, #{line.data}")
+          next
+        else
+          # If not day and not end of the week then it has to be a task
+          task_creator = TaskCreator.new(line.data, current_day.date)
+          task = task_creator.create_task
+          current_day.add_task(task)
+        end
+      
       rescue
         logger.error("Error for line #{line.line_number}, #{line.data}")
         raise

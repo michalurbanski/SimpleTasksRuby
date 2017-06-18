@@ -58,6 +58,20 @@ describe WeekConverter do
       week.length.must_equal 0
     end
 
+    it 'Skips old lines with goals and correctly parses week' do 
+      week_name = "Week 1" 
+      lines = [] 
+      lines << FileLine.new(1, "Goals for this month") 
+      lines << FileLine.new(2, "!!! - Learn first thing") 
+      lines << FileLine.new(3, "!!! - Learn second thing") 
+      lines << FileLine.new(4, "") 
+      lines << FileLine.new(5, "Monday 2015-11-30")
+
+      week = act(week_name, lines) 
+      week.wont_be_nil
+      week.length.must_equal 1
+    end 
+
     def act(week_name, week_lines) 
       converter = WeekConverter.new(week_name, week_lines) 
       week = converter.convert_lines_to_week
