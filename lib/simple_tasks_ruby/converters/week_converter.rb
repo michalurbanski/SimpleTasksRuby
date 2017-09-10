@@ -33,7 +33,10 @@ class WeekConverter
           logger.info("Skipping line #{line}")
           next
         else
-          # If not day and not end of the week then it has to be a task
+          # If not a day, and not the end of the week, then it can be a task.
+          # But, tasks start only with the hyphen.
+          next unless self.class.is_task(line.data)
+
           task_creator = TaskCreator.new(line.data, current_day.date)
           task = task_creator.create_task
           current_day.add_task(task)
@@ -63,5 +66,9 @@ class WeekConverter
 
       # NOTE: !! converts to boolean - all values except of nil are true then
       return !!(line =~ end_of_week_pattern)
+    end
+
+    def self.is_task(line)
+      line.start_with?('-')
     end
 end

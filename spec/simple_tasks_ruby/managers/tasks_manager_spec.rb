@@ -16,8 +16,6 @@ describe TasksManager do
       all_tasks_information[:delayed_tasks].length.must_equal(4) 
       all_tasks_information[:aborted_tasks].length.must_equal(1)
       all_tasks_information[:done_tasks].length.must_equal(3) 
-
-      # TODO: there's bug below "Wedesday" is detected as task, although it doesn't start from hyphen
       all_tasks_information[:awaiting_tasks].length.must_equal(3)
     end   
 
