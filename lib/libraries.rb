@@ -4,8 +4,6 @@ require 'date'
 require 'logger'
 require 'colorize'
 
-require 'simple_tasks_ruby/main'
-
 %w[console_writer].each do |common|
   require "simple_tasks_ruby/common/#{common}"
 end
