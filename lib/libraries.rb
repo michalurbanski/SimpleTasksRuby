@@ -57,7 +57,7 @@ end
 end
 
 %w[data_reader file_system_data_reader production_data test_data].each do |data|
-  require "data/#{data}"
+  require "simple_tasks_ruby/readers/#{data}"
 end
 
 %w[logger_decorator].each do |decorator|
