@@ -4,7 +4,7 @@ class FileService
     @file_reader = file_reader
   end
 
-  def get_lines_from_file
+  def read_lines_from_file
     raise ArgumentError.new "Reader is not initialized" if @file_reader.nil?
     
     @file_reader.read

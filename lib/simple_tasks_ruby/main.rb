@@ -22,7 +22,7 @@ module SimpleTasksRuby
     # Main entry point in application - executes other implemented operations
     def execute
       begin
-        file_lines = read_from_file
+        file_lines = read_lines_from_file
         # print_file_content file_lines # Debug information - write this to file if needed
 
         @weeks_manager.convert_data_to_weeks(file_lines) 
@@ -45,8 +45,8 @@ module SimpleTasksRuby
         @writer.write_success("Welcome to Simple Tasks Project")
       end
 
-      def read_from_file
-        @file_service.get_lines_from_file
+      def read_lines_from_file
+        @file_service.read_lines_from_file
       end
 
       def print_file_content(file_lines)

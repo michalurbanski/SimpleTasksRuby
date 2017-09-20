@@ -16,6 +16,6 @@ module TestDataReader
       })  
 
       file_service = FileService.new(data_reader) 
-      @lines = file_service.get_lines_from_file
+      @lines = file_service.read_lines_from_file
     end
 end
