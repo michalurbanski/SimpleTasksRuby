@@ -2,15 +2,14 @@ class FileReader
   include Logging # Includes module, so that calls do not have to be preceeded by Logging::
 
   attr_reader :lines
-  attr_writer :filePath
 
-  def initialize(filePath)
-    @filePath = filePath
-    logger.info "File path is #{filePath}"
+  def initialize(file_path)
+    @file_path = file_path
+    logger.info "File path is #{@file_path}"
   end
 
   def read
-    logger.info "Reading file #{@filePath}"
+    logger.info "Reading file #{@file_path}"
 
     if check_if_file_exists
       @lines = read_lines
@@ -22,22 +21,22 @@ class FileReader
 
   private
     def check_if_file_exists
-      if File.exist?(@filePath) then
-        if File.directory?(@filePath) then
-          logger.info "File #{@filePath} is a directory, and not a file"
+      if File.exist?(@file_path) then
+        if File.directory?(@file_path) then
+          logger.info "File #{@file_path} is a directory, and not a file"
           return false
         else
           logger.info "Reading file..."
           return true
         end
       else
-        logger.info "File #{@filePath} does not exist"
+        logger.info "File #{@file_path} does not exist"
         return false
       end
     end
 
     def read_lines
-      lines = IO.readlines(@filePath)
+      lines = IO.readlines(@file_path)
 
       # Creates hash where keys are line numbers, and values are lines
       # http://stackoverflow.com/questions/14528560/convert-an-array-to-hash-where-keys-are-the-indices
