@@ -5,32 +5,38 @@ class FileReader
 
   def initialize(file_path)
     @file_path = file_path
+    
     logger.info "File path is #{@file_path}"
   end
 
   def read
     logger.info "Reading file #{@file_path}"
 
-    if check_if_file_exists
+    if file_exists?
       @lines = read_lines
+
       logger.info "Reading file finished"
     else
-      logger.info "Reading file failed"
+      logger.info "Reading file failed - file does not exist"
     end
   end
 
   private
-    def check_if_file_exists
+    def file_exists?
+      # TODO: rewrite, like in example about execution paths
       if File.exist?(@file_path) then
         if File.directory?(@file_path) then
           logger.info "File #{@file_path} is a directory, and not a file"
+          
           return false
         else
           logger.info "Reading file..."
+          
           return true
         end
       else
         logger.info "File #{@file_path} does not exist"
+        
         return false
       end
     end
