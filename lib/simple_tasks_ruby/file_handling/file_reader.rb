@@ -1,5 +1,5 @@
 class FileReader
-  include Logging
+  include Logging # Includes module, so that calls do not have to be preceeded by Logging::
 
   attr_reader :lines
   attr_writer :filePath

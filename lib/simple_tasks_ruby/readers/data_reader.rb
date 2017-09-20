@@ -1,4 +1,4 @@
-# Abstract class for data readers
+# Base class for all data readers
 class DataReader
   attr_reader :lines
 
