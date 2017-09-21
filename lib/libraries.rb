@@ -32,10 +32,6 @@ end
   require "simple_tasks_ruby/extractors/#{extractor}"
 end
 
-%w[file_reader].each do |file_handling|
-  require "simple_tasks_ruby/file_handling/#{file_handling}"
-end
-
 %w[weeks_manager tasks_manager].each do |manager|
   require "simple_tasks_ruby/managers/#{manager}"
 end
