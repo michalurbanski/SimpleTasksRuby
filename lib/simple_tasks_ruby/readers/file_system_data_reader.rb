@@ -8,35 +8,36 @@ class FileSystemDataReader < DataReader
   end
 
   def read
-    logger.info "Reading file #{@file_path}"
-
     if file_exists?
       @lines = read_lines
 
-      logger.info "Reading file finished"
+      message = "Reading #{@file_path} file finished"
     else
-      logger.info "Reading file failed - file does not exist"
+      message = "Reading file #{@file_path} failed - file does not exist"
     end
+
+    logger.info(message)
   end
 
   private
     def file_exists?
-      # TODO: rewrite, like in example about execution paths
-      if File.exist?(@file_path) then
-        if File.directory?(@file_path) then
-          logger.info "File #{@file_path} is a directory, and not a file"
-          
-          return false
+      result = false
+
+      if File.exist?(@file_path)
+        if File.directory?(@file_path)
+          message = "File #{@file_path} is a directory, and not a file"
         else
-          logger.info "Reading file..."
-          
-          return true
+          result = true
+
+          message = "Reading file #{@file_path} ..."          
         end
       else
-        logger.info "File #{@file_path} does not exist"
-        
-        return false
+        message = "File #{@file_path} does not exist"
       end
+
+      logger.info(message)
+      
+      return result
     end
 
     def read_lines
@@ -59,6 +60,6 @@ class FileSystemDataReader < DataReader
         results.push(file_line)
       end
 
-      results
+      return results
     end
 end
