@@ -48,16 +48,16 @@ class FileSystemDataReader < DataReader
       # Lines numbers start from 1 
       lines_with_indices = ArrayModule.convert_to_hash_with_indices(lines)
 
-      # But I want to have a model, instead of a hash, for better encapsulation
+      # But I want to have a model, instead of a hash, for a better encapsulation.
+      
+      return construct_file_lines_objects(lines_with_indices)
+    end
 
+    def construct_file_lines_objects(lines_hash)
       results = Array.new
 
-      lines_with_indices.each do |index, data|
-        file_line = FileLine.new
-        file_line.line_number = index
-        file_line.data = data
-        
-        results.push(file_line)
+      lines_hash.each do |index, data|
+         results.push(FileLine.new(index, data))
       end
 
       return results
