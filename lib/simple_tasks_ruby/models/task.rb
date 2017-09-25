@@ -1,13 +1,15 @@
 class Task
   attr_reader :title
-  attr_reader :originalDate
+  attr_reader :original_date
+  attr_reader :properties
 
-  def initialize(title, originalDate)
+  def initialize(title, original_date, properties = nil)
     @title = title
-    @originalDate = originalDate
+    @original_date = original_date
+    @properties = properties
   end
 
   def to_s
-    "#{@originalDate} - #{@title}"
+    "#{@original_date} - #{@title}"
   end
 end
