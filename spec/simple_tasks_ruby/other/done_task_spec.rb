@@ -7,21 +7,12 @@ describe Task do
   end
 
   describe "Done task" do
-    it "When done task is created it has date and title" do
-      task = Task.new(@title, @date)
+    # it "Done task has additional properties" do 
+    #   task = SimpleTasksRuby::TasksCreator.create_task(@title, @date, SimpleTasksRuby::TaskType::DONE)
 
-      task.title.wont_be_nil
-      task.title.must_equal @title
-      task.original_date.must_equal @date
-    end
-
-    it "Done task has additional properties" do 
-      properties = SimpleTasksRuby::DoneTaskProperties.new
-      task = Task.new(@title, @date, properties)
-
-      task.properties.wont_be_nil
-      task.properties.status.must_equal SimpleTasksRuby::TaskType::DONE
-    end
+    #   task.properties.wont_be_nil
+    #   task.properties.status.must_equal SimpleTasksRuby::TaskType::DONE
+    # end
   end
 
   describe "Delayed and then done task" do
