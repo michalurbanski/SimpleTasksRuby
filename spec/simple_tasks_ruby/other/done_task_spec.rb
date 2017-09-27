@@ -1,40 +1,41 @@
 require 'spec_helper'
 
+# NOTE: If any module needs to be included, it has to be included before describe (not inside it).
+include SimpleTasksRuby::TaskType
+
 describe Task do
-  before do
-    @date = Date.new(2016, 2, 2)
-    @title = "DONE - this is done task"
+  subject { task }  
+
+  let(:date) { Date.new(2016, 2, 2) }
+  let(:title) { "DONE - this is done task" }
+  let(:task) do 
+    Task.new(title, date, { status: DONE })
   end
 
   describe "Done task" do
-    # it "Done task has additional properties" do 
-    #   task = SimpleTasksRuby::TasksCreator.create_task(@title, @date, SimpleTasksRuby::TaskType::DONE)
-
-    #   task.properties.wont_be_nil
-    #   task.properties.status.must_equal SimpleTasksRuby::TaskType::DONE
-    # end
+    it "Done task has status set" do 
+      subject.status.must_equal DONE
+      subject.done_date.must_be_nil
+    end
   end
 
   describe "Delayed and then done task" do
-    it "Task had been delayed but it was done" do
-      done_date = @date + 2
-      properties = SimpleTasksRuby::DelayedDoneTaskProperties.new(done_date)
-      task = Task.new(@title, @date, properties)
-
-      task.properties.wont_be_nil
-      task.properties.status.must_equal SimpleTasksRuby::TaskType::DELAYED_DONE
-      task.properties.done_date.must_equal done_date
+    it "Task had been delayed but it was done - has correct status and completion date" do
+      done_date = date + 2
+      subject = Task.new(title, date, 
+        { status: DELAYED_DONE, done_date: done_date })
+      
+      subject.status.must_equal DELAYED_DONE
+      subject.done_date.must_equal done_date
     end
   end
 
   describe "Delayed task" do
-    it "Delayed task has no done date" do
-      properties = SimpleTasksRuby::DelayedTaskProperties.new
-      task = Task.new(@title, @date, properties)
+    it "Delayed task has correct stauts but no done date" do
+      subject = Task.new(title, date, { status: DELAYED })
 
-      task.properties.wont_be_nil
-      task.properties.status.must_equal SimpleTasksRuby::TaskType::DELAYED
-      task.properties.wont_respond_to :done_date
+      subject.status.must_equal DELAYED
+      subject.done_date.must_be_nil
     end
   end
 end
