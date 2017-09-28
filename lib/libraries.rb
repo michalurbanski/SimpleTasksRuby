@@ -40,7 +40,7 @@ end
   require "simple_tasks_ruby/modules/#{mod}"
 end
 
-%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week configuration file_line done_task_properties delayed_done_task_properties delayed_task_properties].each do |model|
+%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week configuration file_line].each do |model|
   require "simple_tasks_ruby/models/#{model}"
 end
 
