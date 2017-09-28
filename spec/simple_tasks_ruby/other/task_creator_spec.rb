@@ -6,8 +6,7 @@ class TaskCreatorTests < Test::Unit::TestCase
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
 
-    assert_equal(true, doneTask.is_a?(DoneTask))
-    assert_equal(false, doneTask.was_delayed)
+    assert_equal(SimpleTasksRuby::TaskType::DONE, doneTask.status)
   end
 
   def test_aborted_task_created
@@ -17,7 +16,7 @@ class TaskCreatorTests < Test::Unit::TestCase
     taskCreator = TaskCreator.new(action, date)
     abortedTask = taskCreator.create_task
 
-    assert_equal(true, abortedTask.is_a?(AbortedTask))
+    assert_equal(SimpleTasksRuby::TaskType::ABORTED, abortedTask.status)
   end
 
   def test_delayed_task_created
@@ -27,7 +26,7 @@ class TaskCreatorTests < Test::Unit::TestCase
     taskCreator = TaskCreator.new(action, date)
     delayedTask = taskCreator.create_task
 
-    assert_equal(true, delayedTask.is_a?(DelayedTask))
+    assert_equal(SimpleTasksRuby::TaskType::DELAYED, delayedTask.status)
   end
 
   # delayed and done should be treated also as done but
@@ -38,8 +37,8 @@ class TaskCreatorTests < Test::Unit::TestCase
 
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
-
-    assert_equal(true, doneTask.is_a?(DoneTask))
+    
+    assert_equal(SimpleTasksRuby::TaskType::DELAYED_DONE, doneTask.status)
   end
 
   def test_delayed_and_done_task_has_greater_done_date_than_original_date
@@ -51,6 +50,6 @@ class TaskCreatorTests < Test::Unit::TestCase
     taskCreator = TaskCreator.new(action, date)
     doneTask = taskCreator.create_task
 
-    assert_equal(true, doneTask.was_delayed)
+    assert_equal(true, doneTask.done_date > doneTask.original_date)
   end
 end

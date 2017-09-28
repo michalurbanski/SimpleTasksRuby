@@ -11,13 +11,13 @@ class TasksManager
     all_tasks = collect_tasks_for_all_weeks(weeks) 
 
     all_tasks.each do |task|
-      if task.is_a?(DelayedTask)
+      if task.status == SimpleTasksRuby::TaskType::DELAYED
         delayed_tasks.push(task) 
-      elsif task.is_a?(AbortedTask) 
+      elsif task.status == SimpleTasksRuby::TaskType::ABORTED
         aborted_tasks.push(task) 
-      elsif task.is_a?(DoneTask)
+      elsif task.status == SimpleTasksRuby::TaskType::DONE || task.status == SimpleTasksRuby::TaskType::DELAYED_DONE
         done_tasks.push(task) 
-      elsif task.is_a?(Task)
+      elsif task.status == nil
         awaiting_tasks.push(task) 
       end
     end
@@ -42,7 +42,7 @@ class TasksManager
     delayed_tasks = Array.new()
 
     tasks.each do |task|
-      delayed_tasks.push(task) if task.is_a?(DelayedTask)
+      delayed_tasks.push(task) if task.status == SimpleTasksRuby::TaskType::DELAYED
     end
 
     return delayed_tasks

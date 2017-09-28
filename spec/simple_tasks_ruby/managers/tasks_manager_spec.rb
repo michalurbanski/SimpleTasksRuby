@@ -20,12 +20,12 @@ describe TasksManager do
     end   
 
     it "Finds delayed tasks when one exists" do 
-      delayed_task = DelayedTask.new('title', DateTime.now) 
-      aborted_task = AbortedTask.new('aborted', DateTime.now)
+      delayed_task = Task.new('title', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED})
+      aborted_task = Task.new('aborted', DateTime.now, {status: SimpleTasksRuby::TaskType::ABORTED})
 
       tasks = [delayed_task, aborted_task]
 
-      @tasks_manager.find_delayed_tasks(tasks).length.must_equal(1)
+      @tasks_manager.find_delayed_tasks(tasks).length.must_equal 1
     end
 
     it "Finds delayed tasks in one week" do 
