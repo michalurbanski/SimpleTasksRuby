@@ -15,10 +15,14 @@ class TaskCreator
     end
 
     case(status)
-      when TaskStatus::DONE then return DoneTask.new(@action, @date, @date)
-      when TaskStatus::ABORTED then return AbortedTask.new(@action, @date)
-      when TaskStatus::DELAYED then return DelayedTask.new(@action, @date)
-      when TaskStatus::DELAYED_DONE then return DoneTask.new(@action, @date, delayedDoneDate)
+      when TaskStatus::DONE then return Task.new(@action, @date, 
+        {status: SimpleTasksRuby::TaskType::DONE})
+      when TaskStatus::ABORTED then return Task.new(@action, @date, 
+        {status: SimpleTasksRuby::TaskType::ABORTED})
+      when TaskStatus::DELAYED then return Task.new(@action, @date, 
+        {status: SimpleTasksRuby::TaskType::DELAYED})
+      when TaskStatus::DELAYED_DONE then return Task.new(@action, @date, 
+        {status: SimpleTasksRuby::TaskType::DELAYED_DONE, done_date: delayedDoneDate})
     end
 
     # If not the case then this is task without any status, i.e. original one

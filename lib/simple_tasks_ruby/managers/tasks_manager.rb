@@ -1,51 +1,20 @@
 class TasksManager
-  def get_all_tasks_information(weeks) 
-    return nil if weeks.nil? || weeks.empty? 
-
-    all_tasks_information = Hash.new
-    delayed_tasks = Array.new 
-    aborted_tasks = Array.new 
-    done_tasks = Array.new
-    awaiting_tasks = Array.new
-
-    all_tasks = collect_tasks_for_all_weeks(weeks) 
-
-    all_tasks.each do |task|
-      if task.is_a?(DelayedTask)
-        delayed_tasks.push(task) 
-      elsif task.is_a?(AbortedTask) 
-        aborted_tasks.push(task) 
-      elsif task.is_a?(DoneTask)
-        done_tasks.push(task) 
-      elsif task.is_a?(Task)
-        awaiting_tasks.push(task) 
-      end
-    end
-
-    all_tasks_information[:delayed_tasks] = delayed_tasks
-    all_tasks_information[:aborted_tasks] = aborted_tasks
-    all_tasks_information[:done_tasks] = done_tasks
-    all_tasks_information[:awaiting_tasks] = awaiting_tasks
-
-    return all_tasks_information
-  end
-
   def find_delayed_tasks_in_multiple_weeks(weeks) 
     tasks = collect_tasks_for_all_weeks(weeks)
 
     find_delayed_tasks(tasks)
   end
 
+  def find_tasks_by_status(tasks, task_status)
+    return nil if tasks.nil? || tasks.empty?
+
+    tasks.select { |task| task.status == task_status } 
+  end
+  
+  # TODO: Obsolete - to be removed
+  # TODO: When removed then collect_tasks_for_all_weeks method needs to be exposed as public
   def find_delayed_tasks(tasks)
-    return nil if tasks.nil? || tasks.empty? 
- 
-    delayed_tasks = Array.new()
-
-    tasks.each do |task|
-      delayed_tasks.push(task) if task.is_a?(DelayedTask)
-    end
-
-    return delayed_tasks
+    find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
 
   private 

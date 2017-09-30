@@ -36,12 +36,12 @@ end
   require "simple_tasks_ruby/managers/#{manager}"
 end
 
-%w[task aborted_task day delayed_task done_task possible_days possible_days_tester status_model task week configuration file_line].each do |model|
-  require "simple_tasks_ruby/models/#{model}"
+%w[console_module task_status date_consts empty_lines_removal_module array_module task_type].each do |mod|
+  require "simple_tasks_ruby/modules/#{mod}"
 end
 
-%w[console_module task_status date_consts empty_lines_removal_module array_module].each do |mod|
-  require "simple_tasks_ruby/modules/#{mod}"
+%w[task day possible_days possible_days_tester status_model task week configuration file_line].each do |model|
+  require "simple_tasks_ruby/models/#{model}"
 end
 
 %w[file_service configuration_service].each do |service|
