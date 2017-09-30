@@ -1,7 +1,6 @@
 class Task
   attr_reader :title
   attr_reader :original_date
-  attr_reader :properties
 
   def initialize(title, original_date, properties = {})
     @title = title
@@ -14,10 +13,10 @@ class Task
   end
 
   def status
-    properties[:status]
+    @properties[:status]
   end
 
   def done_date
-    properties[:done_date] # if not filled then returns nil
+    @properties[:done_date] # if not filled then returns nil
   end
 end
