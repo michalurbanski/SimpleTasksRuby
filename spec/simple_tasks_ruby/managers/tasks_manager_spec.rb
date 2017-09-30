@@ -7,18 +7,6 @@ describe TasksManager do
   end
 
   describe "Positive cases" do 
-    it "Gets all tasks information" do 
-      lines = TestDataReader.read_multiple_weeks
-      weeks = @weeks_manager.convert_data_to_weeks(lines)
-      all_tasks_information = @tasks_manager.get_all_tasks_information(weeks)
-
-      all_tasks_information.length.must_equal(4) # verify
-      all_tasks_information[:delayed_tasks].length.must_equal(4) 
-      all_tasks_information[:aborted_tasks].length.must_equal(1)
-      all_tasks_information[:done_tasks].length.must_equal(3) 
-      all_tasks_information[:awaiting_tasks].length.must_equal(3)
-    end   
-
     it "Finds delayed tasks when one exists" do 
       delayed_task = Task.new('title', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED})
       aborted_task = Task.new('aborted', DateTime.now, {status: SimpleTasksRuby::TaskType::ABORTED})

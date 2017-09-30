@@ -1,35 +1,4 @@
 class TasksManager
-  def get_all_tasks_information(weeks) 
-    return nil if weeks.nil? || weeks.empty? 
-
-    all_tasks_information = Hash.new
-    delayed_tasks = Array.new 
-    aborted_tasks = Array.new 
-    done_tasks = Array.new
-    awaiting_tasks = Array.new
-
-    all_tasks = collect_tasks_for_all_weeks(weeks) 
-
-    all_tasks.each do |task|
-      if task.status == SimpleTasksRuby::TaskType::DELAYED
-        delayed_tasks.push(task) 
-      elsif task.status == SimpleTasksRuby::TaskType::ABORTED
-        aborted_tasks.push(task) 
-      elsif task.status == SimpleTasksRuby::TaskType::DONE || task.status == SimpleTasksRuby::TaskType::DELAYED_DONE
-        done_tasks.push(task) 
-      elsif task.status == nil
-        awaiting_tasks.push(task) 
-      end
-    end
-
-    all_tasks_information[:delayed_tasks] = delayed_tasks
-    all_tasks_information[:aborted_tasks] = aborted_tasks
-    all_tasks_information[:done_tasks] = done_tasks
-    all_tasks_information[:awaiting_tasks] = awaiting_tasks
-
-    return all_tasks_information
-  end
-
   def find_delayed_tasks_in_multiple_weeks(weeks) 
     tasks = collect_tasks_for_all_weeks(weeks)
 
