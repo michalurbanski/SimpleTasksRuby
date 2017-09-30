@@ -36,16 +36,16 @@ class TasksManager
     find_delayed_tasks(tasks)
   end
 
+  def find_tasks_by_status(tasks, task_status)
+    return nil if tasks.nil? || tasks.empty?
+
+    tasks.select { |task| task.status == task_status } 
+  end
+  
+  # TODO: Obsolete - to be removed
+  # TODO: When removed then collect_tasks_for_all_weeks method needs to be exposed as public
   def find_delayed_tasks(tasks)
-    return nil if tasks.nil? || tasks.empty? 
- 
-    delayed_tasks = Array.new()
-
-    tasks.each do |task|
-      delayed_tasks.push(task) if task.status == SimpleTasksRuby::TaskType::DELAYED
-    end
-
-    return delayed_tasks
+    find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
 
   private 
