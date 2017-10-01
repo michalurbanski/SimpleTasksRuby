@@ -6,7 +6,7 @@ class TasksManager
   end
 
   def find_tasks_by_status(tasks, task_status)
-    return nil if tasks.nil? || tasks.empty?
+    return nil if ArrayModule.is_nil_or_empty?(tasks)
 
     tasks.select { |task| task.status == task_status } 
   end

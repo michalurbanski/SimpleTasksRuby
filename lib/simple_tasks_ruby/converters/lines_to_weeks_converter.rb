@@ -2,8 +2,7 @@
 # Creates multiple weeks at once - based on lines input.
 class LinesToWeeksConverter
   def convert(lines)
-    #raise ArgumentError.new("Lines can't be empty") if lines.nil? || lines.empty?
-    raise ArgumentError.new("Lines can't be empty") if lines.to_a.empty? 
+    raise ArgumentError.new("Lines can't be empty") if ArrayModule.is_nil_or_empty?(lines)
 
     @lines = lines 
     weeks = Array.new

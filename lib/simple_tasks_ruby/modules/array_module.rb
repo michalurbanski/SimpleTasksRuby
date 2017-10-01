@@ -19,4 +19,8 @@ module ArrayModule
 
     return true
   end
+
+  def is_nil_or_empty?(array)
+    array.to_a.empty?
+  end
 end
