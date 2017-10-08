@@ -55,7 +55,7 @@ module SimpleTasksRuby
       end
 
       def find_delayed_tasks(weeks) 
-        @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks)
+        @tasks_manager.find_delayed_tasks_in_weeks(weeks)
       end
 
       def end_execution

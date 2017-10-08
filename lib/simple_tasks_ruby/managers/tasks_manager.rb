@@ -1,23 +1,21 @@
 class TasksManager
-  def find_delayed_tasks_in_multiple_weeks(weeks) 
+  def find_delayed_tasks_in_weeks(weeks) 
     tasks = collect_tasks_for_all_weeks(weeks)
 
     find_delayed_tasks(tasks)
   end
 
-  def find_tasks_by_status(tasks, task_status)
-    return nil if ArrayModule.is_nil_or_empty?(tasks)
-
-    tasks.select { |task| task.status == task_status } 
-  end
-  
-  # TODO: Obsolete - to be removed
-  # TODO: When removed then collect_tasks_for_all_weeks method needs to be exposed as public
   def find_delayed_tasks(tasks)
     find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
 
-  private 
+  private
+    def find_tasks_by_status(tasks, task_status)
+      return nil if ArrayModule.is_nil_or_empty?(tasks)
+
+      tasks.select { |task| task.status == task_status } 
+    end
+
     def collect_tasks_for_all_weeks(weeks)
       tasks = Array.new 
 
