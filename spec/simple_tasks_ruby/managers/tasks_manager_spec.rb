@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TasksManager do 
   let(:tasks_manager) { TasksManager.new }
-  let(:weeks_manager) { WeeksManager.new }
+  let(:weeks_manager) { SimpleTasksRuby::WeeksManager.new }
 
   describe "Positive cases" do 
     it "Finds delayed tasks when one exists" do 
