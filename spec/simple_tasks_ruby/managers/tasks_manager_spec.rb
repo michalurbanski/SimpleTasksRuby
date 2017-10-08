@@ -31,7 +31,7 @@ describe TasksManager do
     def act(lines) 
       weeks = weeks_manager.convert_data_to_weeks(lines)
 
-      delayed_tasks = tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks) 
+      delayed_tasks = tasks_manager.find_delayed_tasks_in_weeks(weeks) 
     end
   end
 

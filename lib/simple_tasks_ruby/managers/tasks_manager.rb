@@ -1,10 +1,10 @@
 class TasksManager
-  def find_delayed_tasks_in_multiple_weeks(weeks) 
+  def find_delayed_tasks_in_weeks(weeks) 
     tasks = collect_tasks_for_all_weeks(weeks)
 
     find_delayed_tasks(tasks)
   end
-  
+
   def find_delayed_tasks(tasks)
     find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
