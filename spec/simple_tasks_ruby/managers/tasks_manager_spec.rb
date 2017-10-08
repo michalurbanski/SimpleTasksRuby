@@ -1,10 +1,8 @@
 require 'spec_helper' 
 
 describe TasksManager do 
-  before do 
-    @tasks_manager = TasksManager.new
-    @weeks_manager = WeeksManager.new
-  end
+  let(:tasks_manager) { TasksManager.new }
+  let(:weeks_manager) { WeeksManager.new }
 
   describe "Positive cases" do 
     it "Finds delayed tasks when one exists" do 
@@ -13,7 +11,7 @@ describe TasksManager do
 
       tasks = [delayed_task, aborted_task]
 
-      @tasks_manager.find_delayed_tasks(tasks).length.must_equal 1
+      tasks_manager.find_delayed_tasks(tasks).length.must_equal 1
     end
 
     it "Finds delayed tasks in one week" do 
@@ -31,9 +29,9 @@ describe TasksManager do
     end
 
     def act(lines) 
-      weeks = @weeks_manager.convert_data_to_weeks(lines)
+      weeks = weeks_manager.convert_data_to_weeks(lines)
 
-      delayed_tasks = @tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks) 
+      delayed_tasks = tasks_manager.find_delayed_tasks_in_multiple_weeks(weeks) 
     end
   end
 
@@ -41,13 +39,13 @@ describe TasksManager do
     it "When tasks list is nil then result is nil" do 
       tasks = nil
   
-      @tasks_manager.find_delayed_tasks(tasks).must_be_nil 
+      tasks_manager.find_delayed_tasks(tasks).must_be_nil 
     end
 
     it "When tasks list is empty then result is nil" do 
       tasks = Array.new
 
-      @tasks_manager.find_delayed_tasks(tasks).must_be_nil
+      tasks_manager.find_delayed_tasks(tasks).must_be_nil
     end
   end
 end
