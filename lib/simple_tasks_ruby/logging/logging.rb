@@ -8,7 +8,7 @@ module Logging
   @loggers = {}
   
   class << self
-    attr_accessor :is_logging_enabled
+    attr_writer :is_logging_enabled
     attr_accessor :options
 
     def is_logging_enabled

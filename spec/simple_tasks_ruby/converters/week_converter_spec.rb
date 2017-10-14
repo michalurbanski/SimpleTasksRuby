@@ -74,7 +74,8 @@ describe WeekConverter do
 
     def act(week_name, week_lines) 
       converter = WeekConverter.new(week_name, week_lines) 
-      week = converter.convert_lines_to_week
+      
+      return converter.convert_lines_to_week
     end
   end
 
