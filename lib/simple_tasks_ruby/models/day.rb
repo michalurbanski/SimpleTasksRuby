@@ -37,7 +37,7 @@ class Day
 
       begin
         @date = Date.strptime(datePart, DateConsts.day_format)
-      rescue => e # rescues StandardError
+      rescue # rescues StandardError
         raise IncorrectDateForDayException, name
       end
     end

@@ -30,6 +30,6 @@ describe FileSystemDataReader do
 
   private
     def valid_test_paths
-      array = [TestData.multiple_weeks_path, ProductionData.get_path]
+      return [TestData.multiple_weeks_path, ProductionData.get_path]
     end
 end

@@ -32,14 +32,18 @@ describe Day do
   describe "Day incorrect data" do
     it "Day not initialized with date can't be created" do
       lambda {
-        day = Day.new("Monday")
+        Day.new("Monday")
       }.must_raise NoDateException
     end
 
-    it "Day initialized with not correct date can't be created" do
-      lambda {
-        day = Day.new("Monday 2016-05-44")
+    it "Day initialized with not correct date can't be created - error contains information about this date" do
+      name_of_day = "Monday 2016-05-44"
+      
+      err = lambda {
+        Day.new(name_of_day)
       }.must_raise IncorrectDateForDayException
+      
+      err.message.include?(name_of_day).must_equal true
     end
 
     it "Day can have only tasks instances added" do
