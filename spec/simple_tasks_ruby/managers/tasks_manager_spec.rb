@@ -13,7 +13,9 @@ describe TasksManager do
 
       tasks_manager.find_delayed_tasks(tasks).length.must_equal 1
     end
+  end
 
+  describe "Integration tests" do
     it "Finds delayed tasks in one week" do 
       lines = TestDataReader.read_single_week
       delayed_tasks = act(lines)
