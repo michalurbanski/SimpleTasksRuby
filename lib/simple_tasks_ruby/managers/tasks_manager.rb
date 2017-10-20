@@ -9,6 +9,13 @@ class TasksManager
     find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
 
+  def get_tasks_grouped_by_status(tasks)
+    # TODO: use this method for find_tasks_by_status -> refactoring
+    return nil if ArrayModule.is_nil_or_empty?(tasks)
+
+    tasks.group_by { |task| task.status } 
+  end
+
   private
     def find_tasks_by_status(tasks, task_status)
       return nil if ArrayModule.is_nil_or_empty?(tasks)
