@@ -10,7 +10,6 @@ class TasksManager
   end
 
   def get_tasks_grouped_by_status(tasks)
-    # TODO: use this method for find_tasks_by_status -> refactoring
     return nil if ArrayModule.is_nil_or_empty?(tasks)
 
     tasks.group_by { |task| task.status } 
@@ -18,9 +17,9 @@ class TasksManager
 
   private
     def find_tasks_by_status(tasks, task_status)
-      return nil if ArrayModule.is_nil_or_empty?(tasks)
+      tasks_grouped_by_status = get_tasks_grouped_by_status(tasks)
 
-      tasks.select { |task| task.status == task_status } 
+      return tasks_grouped_by_status.nil? ? nil : tasks_grouped_by_status[task_status]
     end
 
     def collect_tasks_for_all_weeks(weeks)
