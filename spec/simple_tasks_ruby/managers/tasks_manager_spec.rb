@@ -15,13 +15,14 @@ describe TasksManager do
     end
 
     it "Get tasks grouped by status" do 
-      delayed_task = Task.new('title', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED})
-      aborted_task = Task.new('aborted', DateTime.now, {status: SimpleTasksRuby::TaskType::ABORTED})
-      done_task = Task.new('donetask', DateTime.now, {status:
-        SimpleTasksRuby::TaskType::DONE})
-      delayed_but_done_task = Task.new('delayed_but_done', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED_DONE})
+      all_statuses = SimpleTasksRuby::TaskType.constants # array of statuses from module
 
-      tasks = [delayed_task, aborted_task, done_task, delayed_but_done_task]
+      tasks = Array.new
+
+      # creates one task of each type
+      all_statuses.each do |status|
+        tasks << Task.new(status.to_s, DateTime.now, {status: status})
+      end
 
       tasks_manager.get_tasks_grouped_by_status(tasks).length.must_equal tasks.length   
     end
