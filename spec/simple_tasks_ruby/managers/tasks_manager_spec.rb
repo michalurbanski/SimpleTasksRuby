@@ -15,6 +15,7 @@ describe TasksManager do
     end
 
     it "Get tasks grouped by status" do 
+      # constants property gets all consts defineid in a module
       all_statuses = SimpleTasksRuby::TaskType.constants # array of statuses from module
 
       tasks = Array.new
