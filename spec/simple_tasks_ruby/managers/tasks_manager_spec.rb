@@ -63,7 +63,7 @@ describe TasksManager do
     def act(lines) 
       weeks = weeks_manager.convert_data_to_weeks(lines)
 
-      return tasks_manager.find_delayed_tasks_in_weeks(weeks) 
+      return tasks_manager.find_tasks_by_status_in_weeks(weeks, SimpleTasksRuby::TaskType::DELAYED)
     end
   end
 

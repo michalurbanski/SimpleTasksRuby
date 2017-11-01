@@ -1,17 +1,12 @@
 class TasksManager
   # TODO: it's not very fortunate that this method takes weeks, but the name of the class is TasksManager
-  def find_delayed_tasks_in_weeks(weeks) 
-    tasks = collect_tasks_for_all_weeks(weeks)
-
-    return find_delayed_tasks(tasks)
-  end
-
   def find_tasks_by_status_in_weeks(weeks, task_status)
     tasks = collect_tasks_for_all_weeks(weeks)
 
     return find_tasks_by_status(tasks, task_status)
   end
 
+  # Is any special treatment for delayed tasks needed?
   def find_delayed_tasks(tasks)
     find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
   end
