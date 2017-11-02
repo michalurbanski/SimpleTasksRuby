@@ -32,7 +32,7 @@ end
   require "simple_tasks_ruby/extractors/#{extractor}"
 end
 
-%w[weeks_manager tasks_manager].each do |manager|
+%w[weeks_manager tasks_manager tasks_summary_engine].each do |manager|
   require "simple_tasks_ruby/managers/#{manager}"
 end
 
