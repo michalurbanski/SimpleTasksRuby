@@ -14,17 +14,19 @@ module SimpleTasksRuby
     end
 
     private
-    def calculate_count_by_status
-      @tasks_count_by_status = {}
+      def calculate_count_by_status
+        @tasks_count_by_status = {}
 
-      @tasks_hash.each do |key, value|
-        @tasks_count_by_status[key] = @tasks_hash[key].length
+        return if @tasks_hash.nil?
+
+        @tasks_hash.each do |key, value|
+          @tasks_count_by_status[key] = @tasks_hash[key].length
+        end
       end
-    end
 
-    def calculate_total
-      @total = 0
-      @tasks_count_by_status.each_value {|value| @total += value}
-    end
+      def calculate_total
+        @total = 0
+        @tasks_count_by_status.each_value {|value| @total += value}
+      end
   end
 end

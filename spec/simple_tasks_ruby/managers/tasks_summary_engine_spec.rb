@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleTasksRuby::TasksSummaryEngine do
-  describe "Tests" do
+  describe "Positive cases" do
     it "Returns task count of delayed tasks" do
       tasks_hash = {}
       
@@ -38,6 +38,24 @@ describe SimpleTasksRuby::TasksSummaryEngine do
       tasks_count_by_status.length.must_equal 2 # There are delayed and aborted tasks
       tasks_count_by_status[SimpleTasksRuby::TaskType::DELAYED].must_equal 2
       tasks_count_by_status[SimpleTasksRuby::TaskType::ABORTED].must_equal 1
+    end
+  end
+
+  describe "Negative cases" do
+    it "Nil list of tasks returns total of zero" do
+      tasks_summary_engine = SimpleTasksRuby::TasksSummaryEngine.new(nil)
+      
+      tasks_summary_engine.calculate
+      
+      tasks_summary_engine.total.must_equal 0
+    end
+
+    it "Empty list of tasks returns total of zero" do
+      tasks_summary_engine = SimpleTasksRuby::TasksSummaryEngine.new({})
+
+      tasks_summary_engine.calculate
+
+      tasks_summary_engine.total.must_equal 0
     end
   end
 end
