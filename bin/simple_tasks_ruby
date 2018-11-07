@@ -8,10 +8,12 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'simple_tasks_ruby/main'
 
-SimpleTasksRuby::ConsoleModule.clear_screen
+module SimpleTasksRuby
+    ConsoleModule.clear_screen
 
-Logging.options = {:type => :file, :name => "log.log"} # TODO: downside - creates logs in place from which program is executed
+    Logging.options = {:type => :file, :name => "log.log"} # TODO: downside - creates logs in place from which program is executed
 
-# TODO: this could be a module method call Main::execute
-main = SimpleTasksRuby::Main.new
-main.execute
+    # TODO: this could be a module method call Main::execute
+    main = Main.new
+    main.execute
+end
