@@ -1,9 +1,20 @@
-class TestData
-  def self.single_week_path
-    File.expand_path("../../../samples/single_week.txt", __FILE__)
-  end
+module SimpleTasksHelper
+  class TestData
+    SAMPLES_PATH = "../../../samples"
+    
+    class << self
+      def single_week_path
+        get_file("single_week.txt")
+      end
+  
+      def multiple_weeks_path
+        get_file("multiple_weeks.txt")
+      end
 
-  def self.multiple_weeks_path
-    File.expand_path("../../../samples/multiple_weeks.txt", __FILE__)
+      private
+        def get_file(filename)
+          File.expand_path("#{SAMPLES_PATH}/#{filename}", __FILE__)
+        end
+    end
   end
 end

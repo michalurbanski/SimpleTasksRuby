@@ -1,35 +1,36 @@
 require 'spec_helper'
 
 # name of first element must be the same as class/module under test
+module SimpleTasksHelper
+  describe FileSystemDataReader do
+    # before do
+    # end
 
-describe FileSystemDataReader do
-  # before do
-  # end
-
-  describe "Read test data (integration tests)" do
-    it "When file path is invalid then no data is read" do
-      data_reader = FileSystemDataReader.new({
-        :path => "test" # not existing file path
-      })
-
-      data_reader.read
-      data_reader.lines.must_be_nil
-    end
-
-    it "When valid path is passed then data is read" do
-      valid_test_paths.each do |path|
+    describe "Read test data (integration tests)" do
+      it "When file path is invalid then no data is read" do
         data_reader = FileSystemDataReader.new({
-          :path => path
+          :path => "test" # not existing file path
         })
 
         data_reader.read
-        data_reader.lines.wont_be_nil
+        data_reader.lines.must_be_nil
+      end
+
+      it "When valid path is passed then data is read" do
+        valid_test_paths.each do |path|
+          data_reader = FileSystemDataReader.new({
+            :path => path
+          })
+
+          data_reader.read
+          data_reader.lines.wont_be_nil
+        end
       end
     end
-  end
 
-  private
-    def valid_test_paths
-      return [TestData.multiple_weeks_path, ProductionData.get_path]
-    end
+    private
+      def valid_test_paths
+        return [TestData.multiple_weeks_path, ProductionData.get_path]
+      end
+  end
 end
