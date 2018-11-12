@@ -7,6 +7,11 @@ module SimpleTasksRuby
     # end
 
     describe "Read test data (integration tests)" do
+      it "When no path is provided then exception is thrown" do
+        data_reader = FileSystemDataReader.new({})
+        lambda { data_reader.read }.must_raise ArgumentError
+      end
+      
       it "When file path is invalid then no data is read" do
         data_reader = FileSystemDataReader.new({
           :path => "some_not_existing_file_path"

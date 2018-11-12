@@ -10,6 +10,8 @@ module SimpleTasksRuby
     end
 
     def read
+      raise ArgumentError, 'File is not provided' if @file_path.nil?
+
       if file_exists?
         @lines = read_lines
         logger.info("Reading file #{@file_path} finished")
