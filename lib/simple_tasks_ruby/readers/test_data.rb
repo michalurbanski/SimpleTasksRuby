@@ -1,4 +1,4 @@
-module SimpleTasksHelper
+module SimpleTasksRuby
   class TestData
     SAMPLES_PATH = "../../../samples"
     

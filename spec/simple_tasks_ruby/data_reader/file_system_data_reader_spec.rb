@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 # name of first element must be the same as class/module under test
-module SimpleTasksHelper
+module SimpleTasksRuby
   describe FileSystemDataReader do
     # before do
     # end

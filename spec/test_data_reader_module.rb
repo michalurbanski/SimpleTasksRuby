@@ -1,4 +1,4 @@
-module SimpleTasksHelper
+module SimpleTasksRuby
   module TestDataReader
     extend self 
 
