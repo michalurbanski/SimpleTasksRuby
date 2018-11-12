@@ -9,7 +9,7 @@ module SimpleTasksRuby
     describe "Read test data (integration tests)" do
       it "When file path is invalid then no data is read" do
         data_reader = FileSystemDataReader.new({
-          :path => "test" # not existing file path
+          :path => "some_not_existing_file_path"
         })
 
         data_reader.read

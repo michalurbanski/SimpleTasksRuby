@@ -12,34 +12,40 @@ module SimpleTasksRuby
     def read
       if file_exists?
         @lines = read_lines
-
-        message = "Reading #{@file_path} file finished"
-      else
-        message = "Reading file #{@file_path} failed - file does not exist"
+        logger.info("Reading file #{@file_path} finished")
       end
-
-      logger.info(message)
     end
 
     private
       def file_exists?
-        result = false
+        return true if is_file?
+        
+        # If not a file, then it can be either directory or non-existing path
+        add_message_if_directory
+        return false
+      end
 
-        if File.exist?(@file_path)
-          if File.directory?(@file_path)
-            message = "File #{@file_path} is a directory, and not a file"
-          else
-            result = true
-
-            message = "Reading file #{@file_path} ..."          
-          end
-        else
+      def is_file?
+        if File.file?(@file_path)
+          message = "Reading file #{@file_path}"
+          is_file  = true
+        else 
           message = "File #{@file_path} does not exist"
+          is_file = false
         end
 
+        # Interesting that in Ruby if does not create a new scope, so line below works
         logger.info(message)
-        
-        return result
+
+        return is_file
+      end
+
+      def add_message_if_directory
+        if File.directory?(@file_path)
+          logger.info("Provided path: #{@file_path} is a directory")
+        else
+          logger.info("Provided path: #{@file_path} is not a directory")
+        end
       end
 
       def read_lines
