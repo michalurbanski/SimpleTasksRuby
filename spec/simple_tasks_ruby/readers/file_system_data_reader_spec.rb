@@ -1,15 +1,20 @@
 require 'spec_helper'
 
 # name of first element must be the same as class/module under test
-module SimpleTasksHelper
+module SimpleTasksRuby
   describe FileSystemDataReader do
     # before do
     # end
 
     describe "Read test data (integration tests)" do
+      it "When no path is provided then exception is thrown" do
+        data_reader = FileSystemDataReader.new({})
+        lambda { data_reader.read }.must_raise ArgumentError
+      end
+      
       it "When file path is invalid then no data is read" do
         data_reader = FileSystemDataReader.new({
-          :path => "test" # not existing file path
+          :path => "some_not_existing_file_path"
         })
 
         data_reader.read

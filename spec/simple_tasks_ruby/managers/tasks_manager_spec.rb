@@ -1,6 +1,6 @@
 require 'spec_helper' 
 
-module SimpleTasksHelper
+module SimpleTasksRuby
   describe TasksManager do 
     let(:tasks_manager) { TasksManager.new }
     let(:weeks_manager) { SimpleTasksRuby::WeeksManager.new }
