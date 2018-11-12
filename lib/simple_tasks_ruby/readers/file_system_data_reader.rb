@@ -1,10 +1,11 @@
 # Concrete implementation of data reader for reading file system data
-class FileSystemDataReader < DataReader
+class FileSystemDataReader
   include Logging # Includes module, so that calls do not have to be preceeded by Logging::
 
-  def post_initialize(args)
+  attr_reader :lines
+
+  def initialize(args)
     @file_path = args[:path]
-    @reader = self # TODO: this class needs to be fixed
   end
 
   def read

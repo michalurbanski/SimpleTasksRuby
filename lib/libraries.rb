@@ -52,7 +52,7 @@ end
   require "simple_tasks_ruby/helpers/#{helper}"
 end
 
-%w[data_reader file_system_data_reader production_data test_data].each do |data|
+%w[file_system_data_reader production_data test_data].each do |data|
   require "simple_tasks_ruby/readers/#{data}"
 end
 
