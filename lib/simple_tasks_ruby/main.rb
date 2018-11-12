@@ -21,6 +21,7 @@ module SimpleTasksRuby
     def execute
       begin
         file_lines = read_lines_from_file
+        
         # print_file_content file_lines # Debug information - write this to file if needed
 
         @weeks_manager.convert_data_to_weeks(file_lines) 
@@ -31,8 +32,8 @@ module SimpleTasksRuby
         @tasks_printer.print_tasks_information(delayed_tasks)
 
       rescue => e # Rescues StandardError
-        @writer.write_error("Error occured during application execution: " + e.to_s + "\n")
-        @writer.write_error_array(e.backtrace) 
+        @writer.write_error("Error occured during application execution: #{e.to_s}\n")
+        @writer.write_error(e.backtrace) 
       ensure
         end_execution
       end

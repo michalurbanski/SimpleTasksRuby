@@ -4,12 +4,12 @@ class ConsoleWriter
   @@debug_output = Proc.new{|x| p(x)} # Prints each array's element - even non-visible characters
 
   def write_error(message)
-    write(message, color: :red) 
+    unless message.is_a? Enumerable
+      write(message, color: :red) 
+    else
+      write_array(message, color: :red)
+    end
   end 
-
-  def write_error_array(array) 
-    write_array(array, color: :red) 
-  end
 
   def write_success(message) 
     write(message, color: :green)
