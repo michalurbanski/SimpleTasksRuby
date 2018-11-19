@@ -4,7 +4,7 @@ module SimpleTasksRuby
   class Main
     def initialize
       @writer = ConsoleWriter.new
-      start
+      start_message()
 
       @configuration_service = ConfigurationService.new
       input_file_path = @configuration_service.read_value(:input_file_path)
@@ -29,18 +29,18 @@ module SimpleTasksRuby
         delayed_tasks = find_delayed_tasks(weeks)
 
         @writer.write_success("Printing delayed tasks:")
-        @tasks_printer.print_tasks_information(delayed_tasks)
+        @tasks_printer.print(delayed_tasks)
 
       rescue => e # Rescues StandardError
         @writer.write_error("Error occured during application execution: #{e.to_s}\n")
         @writer.write_error(e.backtrace) 
       ensure
-        end_execution
+        end_execution()
       end
     end
 
     private
-      def start
+      def start_message
         @writer.write_success("Welcome to Simple Tasks Project")
       end
 
@@ -54,7 +54,7 @@ module SimpleTasksRuby
       end
 
       def find_delayed_tasks(weeks) 
-        @tasks_manager.find_tasks_by_status_in_weeks(weeks, SimpleTasksRuby::TaskType::DELAYED)
+        @tasks_manager.find_tasks_by_status_in_weeks(weeks, TaskType::DELAYED)
       end
 
       def end_execution

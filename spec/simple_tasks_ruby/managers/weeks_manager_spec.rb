@@ -1,8 +1,8 @@
 require "spec_helper" 
 
 module SimpleTasksRuby
-  describe SimpleTasksRuby::WeeksManager do
-    let(:weeks_manager) { SimpleTasksRuby::WeeksManager.new }
+  describe WeeksManager do
+    let(:weeks_manager) { WeeksManager.new }
 
     describe "Real input file with test data" do 
       before do 

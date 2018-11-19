@@ -1,17 +1,19 @@
 # Prints tasks' related information
-class TasksPrinter
-  def initialize(writer)
-    @writer = writer 
-  end
-
-  def print_tasks_information(tasks)
-    tasks.each do |task|
-      print_single_task_information(task)
+module SimpleTasksRuby
+  class TasksPrinter
+    def initialize(writer)
+      @writer = writer 
     end
-  end
 
-  private
-    def print_single_task_information(task) 
-      @writer.write_message(task.to_s)
+    def print(tasks)
+      tasks.each do |task|
+        print_task(task)
+      end
     end
+
+    private
+      def print_task(task) 
+        @writer.write_message(task.to_s)
+      end
+  end
 end
