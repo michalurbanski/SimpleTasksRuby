@@ -19,5 +19,9 @@ module SimpleTasksRuby
     def length #TODO: change to number_of_days - it will be more descriptive
       @days.length
     end
+
+    def tasks
+      raise StandardError, "test"
+    end
   end
 end
