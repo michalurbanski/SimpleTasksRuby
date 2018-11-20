@@ -21,7 +21,7 @@ module SimpleTasksRuby
     end
 
     def tasks
-      raise StandardError, "test"
+      days.collect { |day| day.tasks }
     end
   end
 end

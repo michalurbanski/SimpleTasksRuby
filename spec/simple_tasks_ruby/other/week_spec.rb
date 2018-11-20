@@ -18,6 +18,19 @@ module SimpleTasksRuby
         subject.length.must_equal 1
       end
 
+      it "Week exposes tasks" do
+        subject.add_day(DayFactory.create_valid_day())
+        
+        subject.tasks.length.must_equal 1
+      end
+
+      it "Week exposes tasks from multiple days" do
+        subject.add_day(DayFactory.create_valid_day())
+        subject.add_day(DayFactory.create_valid_day())
+        
+        subject.tasks.length.must_equal 2
+      end
+
       it "By default not initialized week has undefined title" do
         week = Week.new
 

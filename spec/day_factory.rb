@@ -7,6 +7,8 @@ module SimpleTasksRuby
 
         task = Task.new("First task", Date.parse(date))
         day.add_task(task)
+
+        return day
       end
     end
   end
