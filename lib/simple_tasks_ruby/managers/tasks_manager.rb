@@ -7,11 +7,6 @@ module SimpleTasksRuby
       return find_tasks_by_status(tasks, task_status)
     end
 
-    # Is any special treatment for delayed tasks needed?
-    def find_delayed_tasks(tasks)
-      find_tasks_by_status(tasks, TaskType::DELAYED)
-    end
-
     def find_tasks_by_status(tasks, task_status)
       # TODO: when searching for tasks by multiple statuses we want to fetch hash with grouped tasks only once
       tasks_grouped_by_status = get_tasks_grouped_by_status(tasks)

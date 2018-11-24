@@ -12,7 +12,7 @@ module SimpleTasksRuby
 
         tasks = [delayed_task, aborted_task]
 
-        tasks_manager.find_delayed_tasks(tasks).length.must_equal 1
+        tasks_manager.find_tasks_by_status(tasks, TaskType::DELAYED).length.must_equal 1
       end
 
       it "Get tasks grouped by status" do 
@@ -73,13 +73,13 @@ module SimpleTasksRuby
       it "When tasks list is nil then result is nil" do 
         tasks = nil
     
-        tasks_manager.find_delayed_tasks(tasks).must_be_nil 
+        tasks_manager.find_tasks_by_status(tasks, TaskType::DELAYED).must_be_nil 
       end
 
       it "When tasks list is empty then result is nil" do 
         tasks = Array.new
 
-        tasks_manager.find_delayed_tasks(tasks).must_be_nil
+        tasks_manager.find_tasks_by_status(tasks, TaskType::DELAYED).must_be_nil
       end
     end
   end
