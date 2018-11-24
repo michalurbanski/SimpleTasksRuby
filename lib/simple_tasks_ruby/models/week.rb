@@ -21,7 +21,8 @@ module SimpleTasksRuby
     end
 
     def tasks
-      days.collect { |day| day.tasks }
+      # NOTE: collect returns array of arrays, which needs to be flattened to get objects
+      days.collect { |day| day.tasks }.flatten
     end
   end
 end

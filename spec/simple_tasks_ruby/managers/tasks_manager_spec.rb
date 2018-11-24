@@ -16,7 +16,7 @@ module SimpleTasksRuby
       end
 
       it "Get tasks grouped by status" do 
-        # constants property gets all consts defineid in a module
+        # constants property gets all consts defined in a module
         all_statuses = SimpleTasksRuby::TaskType.constants # array of statuses from module
 
         tasks = Array.new
@@ -49,6 +49,7 @@ module SimpleTasksRuby
     describe "Integration tests" do
       it "Finds delayed tasks in one week" do 
         lines = TestDataReader.read_single_week
+
         delayed_tasks = act(lines)
 
         delayed_tasks.length.must_equal 3
@@ -63,7 +64,7 @@ module SimpleTasksRuby
 
       def act(lines) 
         weeks = weeks_manager.convert_data_to_weeks(lines)
-
+        
         return tasks_manager.find_tasks_by_status_in_weeks(weeks, SimpleTasksRuby::TaskType::DELAYED)
       end
     end

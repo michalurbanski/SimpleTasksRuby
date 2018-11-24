@@ -10,6 +10,13 @@ module SimpleTasksRuby
 
         return day
       end
+
+      def create_empty_day
+        date = Time.now.strftime("%Y-%m-%d")
+        day = Day.new("Monday #{date}")
+
+        return day
+      end
     end
   end
 end

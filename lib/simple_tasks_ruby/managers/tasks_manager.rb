@@ -27,23 +27,7 @@ module SimpleTasksRuby
 
     private
       def collect_tasks_for_all_weeks(weeks)
-        tasks = Array.new 
-
-        weeks.each do |week|
-          tasks += collect_tasks_for_week(week)
-        end
-
-        return tasks
-      end
-
-      def collect_tasks_for_week(week) 
-        tasks = Array.new
-
-        week.days.each do |day|
-          tasks += day.tasks
-        end
-
-        return tasks
+        return weeks.collect{ |week| week.tasks }.flatten
       end
   end
 end
