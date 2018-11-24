@@ -3,12 +3,12 @@ require 'spec_helper'
 module SimpleTasksRuby
   describe TasksManager do 
     let(:tasks_manager) { TasksManager.new }
-    let(:weeks_manager) { SimpleTasksRuby::WeeksManager.new }
+    let(:weeks_manager) { WeeksManager.new }
 
     describe "Positive cases" do 
       it "Finds delayed tasks when one exists" do 
-        delayed_task = Task.new('title', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED})
-        aborted_task = Task.new('aborted', DateTime.now, {status: SimpleTasksRuby::TaskType::ABORTED})
+        delayed_task = Task.new('title', DateTime.now, {status: TaskType::DELAYED})
+        aborted_task = Task.new('aborted', DateTime.now, {status: TaskType::ABORTED})
 
         tasks = [delayed_task, aborted_task]
 
@@ -17,7 +17,7 @@ module SimpleTasksRuby
 
       it "Get tasks grouped by status" do 
         # constants property gets all consts defined in a module
-        all_statuses = SimpleTasksRuby::TaskType.constants # array of statuses from module
+        all_statuses = TaskType.constants # array of statuses from module
 
         tasks = Array.new
 
@@ -30,11 +30,11 @@ module SimpleTasksRuby
       end
 
       it "Tasks grouped by status is hash with keys which are task types" do
-        delayed_task = Task.new('title', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED})
-        aborted_task = Task.new('aborted', DateTime.now, {status: SimpleTasksRuby::TaskType::ABORTED})
+        delayed_task = Task.new('title', DateTime.now, {status: TaskType::DELAYED})
+        aborted_task = Task.new('aborted', DateTime.now, {status: TaskType::ABORTED})
         done_task = Task.new('donetask', DateTime.now, {status:
-          SimpleTasksRuby::TaskType::DONE})
-        delayed_but_done_task = Task.new('delayed_but_done', DateTime.now, {status: SimpleTasksRuby::TaskType::DELAYED_DONE})
+          TaskType::DONE})
+        delayed_but_done_task = Task.new('delayed_but_done', DateTime.now, {status: TaskType::DELAYED_DONE})
 
         tasks = [delayed_task, aborted_task, done_task, delayed_but_done_task]
 
@@ -65,7 +65,7 @@ module SimpleTasksRuby
       def act(lines) 
         weeks = weeks_manager.convert_data_to_weeks(lines)
         
-        return tasks_manager.find_tasks_by_status_in_weeks(weeks, SimpleTasksRuby::TaskType::DELAYED)
+        return tasks_manager.find_tasks_by_status_in_weeks(weeks, TaskType::DELAYED)
       end
     end
 

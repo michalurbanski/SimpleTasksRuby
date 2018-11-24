@@ -9,7 +9,7 @@ module SimpleTasksRuby
 
     # Is any special treatment for delayed tasks needed?
     def find_delayed_tasks(tasks)
-      find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
+      find_tasks_by_status(tasks, TaskType::DELAYED)
     end
 
     def find_tasks_by_status(tasks, task_status)
