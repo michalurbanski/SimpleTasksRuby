@@ -1,20 +1,25 @@
-class FunctionTest < Test::Unit::TestCase
-  def test_function
-    printer = lambda{|x| puts(x)}
-    private_method(printer)
+require 'spec_helper'
 
-    omit('temporarily omitted')
-  end
+module SimpleTasksRuby
+  describe "test function" do
+    it "tests function" do
+      printer = lambda{|x| puts(x)}
+      private_method(printer)
 
-  def private_method(block)
-    s = "this is test of private function"
-    print "Printing class of block: "
-    p(block.class)
+      skip "This is only example how lambda works like"
+    end
 
-    print "Printing block: "
-    p(block)
-
-    print "Calling block: "
-    block.call(s)
+    private
+      def private_method(block)
+        s = "this is test of private function"
+        print "Printing class of block: "
+        p(block.class)
+    
+        print "Printing block: "
+        p(block)
+    
+        print "Calling block: "
+        block.call(s)
+      end
   end
 end

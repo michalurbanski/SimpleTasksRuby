@@ -1,55 +1,59 @@
-class TaskCreatorTests < Test::Unit::TestCase
-  def test_done_task_created
-    date = DateTime.new(2015, 3, 1)
-    action = "- DONE - first task"
+require 'spec_helper'
 
-    taskCreator = TaskCreator.new(action, date)
-    doneTask = taskCreator.create_task
+module SimpleTasksRuby
+  describe TaskCreator do
+    it "Done task created" do
+      date = DateTime.new(2015, 3, 1)
+      action = "- DONE - first task"
 
-    assert_equal(SimpleTasksRuby::TaskType::DONE, doneTask.status)
-  end
+      taskCreator = TaskCreator.new(action, date)
+      doneTask = taskCreator.create_task
 
-  def test_aborted_task_created
-    date = DateTime.new(2015, 3, 1)
-    action = "- ABORTED - first task"
+      doneTask.status.must_equal TaskType::DONE
+    end
 
-    taskCreator = TaskCreator.new(action, date)
-    abortedTask = taskCreator.create_task
+    it "Aborted task created" do
+      date = DateTime.new(2015, 3, 1)
+      action = "- ABORTED - first task"
 
-    assert_equal(SimpleTasksRuby::TaskType::ABORTED, abortedTask.status)
-  end
+      taskCreator = TaskCreator.new(action, date)
+      abortedTask = taskCreator.create_task
 
-  def test_delayed_task_created
-    date = DateTime.new(2015, 3, 1)
-    action = "- delayed, - first task"
+      abortedTask.status.must_equal TaskType::ABORTED
+    end
 
-    taskCreator = TaskCreator.new(action, date)
-    delayedTask = taskCreator.create_task
+    it "Delayed task created" do
+      date = DateTime.new(2015, 3, 1)
+      action = "- delayed, - first task"
 
-    assert_equal(SimpleTasksRuby::TaskType::DELAYED, delayedTask.status)
-  end
+      taskCreator = TaskCreator.new(action, date)
+      delayedTask = taskCreator.create_task
 
-  # delayed and done should be treated also as done but
-  # has a later date than original one
-  def test_delayed_and_done_task_created
-    date = DateTime.new(2015, 3, 1)
-    action = "- delayed, DONE 2016-03-03 - first task"
+      delayedTask.status.must_equal TaskType::DELAYED
+    end
 
-    taskCreator = TaskCreator.new(action, date)
-    doneTask = taskCreator.create_task
-    
-    assert_equal(SimpleTasksRuby::TaskType::DELAYED_DONE, doneTask.status)
-  end
+    # delayed and done should be treated also as done but
+    # has a later date than original one
+    it "Delayed and done task created" do
+      date = DateTime.new(2015, 3, 1)
+      action = "- delayed, DONE 2016-03-03 - first task"
 
-  def test_delayed_and_done_task_has_greater_done_date_than_original_date
-    date = DateTime.new(2015, 3, 1)
+      taskCreator = TaskCreator.new(action, date)
+      doneTask = taskCreator.create_task
+      
+      doneTask.status.must_equal TaskType::DELAYED_DONE
+    end
 
-    # Task done 2 days later
-    action = "- delayed, DONE 2016-03-03 - first task"
+    it "Delayed and done task has greater done date than original date" do
+      date = DateTime.new(2015, 3, 1)
 
-    taskCreator = TaskCreator.new(action, date)
-    doneTask = taskCreator.create_task
+      # Task done 2 days later
+      action = "- delayed, DONE 2016-03-03 - first task"
 
-    assert_equal(true, doneTask.done_date > doneTask.original_date)
+      taskCreator = TaskCreator.new(action, date)
+      doneTask = taskCreator.create_task
+
+      (doneTask.done_date > doneTask.original_date).must_equal true
+    end
   end
 end
