@@ -1,29 +1,26 @@
-class PossibleDaysTesterTests < Test::Unit::TestCase
-  def test_is_valid_possible_day
-    tester = PossibleDaysTester.new
-    text = "Monday"
+require 'spec_helper'
 
-    assert_equal(true, tester.is_day(text))
-  end
+module SimpleTasksRuby
+  describe PossibleDaysTester do
+    it "Is valid possible day" do
+      tester = PossibleDaysTester.new
+      text = "Monday"
 
-  def test_is_valid_possible_day_weird_case
-    tester = PossibleDaysTester.new
-    text = "mONday"
+      tester.is_day(text).must_equal true
+    end
 
-    assert_equal(true, tester.is_day(text))
-  end
+    it "Is valid possible day mixed casing" do
+      tester = PossibleDaysTester.new
+      text = "mONday"
 
-  def test_is_not_valid_day
-    test = PossibleDaysTester.new
-    text = "aaa"
+      tester.is_day(text).must_equal true
+    end
 
-    assert_equal(false, test.is_day(text))
-  end
+    it "Is not valid day" do
+      tester = PossibleDaysTester.new
+      text = "aaa"
 
-  def test_is_friday_a_day
-    test = PossibleDaysTester.new
-    text = "Friday"
-
-    assert_equal(true, test.is_day(text))
+      tester.is_day(text).must_equal false
+    end
   end
 end
