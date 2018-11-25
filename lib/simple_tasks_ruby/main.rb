@@ -32,7 +32,7 @@ module SimpleTasksRuby
         @writer.write_error("Error occured during application execution: #{e.to_s}\n")
         @writer.write_error(e.backtrace) 
       ensure
-        end_execution()
+        end_execution
       end
     end
 
