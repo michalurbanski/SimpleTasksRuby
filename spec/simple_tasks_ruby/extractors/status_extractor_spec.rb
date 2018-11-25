@@ -1,56 +1,59 @@
-class StatusExtractorTests < Test::Unit::TestCase
-  def test_extract_done_status
-    action = "- DONE - first task"
+require 'spec_helper'
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+module SimpleTasksRuby
+  describe StatusExtractor do
+    it "Extract done status" do
+      action = "- DONE - first task"
 
-    assert_equal(TaskStatus::DONE, status.status)
-  end
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
 
-  def test_extract_delayed_and_not_done_status
-    action = "- delayed, - this is delayed task"
+      status.status.must_equal TaskStatus::DONE
+    end
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+    it "Extract delayed and not done status" do
+      action = "- delayed, - this is delayed task"
 
-    assert_equal(TaskStatus::DELAYED, status.status)
-  end
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
 
-  def test_extract_delayed_and_done_status
-    action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
+      status.status.must_equal TaskStatus::DELAYED
+    end
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+    it "Extract delayed and done stauts" do
+      action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
 
-    assert_equal(TaskStatus::DELAYED_DONE, status.status)
-  end
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
 
-  def test_extract_delayed_and_done_has_correct_date
-    action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
+      status.status.must_equal TaskStatus::DELAYED_DONE
+    end
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+    it "Extract delayed and done has correct date" do
+      action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
 
-    assert_equal("2016-05-01", status.date)
-  end
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
 
-  def test_extract_aborted_status
-    action = "- ABORTED - this is aborted task"
+      status.date.must_equal "2016-05-01"
+    end
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+    it "Extract aborted status" do
+      action = "- ABORTED - this is aborted task"
 
-    assert_equal(TaskStatus::ABORTED, status.status)
-  end
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
 
-  def test_no_status
-    action = "- task without any status yet"
+      status.status.must_equal TaskStatus::ABORTED
+    end
 
-    extractor = StatusExtractor.new(action)
-    status = extractor.extract_status
+    it "No status" do
+      action = "- task without any status yet"
 
-    assert_not_nil(status.status) # returns not empty string but we don't care what is it exactly
+      extractor = StatusExtractor.new(action)
+      status = extractor.extract_status
+
+      status.status.wont_be_nil # returns not empty string but we don't care what is it exactly
+    end
   end
 end
-

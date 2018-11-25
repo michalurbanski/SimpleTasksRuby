@@ -1,49 +1,32 @@
 module SimpleTasksRuby
   class TasksManager
-    # TODO: it's not very fortunate that this method takes weeks, but the name of the class is TasksManager
-    def find_tasks_by_status_in_weeks(weeks, task_status)
-      tasks = collect_tasks_for_all_weeks(weeks)
+    attr_reader :tasks_grouped_by_status
 
-      return find_tasks_by_status(tasks, task_status)
+    def initialize(file_lines)
+      @tasks_grouped_by_status = nil
+      @file_lines = file_lines
+      @weeks_manager = WeeksManager.new
     end
 
-    # Is any special treatment for delayed tasks needed?
-    def find_delayed_tasks(tasks)
-      find_tasks_by_status(tasks, SimpleTasksRuby::TaskType::DELAYED)
-    end
+    def group_by_status
+      tasks = get_tasks_from_file_lines
 
-    def find_tasks_by_status(tasks, task_status)
-      # TODO: when searching for tasks by multiple statuses we want to fetch hash with grouped tasks only once
-      tasks_grouped_by_status = get_tasks_grouped_by_status(tasks)
+      return if ArrayModule.is_nil_or_empty?(tasks)
 
-      return tasks_grouped_by_status.nil? ? nil : tasks_grouped_by_status[task_status]
-    end
-
-    def get_tasks_grouped_by_status(tasks)
-      return nil if ArrayModule.is_nil_or_empty?(tasks)
-
-      tasks.group_by { |task| task.status } 
+      @tasks_grouped_by_status = tasks.group_by { |task| task.status } 
     end
 
     private
-      def collect_tasks_for_all_weeks(weeks)
-        tasks = Array.new 
+      def get_tasks_from_file_lines
+        weeks = @weeks_manager.convert_data_to_weeks(@file_lines)
 
-        weeks.each do |week|
-          tasks += collect_tasks_for_week(week)
-        end
-
-        return tasks
+        return nil if weeks.nil?
+        
+        return collect_tasks_for_all_weeks(weeks)
       end
-
-      def collect_tasks_for_week(week) 
-        tasks = Array.new
-
-        week.days.each do |day|
-          tasks += day.tasks
-        end
-
-        return tasks
+    
+      def collect_tasks_for_all_weeks(weeks)
+        return weeks.collect{ |week| week.tasks }.flatten
       end
   end
 end

@@ -19,5 +19,10 @@ module SimpleTasksRuby
     def length #TODO: change to number_of_days - it will be more descriptive
       @days.length
     end
+
+    def tasks
+      # NOTE: collect returns array of arrays, which needs to be flattened to get objects
+      days.collect { |day| day.tasks }.flatten
+    end
   end
 end

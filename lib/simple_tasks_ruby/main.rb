@@ -4,16 +4,14 @@ module SimpleTasksRuby
   class Main
     def initialize
       @writer = ConsoleWriter.new
-      start_message()
+      start_message
 
       @configuration_service = ConfigurationService.new
       input_file_path = @configuration_service.read_value(:input_file_path)
 
-      reader = FileSystemDataReader.new({:path => input_file_path})
+      reader = FileSystemDataReader.new({ :path => input_file_path })
 
       @file_service = FileService.new(reader)
-      @weeks_manager = WeeksManager.new
-      @tasks_manager = TasksManager.new
       @tasks_printer = TasksPrinter.new(@writer)
     end
 
@@ -23,10 +21,9 @@ module SimpleTasksRuby
         file_lines = read_lines_from_file
         
         # print_file_content file_lines # Debug information - write this to file if needed
-
-        @weeks_manager.convert_data_to_weeks(file_lines) 
-        weeks = @weeks_manager.weeks
-        delayed_tasks = find_delayed_tasks(weeks)
+ 
+        tasks = get_tasks(file_lines)
+        delayed_tasks = find_delayed_tasks(tasks)
 
         @writer.write_success("Printing delayed tasks:")
         @tasks_printer.print(delayed_tasks)
@@ -53,8 +50,15 @@ module SimpleTasksRuby
         @writer.write_array(file_lines, debug: true)
       end
 
-      def find_delayed_tasks(weeks) 
-        @tasks_manager.find_tasks_by_status_in_weeks(weeks, TaskType::DELAYED)
+      def get_tasks(file_lines)
+        tasks_manager = TasksManager.new(file_lines)
+        tasks_manager.group_by_status
+        tasks_manager.tasks_grouped_by_status
+      end
+
+      def find_delayed_tasks(tasks) 
+        tasks_finder = TasksFinder.new(tasks)
+        tasks_finder.find_tasks_by_status(TaskType::DELAYED)
       end
 
       def end_execution
