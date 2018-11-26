@@ -1,25 +1,39 @@
 # Extracts status from single action
-class StatusExtractor
-  def initialize(action)
-    @action = action # single line in day in input file
-  end
+module SimpleTasksRuby
+  module StatusExtractor
+    extend self
 
-  def extract_status
-    trim_start
-    words = @action.split(' ')
+    COMMA = ","
 
-    firstWord = words.first
-    secondWord = words[1]
-    thirdWord = words[2]
+    def extract_status(text)
+      trimmed = trim_start(text)
 
-    return StatusModel.new(firstWord + ' ' + secondWord) if (firstWord.end_with? "," and secondWord == "-")
-    return StatusModel.new(firstWord + ' ' + secondWord, thirdWord) if firstWord.end_with? ","
-    return StatusModel.new(firstWord)
-  end
+      # If "- " is not at the beginning then something is wrong with this line and we don't want to parse it
+      return StatusModel.new(text) if trimmed == text
 
-  private
-    def trim_start
-      # sub! returns nil if no change was performed and result is unchanged
-      @action.sub!(/^- /, '') # note that regular expression is without apostrophe
+      words = trimmed.split(' ')
+
+      firstWord = words.first
+      secondWord = words[1]
+      thirdWord = words[2] # Note: in Ruby it does not cause out of bounds exception; returns nil if does not exist
+
+      # Have to be in a correct order
+      return StatusModel.new(firstWord + ' ' + secondWord) if is_delayed_task(firstWord, secondWord) 
+      return StatusModel.new(firstWord + ' ' + secondWord, thirdWord) if is_delayed_and_done_task(firstWord)
+      return StatusModel.new(firstWord)
     end
+
+    private
+      def trim_start(text)
+        text.sub(/^- /, '') # Note that regular expression is without apostrophe
+      end
+
+      def is_delayed_task(firstWord, secondWord)
+        firstWord.end_with?(COMMA) and secondWord == "-"
+      end
+
+      def is_delayed_and_done_task(firstWord)
+        firstWord.end_with?(COMMA)
+      end
+  end
 end
