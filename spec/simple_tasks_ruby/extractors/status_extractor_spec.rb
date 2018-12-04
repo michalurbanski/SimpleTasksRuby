@@ -2,28 +2,18 @@ require 'spec_helper'
 
 module SimpleTasksRuby
   describe StatusExtractor do
-    it "Extract done status" do
-      action = "- DONE - first task"
-
-      status = act(action)
-
-      status.status.must_equal TaskStatus::DONE
-    end
-
-    it "Extract delayed and not done status" do
-      action = "- delayed, - this is delayed task"
-
-      status = act(action)
-
-      status.status.must_equal TaskStatus::DELAYED
-    end
-
-    it "Extract delayed and done stauts" do
-      action = "- delayed, DONE 2016-05-01 - this is delayed, but done task"
-
-      status = act(action)
-
-      status.status.must_equal TaskStatus::DELAYED_DONE
+    describe "Defined statuses" do
+      {
+        "- DONE - first task"                                         => TaskStatus::DONE,
+        "- delayed, - this is a delayed task"                         => TaskStatus::DELAYED,
+        "- delayed, DONE 2016-05-01 - this is delayed, but done task" => TaskStatus::DELAYED_DONE,
+        "- ABORTED - this is aborted task"                            => TaskStatus::ABORTED
+      }.each do |action, task_status|
+        it "Extracts status based on line prefix" do 
+          status = act(action)
+          status.status.must_equal task_status
+        end
+      end
     end
 
     it "Extract delayed and done has correct date" do
@@ -34,14 +24,6 @@ module SimpleTasksRuby
       status.date.must_equal "2016-05-01"
     end
 
-    it "Extract aborted status" do
-      action = "- ABORTED - this is aborted task"
-
-      status = act(action)
-
-      status.status.must_equal TaskStatus::ABORTED
-    end
-
     it "No status" do
       action = "- task without any status yet"
 
@@ -50,7 +32,7 @@ module SimpleTasksRuby
       status.status.wont_be_nil # returns not empty string but we don't care what is it exactly
     end
 
-    it "Unexpected line" do
+    it "Unexpected line - starting from two hyphens instead of one" do
       action = "-- books"
 
       status = act(action)
