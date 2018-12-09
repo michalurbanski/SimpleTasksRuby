@@ -28,6 +28,13 @@ module SimpleTasksRuby
         @writer.write_success("Printing delayed tasks:")
         @tasks_printer.print(delayed_tasks)
 
+        @writer.write_message("\nPrinting summary of tasks")
+        tasks_summary_engine = TasksSummaryEngine.new(tasks)
+        tasks_summary_engine.calculate()
+
+        @writer.write_message("Total number of tasks is: " + tasks_summary_engine.total.to_s)
+        @writer.write_message(tasks_summary_engine.tasks_count_by_status)
+
       rescue => e # Rescues StandardError
         @writer.write_error("Error occured during application execution: #{e.to_s}\n")
         @writer.write_error(e.backtrace) 
