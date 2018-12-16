@@ -6,26 +6,25 @@ module SimpleTasksRuby
   
     def initialize(tasks_grouped_by_status)
       @tasks_hash = tasks_grouped_by_status
+      @total = 0
+      @tasks_count_by_status = {}
     end
 
     def calculate
+      return if @tasks_hash.nil?
+
       calculate_count_by_status
       calculate_total
     end
 
     private
       def calculate_count_by_status
-        @tasks_count_by_status = {}
-
-        return if @tasks_hash.nil?
-
         @tasks_hash.each do |key, value|
           @tasks_count_by_status[key] = @tasks_hash[key].length
         end
       end
 
       def calculate_total
-        @total = 0
         @tasks_count_by_status.each_value {|value| @total += value}
       end
   end
