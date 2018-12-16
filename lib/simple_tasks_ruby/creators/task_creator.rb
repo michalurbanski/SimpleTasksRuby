@@ -6,27 +6,30 @@ module SimpleTasksRuby
     end
 
     def create_task
-      statusModel = StatusExtractor.extract_status(@action)
-      status = statusModel.status
-      dateText = statusModel.date
+      status_model = StatusExtractor.extract_status(@action)
+      status = status_model.status
+      date_text = status_model.date
 
-      if !dateText.nil?
-        delayedDoneDate = Date.strptime(dateText, '%Y-%m-%d')
+      unless date_text.nil?
+        delayed_done_date = Date.strptime(date_text, '%Y-%m-%d')
       end
 
       case(status)
         when TaskStatus::DONE then return Task.new(@action, @date, 
           {status: TaskType::DONE})
+
         when TaskStatus::ABORTED then return Task.new(@action, @date, 
           {status: TaskType::ABORTED})
+
         when TaskStatus::DELAYED then return Task.new(@action, @date, 
           {status: TaskType::DELAYED})
-        when TaskStatus::DELAYED_DONE then return Task.new(@action, @date, 
-          {status: TaskType::DELAYED_DONE, done_date: delayedDoneDate})
-      end
 
-      # If not the case then this is task without any status, i.e. original one
-      return Task.new(@action, @date)
+        when TaskStatus::DELAYED_DONE then return Task.new(@action, @date, 
+          {status: TaskType::DELAYED_DONE, done_date: delayed_done_date})
+
+        # If not the case then this is task without any status, i.e. original one
+        else return Task.new(@action, @date)
+      end
     end
   end
 end

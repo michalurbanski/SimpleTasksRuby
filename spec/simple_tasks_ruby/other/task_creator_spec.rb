@@ -32,8 +32,6 @@ module SimpleTasksRuby
       delayedTask.status.must_equal TaskType::DELAYED
     end
 
-    # delayed and done should be treated also as done but
-    # has a later date than original one
     it "Delayed and done task created" do
       date = DateTime.new(2015, 3, 1)
       action = "- delayed, DONE 2016-03-03 - first task"
@@ -44,11 +42,11 @@ module SimpleTasksRuby
       doneTask.status.must_equal TaskType::DELAYED_DONE
     end
 
-    it "Delayed and done task has greater done date than original date" do
+    it "Delayed and done task has a greater done date than the original date" do
       date = DateTime.new(2015, 3, 1)
 
       # Task done 2 days later
-      action = "- delayed, DONE 2016-03-03 - first task"
+      action = "- delayed, DONE 2015-03-03 - first task"
 
       taskCreator = TaskCreator.new(action, date)
       doneTask = taskCreator.create_task
