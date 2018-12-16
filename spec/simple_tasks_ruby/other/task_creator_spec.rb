@@ -53,5 +53,15 @@ module SimpleTasksRuby
 
       (doneTask.done_date > doneTask.original_date).must_equal true
     end
+
+    it "Not started task created" do
+      date = DateTime.new(2015, 3, 1)
+      action = "- this is not started task"
+
+      task_creator = TaskCreator.new(action, date)
+      not_started_task = task_creator.create_task
+
+      not_started_task.status.must_equal TaskType::NOT_STARTED
+    end
   end
 end

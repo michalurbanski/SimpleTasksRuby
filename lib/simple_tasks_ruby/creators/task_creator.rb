@@ -27,8 +27,9 @@ module SimpleTasksRuby
         when TaskStatus::DELAYED_DONE then return Task.new(@action, @date, 
           {status: TaskType::DELAYED_DONE, done_date: delayed_done_date})
 
-        # If not the case then this is task without any status, i.e. original one
-        else return Task.new(@action, @date)
+        # If not the case then this is task without any status, i.e. not acted upon
+        else return Task.new(@action, @date, 
+          {status: TaskType::NOT_STARTED})
       end
     end
   end
