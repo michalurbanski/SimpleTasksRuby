@@ -63,6 +63,8 @@ module SimpleTasksRuby
         tasks_manager = TasksManager.new(lines)
         tasks_manager.group_by_status
         tasks = tasks_manager.tasks_grouped_by_status
+
+        return tasks
       end
   end
 end

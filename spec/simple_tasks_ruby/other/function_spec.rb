@@ -3,8 +3,9 @@ require 'spec_helper'
 module SimpleTasksRuby
   describe "test function" do
     it "tests function" do
-      printer = lambda{|x| puts(x)}
-      private_method(printer)
+      # Correct, but commented out to avoid excessive output when running tests
+      #printer = lambda{|x| puts(x)} # lambda, unlike Proc, checks number of arguments   
+      #private_method(printer)
 
       skip "This is only example how lambda works like"
     end
