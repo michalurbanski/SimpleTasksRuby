@@ -8,3 +8,6 @@ Rake::TestTask.new do |t|
   t.pattern = 'spec/**/*.rb' # runs test from folder and subfolders in spec folder
   t.verbose = false
 end
+desc "Run tests"
+
+task default: :test
