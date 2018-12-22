@@ -28,7 +28,7 @@ end
   require "simple_tasks_ruby/exceptions/#{exception}"
 end
 
-%w[daily_status_extractor status_extractor].each do |extractor|
+%w[status_extractor].each do |extractor|
   require "simple_tasks_ruby/extractors/#{extractor}"
 end
 
