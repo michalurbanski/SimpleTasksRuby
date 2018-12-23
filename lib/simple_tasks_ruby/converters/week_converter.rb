@@ -6,9 +6,11 @@ module SimpleTasksRuby
 
     def initialize(week_name, week_lines)
       @week_name = week_name
+      @lines = week_lines
 
-      # For converting lines to week, empty lines need to be removed before processing, as they are not significant 
-      @lines = EmptyLinesRemovalModule.remove_blank_lines(week_lines)
+      # For converting lines to week, empty lines need to be removed before processing,
+      # as they are not significant for the process.
+      EmptyLinesRemovalModule.remove_blank_lines!(@lines)
     end
 
     # Returns week object (with days and actions in them) based on raw input

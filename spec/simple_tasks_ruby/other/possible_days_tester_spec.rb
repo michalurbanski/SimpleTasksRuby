@@ -2,25 +2,21 @@ require 'spec_helper'
 
 module SimpleTasksRuby
   describe PossibleDaysTester do
-    it "Is valid possible day" do
-      tester = PossibleDaysTester.new
-      text = "Monday"
-
-      tester.is_day(text).must_equal true
-    end
-
-    it "Is valid possible day mixed casing" do
-      tester = PossibleDaysTester.new
-      text = "mONday"
-
-      tester.is_day(text).must_equal true
-    end
-
-    it "Is not valid day" do
-      tester = PossibleDaysTester.new
-      text = "aaa"
-
-      tester.is_day(text).must_equal false
+    subject{ possible_days_tester }
+    let(:possible_days_tester) { PossibleDaysTester.new }
+    
+    describe "Possible days" do
+      {
+        "Monday" => true,
+        "mONday" => true,
+        "aaa"    => false,
+        ""       => false,
+        nil      => false
+      }.each do |day_name, is_valid|
+        it "Check if name of the day is valid" do
+          subject.is_day(day_name).must_equal is_valid
+        end
+      end
     end
   end
 end
