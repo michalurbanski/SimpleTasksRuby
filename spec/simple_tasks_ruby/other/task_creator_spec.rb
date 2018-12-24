@@ -3,65 +3,62 @@ require 'spec_helper'
 module SimpleTasksRuby
   describe TaskCreator do
     it "Done task created" do
-      date = DateTime.new(2015, 3, 1)
       action = "- DONE - first task"
+      date = DateTime.new(2015, 3, 1)
 
-      taskCreator = TaskCreator.new(action, date)
-      doneTask = taskCreator.create_task
+      done_task = act(action, date)
 
-      doneTask.status.must_equal TaskType::DONE
+      done_task.status.must_equal TaskType::DONE
     end
 
     it "Aborted task created" do
-      date = DateTime.new(2015, 3, 1)
       action = "- ABORTED - first task"
+      date = DateTime.new(2015, 3, 1)
 
-      taskCreator = TaskCreator.new(action, date)
-      abortedTask = taskCreator.create_task
+      aborted_task = act(action, date)
 
-      abortedTask.status.must_equal TaskType::ABORTED
+      aborted_task.status.must_equal TaskType::ABORTED
     end
 
     it "Delayed task created" do
-      date = DateTime.new(2015, 3, 1)
       action = "- delayed, - first task"
+      date = DateTime.new(2015, 3, 1)
 
-      taskCreator = TaskCreator.new(action, date)
-      delayedTask = taskCreator.create_task
+      delayed_task = act(action, date)
 
-      delayedTask.status.must_equal TaskType::DELAYED
+      delayed_task.status.must_equal TaskType::DELAYED
     end
 
     it "Delayed and done task created" do
-      date = DateTime.new(2015, 3, 1)
       action = "- delayed, DONE 2016-03-03 - first task"
+      date = DateTime.new(2015, 3, 1)
 
-      taskCreator = TaskCreator.new(action, date)
-      doneTask = taskCreator.create_task
+      done_task = act(action, date)
       
-      doneTask.status.must_equal TaskType::DELAYED_DONE
+      done_task.status.must_equal TaskType::DELAYED_DONE
     end
 
     it "Delayed and done task has a greater done date than the original date" do
-      date = DateTime.new(2015, 3, 1)
-
       # Task done 2 days later
       action = "- delayed, DONE 2015-03-03 - first task"
+      date = DateTime.new(2015, 3, 1)
 
-      taskCreator = TaskCreator.new(action, date)
-      doneTask = taskCreator.create_task
+      done_task = act(action, date)
 
-      (doneTask.done_date > doneTask.original_date).must_equal true
+      (done_task.done_date > done_task.original_date).must_equal true
     end
 
     it "Not started task created" do
-      date = DateTime.new(2015, 3, 1)
       action = "- this is not started task"
+      date = DateTime.new(2015, 3, 1)
 
-      task_creator = TaskCreator.new(action, date)
-      not_started_task = task_creator.create_task
+      not_started_task = act(action, date)
 
       not_started_task.status.must_equal TaskType::NOT_STARTED
+    end
+
+    def act(action, date)
+      TaskCreator.new(action, date).create_task
     end
   end
 end

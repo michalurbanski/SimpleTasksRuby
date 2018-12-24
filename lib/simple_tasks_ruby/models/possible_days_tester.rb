@@ -5,6 +5,8 @@ module SimpleTasksRuby
     end
 
     def is_day(text)
+      return false if text.nil?
+      
       lower_days = @possibleDays.map{|day| day.downcase}
       lower_text = text.downcase
 

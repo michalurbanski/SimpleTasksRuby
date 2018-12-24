@@ -1,6 +1,6 @@
 module SimpleTasksRuby
   class DayFactory
-    class << self
+    class << self # equivalent to extend self
       def create_valid_day
         date = Time.now.strftime("%Y-%m-%d")
         day = Day.new("Monday #{date}")
@@ -13,9 +13,8 @@ module SimpleTasksRuby
 
       def create_empty_day
         date = Time.now.strftime("%Y-%m-%d")
-        day = Day.new("Monday #{date}")
-
-        return day
+        
+        return Day.new("Monday #{date}")
       end
     end
   end
