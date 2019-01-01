@@ -8,12 +8,13 @@ module SimpleTasksRuby
 
       @configuration_service = ConfigurationService.new
       input_file_path = @configuration_service.read_value(:input_file_path)
+      output_folder_name = @configuration_service.read_value(:output_folder_name)
 
       reader = FileSystemDataReader.new({ :path => input_file_path })
 
       @file_service = FileService.new(reader)
       @tasks_printer = TasksPrinter.new(@writer)
-      @file_writer_service = FileWriterService.new("output", "delayed_tasks.out")
+      @file_writer_service = FileWriterService.new(output_folder_name, "delayed_tasks.out")
     end
 
     # Main entry point in application - executes other implemented operations
