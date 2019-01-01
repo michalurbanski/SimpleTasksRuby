@@ -44,7 +44,7 @@ end
   require "simple_tasks_ruby/models/#{model}"
 end
 
-%w[file_service configuration_service].each do |service|
+%w[file_service configuration_service file_writer_service].each do |service|
   require "simple_tasks_ruby/services/#{service}"
 end
 
