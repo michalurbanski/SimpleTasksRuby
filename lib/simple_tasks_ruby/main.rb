@@ -14,7 +14,7 @@ module SimpleTasksRuby
 
       @file_service = FileService.new(reader)
       @tasks_printer = TasksPrinter.new(@writer)
-      @file_writer_service = FileWriterService.new(output_folder_name, "delayed_tasks.out")
+      @file_writer_service = FileWriterService.new(output_folder_name)
     end
 
     # Main entry point in application - executes other implemented operations
@@ -37,7 +37,7 @@ module SimpleTasksRuby
         @writer.write_message("Total number of tasks is: " + tasks_summary_engine.total.to_s)
         @writer.write_message(tasks_summary_engine.tasks_count_by_status)
 
-        @file_writer_service.save(delayed_tasks)        
+        @file_writer_service.save("delayed_tasks.out", delayed_tasks)        
 
       rescue => e # Rescues StandardError
         @writer.write_error("Error occured during application execution: #{e.to_s}\n")
