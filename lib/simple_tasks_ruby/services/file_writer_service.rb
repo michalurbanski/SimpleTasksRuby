@@ -4,28 +4,28 @@ module SimpleTasksRuby
       @foldername = foldername
     end
 
-    # filename is input to this method, 
+    # Filename is an input argument to this method,
     # becuase we might want to write different results to different files
     def save(filename, lines)
-      # TODO: implement checking if null or empty using this method from Rails 
-      # Write tests for this new method
-      # https://stackoverflow.com/questions/247948/is-there-a-better-way-of-checking-nil-or-length-0-of-a-string-in-ruby
-      return if filename.nil? || filename.empty? || lines.nil? # TODO: write test for this
-
-      path = File.join(@foldername, filename)
+      return if filename.blank? || lines.blank?
 
       create_directory_if_not_exists
 
-      File.open(path, 'w') do |f|
-        lines.each do |line|
-          f << "#{line}"
-        end
-      end
+      path_to_file = File.join(@foldername, filename)
+      save_to_file(path_to_file, lines)
     end
 
     private
-      def create_directory_if_not_exists()
+      def create_directory_if_not_exists
         Dir.mkdir @foldername unless File.exist? @foldername
+      end
+
+      def save_to_file(path_to_file, lines)
+        File.open(path_to_file, 'w') do |f|
+          lines.each do |line|
+            f << "#{line}"
+          end
+        end
       end
   end
 end
