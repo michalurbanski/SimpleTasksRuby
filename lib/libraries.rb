@@ -4,6 +4,14 @@ require 'date'
 require 'logger'
 require 'colorize'
 
+require "simple_tasks_ruby/core_extensions/object/object_helper"
+
+Object.include SimpleTasksRuby::Object
+
+%w[tasks_printer].each do |helper|
+  require "simple_tasks_ruby/helpers/#{helper}"
+end
+
 %w[console_writer].each do |common|
   require "simple_tasks_ruby/common/#{common}"
 end
@@ -44,12 +52,8 @@ end
   require "simple_tasks_ruby/models/#{model}"
 end
 
-%w[file_service configuration_service].each do |service|
+%w[file_service configuration_service file_writer_service].each do |service|
   require "simple_tasks_ruby/services/#{service}"
-end
-
-%w[tasks_printer].each do |helper|
-  require "simple_tasks_ruby/helpers/#{helper}"
 end
 
 %w[file_system_data_reader production_data test_data].each do |data|
