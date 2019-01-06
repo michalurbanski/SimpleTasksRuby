@@ -1,7 +1,9 @@
-class PossibleDays
-  attr_reader :days
+module SimpleTasksRuby
+  class PossibleDays
+    attr_reader :days
 
-  def initialize
-    @days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    def initialize
+      @days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    end
   end
 end

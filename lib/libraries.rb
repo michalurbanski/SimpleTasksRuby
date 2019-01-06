@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'date'
 require 'logger'
 require 'colorize'
+require 'yaml'
 
 require "simple_tasks_ruby/core_extensions/object/object_helper"
 

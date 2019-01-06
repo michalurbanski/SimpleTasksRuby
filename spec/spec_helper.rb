@@ -5,4 +5,4 @@ require 'test_data_reader_module'
 require 'day_factory'
 
 # disabled logging for tests
-Logging.is_logging_enabled = false
+SimpleTasksRuby::Logging.is_logging_enabled = false
