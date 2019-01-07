@@ -1,4 +1,5 @@
 require 'rake/testtask'
+require 'rdoc/task'
 
 # By default name of the task is 'test' so tests should be invoked using 'rake test'
 Rake::TestTask.new do |t|
@@ -9,5 +10,11 @@ Rake::TestTask.new do |t|
   t.verbose = false
 end
 desc "Run tests"
+
+RDoc::Task.new do |rdoc|
+  #rdoc.main = "README.rdoc" # if exists, needs to be also included to rdoc_files
+  rdoc.rdoc_dir="doc"
+  rdoc.rdoc_files.include("lib/**/*.rb")
+end
 
 task default: :test
