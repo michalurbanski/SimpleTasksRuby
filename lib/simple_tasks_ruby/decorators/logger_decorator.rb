@@ -1,5 +1,8 @@
-# Decorates logger class - to be able to enable/disable logging on request
 module SimpleTasksRuby
+  ##
+  # Decorates Ruby's logger. Introduces functionality to disable logging dynamically.
+  # Useful feature for tests' execution.
+  
   class LoggerDecorator
     attr_writer :is_enabled
     

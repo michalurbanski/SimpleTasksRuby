@@ -38,6 +38,7 @@ module SimpleTasksRuby
         
         logger
       end
+      #TODO: should logger be closed somehow? there's close operation available
     end
   end
 end
