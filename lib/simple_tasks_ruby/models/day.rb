@@ -65,7 +65,7 @@ module SimpleTasksRuby
         datePart = name.split[1]
 
         begin
-          @date = Date.strptime(datePart, DateConsts.day_format)
+          @date = Date.strptime(datePart, DateConsts::DAY_FORMAT)
         rescue # rescues StandardError
           raise IncorrectDateForDayException, name
         end

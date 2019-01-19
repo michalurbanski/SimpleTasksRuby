@@ -2,7 +2,7 @@ module SimpleTasksRuby
   class DayFactory
     class << self # equivalent to extend self
       def create_valid_day
-        date = Time.now.strftime("%Y-%m-%d")
+        date = get_current_date
         day = Day.new("Monday #{date}")
 
         task = Task.new("First task", Date.parse(date))
@@ -12,10 +12,13 @@ module SimpleTasksRuby
       end
 
       def create_empty_day
-        date = Time.now.strftime("%Y-%m-%d")
-        
-        return Day.new("Monday #{date}")
+        Day.new("Monday #{get_current_date}")
       end
+
+      private
+        def get_current_date
+          Time.now.strftime(DateConsts::DAY_FORMAT)
+        end
     end
   end
 end

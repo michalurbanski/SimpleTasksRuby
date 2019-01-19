@@ -11,7 +11,7 @@ module SimpleTasksRuby
       date_text = status_model.date
 
       unless date_text.nil?
-        delayed_done_date = Date.strptime(date_text, '%Y-%m-%d')
+        delayed_done_date = Date.strptime(date_text, DateConsts::DAY_FORMAT)
       end
 
       case(status)
